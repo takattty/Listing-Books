@@ -1,5 +1,5 @@
-# Listing-Books
-本の紹介Webアプリケーション
+# Sharechat
+シェアハウスのWebアプリケーションチャット
 
 ## 使用言語やFW
 - HTML&CSS
