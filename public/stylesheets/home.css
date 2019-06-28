@@ -7,7 +7,6 @@
 body {
     margin: 0;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
-    text-align: center;
 }
 
 p {
@@ -17,10 +16,15 @@ p {
 .header-title {
     padding: 180px 0 180px 0;
     background-color: rgb(188, 253, 255);
+    text-align: center;
 }
 
 .header-title h1 {
     color: white;
+}
+
+.authentication {
+    text-align: center;
 }
 
 .authentication-newaccount button {
