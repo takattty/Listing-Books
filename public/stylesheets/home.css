@@ -1,10 +1,18 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     text-align: center;
-  }
+}
+
   
 p {
-    color: rgb(190, 237, 255);
+    color: rgb(250, 215, 255);
   }
   
