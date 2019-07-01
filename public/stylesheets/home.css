@@ -131,7 +131,8 @@ p {
 }
 
 .home-footer-content {
-    height: 500px;
+    height: 450px;
+    position: relative;
 }
 
 .home-footer h2 {
@@ -145,9 +146,19 @@ p {
 
 .home-footer-twitter {
     text-align: center;
-    padding-right: 450px;
-    padding-left: 450px;
+    display: block;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    padding: 20px;
+    
+}
 
+.home-footer-twitter:hover {
+    cursor: pointer;
+    border: 1px solid #ccc;
 }
 
 .home-footer-twitter img {
