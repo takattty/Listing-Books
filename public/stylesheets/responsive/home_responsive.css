@@ -83,8 +83,8 @@
     }
 
     .home-footer-content h2 {
-        margin-right: 20px;
-        margin-left: 20px;
+        margin-right: 30px;
+        margin-left: 30px;
     }
 
     .home-footer-twitter{
@@ -98,6 +98,10 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 420px) {
 
+    .home-title-text p {
+        padding-right: 95px;
+        padding-left: 95px;
+    }
 }
