@@ -11,6 +11,7 @@ body {
 
 p {
     color: rgb(0, 0, 0);
+    /* font-weight: 600; */
   }
 
 .home-title {
@@ -20,6 +21,7 @@ p {
     background-position: 50%;
     background-size: 100%;
     opacity: 0.9;
+    font-size: 120%;
 }
 
 .home-title h1 {
@@ -123,7 +125,7 @@ p {
 }
 
 .home-introduction {
-    padding: 250px 0 250px 0;
+    padding: 200px 0 200px 0;
     background-color: rgb(220, 252, 253);
     text-align: center;
 }
@@ -165,7 +167,7 @@ p {
 
 .home-footer-twitter:hover {
     cursor: pointer;
-    border: 2px solid rgb(0, 0, 0);
+    border: 3px solid rgb(247, 185, 255);
 }
 
 .home-footer-twitter img {
