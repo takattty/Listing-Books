@@ -15,7 +15,7 @@ p {
 
 .home-title {
     padding: 200px 0 200px 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 227, 255);
     text-align: center;
 }
 
@@ -129,7 +129,7 @@ p {
 
 .home-footer {
     text-align: center;
-    background-color: rgb(253, 166, 166);
+    background-color: rgb(255, 251, 255);
     border-top: 1px solid #ccc;
 }
 
@@ -157,9 +157,13 @@ p {
 
 .home-footer-twitter:hover {
     cursor: pointer;
-    border: 3px solid rgb(0, 0, 0);
+    border: 4px solid rgb(251, 227, 252);
 }
 
 .home-footer-twitter img {
     border-radius: 50%;
+}
+
+.twitter-icon:hover img {
+    opacity: 0.5;
 }
