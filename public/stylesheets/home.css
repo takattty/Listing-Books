@@ -15,18 +15,19 @@ p {
 
 .home-title {
     padding: 200px 0 200px 0;
-    background-color: rgb(188, 253, 255);
+    background-color: rgb(255, 255, 255);
     text-align: center;
 }
 
 .home-title h1 {
-    color: white;
+    color: rgb(255, 22, 236);
 }
 
 .authentication {
     text-align: center;
     height: 150px;
-    background-color: rgb(229, 160, 160);
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid #ccc;
 }
 
 .authentications {
