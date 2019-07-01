@@ -10,23 +10,36 @@ body {
 }
 
 p {
-    color: rgb(242, 184, 250);
+    color: rgb(0, 0, 0);
   }
 
-.header-title {
+.home-title {
     padding: 180px 0 180px 0;
     background-color: rgb(188, 253, 255);
     text-align: center;
 }
 
-.header-title h1 {
+.home-title h1 {
     color: white;
 }
 
 .authentication {
     text-align: center;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* margin-right: 250px;
+    margin-left: 250px; */
+    height: 200px;
+    background-color: rgb(229, 160, 160);
+
+}
+
+.authentications {
+    padding-top: 50px;
+}
+
+.authentication-newaccount {
+    
 }
 
 .authentication-newaccount button {
@@ -67,6 +80,10 @@ p {
   transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
 }
 
+.authentication-login {
+    
+}
+
 .authentication-login button {
     z-index: 1;
     position: relative;
@@ -103,4 +120,26 @@ p {
 
 .authentication-login button:hover::before {
   transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}
+
+.home-introduction {
+    padding: 180px 0 180px 0;
+    background-color: rgb(188, 253, 255);
+    text-align: center;
+}
+
+.home-footer {
+    text-align: center;
+    background-color: rgb(253, 166, 166);
+    /* padding: 100px 0 100px 0; */
+    height: 300px;
+}
+
+.home-footer h2 {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.home-footer p {
+    padding-bottom: 0px;
 }
