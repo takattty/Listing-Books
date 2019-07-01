@@ -1,11 +1,32 @@
-@media (max-width: 1000px) {
+@media (max-width: 1160px) {
 
     .home-title {
         padding: 260px 0 260px 0;
         text-align: center;
         background-image: url("/images/architecture-1477041_1280.jpg");
-        
+        background-size: auto;
   
     }
 
+}
+
+@media (max-width: 850px) {
+
+    .authentication {
+        height: 200px;
+    }
+
+    .authentications{
+        display: block;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .authentication-newaccount {
+        padding-top: 20px;
+    }
+
+    .authentication-login {
+        padding-top: 30px;
+    }
 }

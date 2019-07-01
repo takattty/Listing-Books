@@ -46,10 +46,6 @@ p {
     justify-content: space-between;
 }
 
-/* .authentication-newaccount {
-    
-} */
-
 .authentication-newaccount button {
     z-index: 1;
     position: relative;
@@ -87,10 +83,6 @@ p {
 .authentication-newaccount button:hover::before {
   transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
 }
-
-/* .authentication-login {
-    
-} */
 
 .authentication-login button {
     z-index: 1;
