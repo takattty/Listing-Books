@@ -76,7 +76,26 @@
     }
 }
 
+@media (max-width: 540px) {
 
+    .home-footer-content{
+        height: 500px;
+    }
+
+    .home-footer-content h2 {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .home-footer-twitter{
+        height: 300px;
+    }
+
+    .home-footer-twitter:hover {
+        cursor: pointer;
+        border: 0px solid white;
+    }
+}
 
 
 @media (max-width: 500px) {
