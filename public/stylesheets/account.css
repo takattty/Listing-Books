@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
