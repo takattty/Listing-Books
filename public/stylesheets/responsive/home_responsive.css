@@ -97,11 +97,22 @@
     }
 }
 
-
 @media (max-width: 420px) {
 
     .home-title-text p {
         padding-right: 95px;
         padding-left: 95px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .home-title-text p {
+        padding-right: 80px;
+        padding-left: 80px;
+    }
+
+    .home-footer-content{
+        height: 600px;
     }
 }
