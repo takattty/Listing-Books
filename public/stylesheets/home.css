@@ -14,7 +14,7 @@ p {
   }
 
 .home-title {
-    padding: 180px 0 180px 0;
+    padding: 200px 0 200px 0;
     background-color: rgb(188, 253, 255);
     text-align: center;
 }
@@ -25,17 +25,14 @@ p {
 
 .authentication {
     text-align: center;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* margin-right: 250px;
-    margin-left: 250px; */
-    height: 200px;
+    height: 150px;
     background-color: rgb(229, 160, 160);
-
 }
 
 .authentications {
-    padding-top: 50px;
+    padding: 50px 250px 50px 250px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .authentication-newaccount {
