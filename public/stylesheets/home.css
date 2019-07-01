@@ -131,15 +131,17 @@ p {
 .home-footer {
     text-align: center;
     background-color: rgb(253, 166, 166);
-    /* padding: 100px 0 100px 0; */
+}
+
+.home-footer-content {
     height: 300px;
 }
 
 .home-footer h2 {
-    padding-top: 0px;
-    margin-top: 0px;
+    display: inline-block;
+    padding-top: 20px;
 }
 
 .home-footer p {
-    padding-bottom: 0px;
+    /* padding-top: 30px; */
 }
