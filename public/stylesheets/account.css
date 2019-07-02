@@ -26,6 +26,12 @@ body {
     padding-top: 20px;
 }
 
+.bottoms {
+    padding: 50px 450px 50px 450px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .account-footer {
     text-align: center;
     background-color: rgb(251, 208, 255);
