@@ -13,6 +13,7 @@ body {
     padding: 0px 400px 20px 400px;
     text-align: center;
     border-bottom:1px solid #ccc; 
+    background-color: rgb(251, 230, 255);
 }
 
 .header-title h1 {
@@ -28,7 +29,7 @@ body {
 .createAccount {
     height: 525px;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 183, 183);
 }
 
 .create_text h3 {
@@ -51,6 +52,8 @@ input, textarea {
     font-size: 15px;
     margin: 5px 0;
     border: 1px solid rgb(97, 97, 97);
+    height: 30px;
+    width: 200px;
 }
 
 textarea {
@@ -72,6 +75,7 @@ textarea {
     text-align: center;
     height: 100px;
     border-top: 1px solid #ccc;
+    background-color: rgb(204, 224, 250);
 }
 
 .account-footer h2 {
