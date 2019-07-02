@@ -3,7 +3,8 @@ const router = express.Router();
 
 router.get('/signup', function(req, res, next) {
     const signup_text = {
-        title: 'ここではアカウントの新規作成が出来ます。名前、パスワード、自己紹介を書いてアカウントを作成しよう！'
+        title1: 'ここではアカウントの新規作成が出来ます。',
+        title2: '名前、パスワード、自己紹介を書いてアカウントを作成しよう！'
     };
     res.render('account', signup_text);
 });
