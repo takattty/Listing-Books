@@ -10,7 +10,19 @@ body {
 }
 
 .header-title {
-    padding: 200px 50px 200px 50px;
+    padding: 50px 50px 50px 50px;
     background-color: rgb(186, 240, 253);
     text-align: center;
+}
+
+.createAccount {
+    height: 400px;
+    text-align: center;
+    background-color: rgb(255, 227, 249);
+}
+
+.account-footer {
+    text-align: center;
+    background-color: rgb(251, 208, 255);
+    height: 100px;
 }
