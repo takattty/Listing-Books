@@ -10,15 +10,15 @@ body {
 }
 
 .header-title {
-    padding: 20px 50px 20px 50px;
+    padding: 15px 50px 15px 50px;
     background-color: rgb(186, 240, 253);
     text-align: center;
 }
 
 .createAccount {
-    height: 500px;
+    height: 525px;
     text-align: center;
-    background-color: rgb(255, 227, 249);
+    background-color: rgb(255, 255, 255);
 }
 
 .create_text h3 {
@@ -30,11 +30,20 @@ body {
     padding: 0 450px 0 450px;
 }
 
+.create-content p {
+    border-top: 2px solid rgb(219, 219, 219);
+    padding-top: 5px;
+}
+
+input {
+    padding-top: 5px;
+}
+
 input, textarea {
     box-sizing: border-box;
     font-size: 15px;
     margin: 5px 0;
-    border: 2px solid #ccc;
+    border: 1px solid rgb(231, 231, 231);
 }
 
 textarea {
@@ -44,15 +53,18 @@ textarea {
 }
 
 .bottoms {
-    /* padding: 0px 450px 0px 450px; */
     display: flex;
     justify-content: space-between;
+}
+
+.bottoms p {
+    border-top: 2px solid white;
 }
 
 .account-footer {
     text-align: center;
     background-color: rgb(251, 208, 255);
-    height: 115px;
+    height: 100px;
 }
 
 .account-footer h2 {
