@@ -26,8 +26,20 @@ body {
     padding-top: 20px;
 }
 
+input, textarea {
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+textarea {
+    border: 2px solid #ccc;
+    padding: 10px;
+    width: 40%;
+    height: 100px;
+}
 .bottoms {
-    padding: 50px 450px 50px 450px;
+    padding: 0px 450px 0px 450px;
     display: flex;
     justify-content: space-between;
 }
