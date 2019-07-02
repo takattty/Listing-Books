@@ -8,3 +8,9 @@ body {
     margin: 0;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.header-title {
+    padding: 200px 50px 200px 50px;
+    background-color: rgb(186, 240, 253);
+    text-align: center;
+}
