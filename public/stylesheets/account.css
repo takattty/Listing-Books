@@ -46,10 +46,6 @@ body {
     padding-top: 5px;
 }
 
-input {
-    padding-top: 5px;
-}
-
 input, textarea {
     box-sizing: border-box;
     font-size: 15px;
