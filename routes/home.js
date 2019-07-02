@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/home', function(req, res, next) { //router.getメソッドで'/'にアクセスした際の表示を行う。
+router.get('/', function(req, res, next) { //router.getメソッドで'/'にアクセスした際の表示を行う。
   res.render('home', { home_title: 'Sharechat' });
 });
 
