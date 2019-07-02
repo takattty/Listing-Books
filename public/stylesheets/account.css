@@ -10,19 +10,29 @@ body {
 }
 
 .header-title {
-    padding: 50px 50px 50px 50px;
+    padding: 20px 50px 20px 50px;
     background-color: rgb(186, 240, 253);
     text-align: center;
 }
 
 .createAccount {
-    height: 400px;
+    height: 500px;
     text-align: center;
     background-color: rgb(255, 227, 249);
+}
+
+.create_text h3 {
+    margin-top: 0px;
+    padding-top: 20px;
 }
 
 .account-footer {
     text-align: center;
     background-color: rgb(251, 208, 255);
-    height: 100px;
+    height: 115px;
+}
+
+.account-footer h2 {
+    margin-top: 0px;
+    padding-top: 20px;
 }
