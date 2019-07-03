@@ -71,6 +71,11 @@ textarea {
     border-top: 2px solid rgb(255, 183, 183);
 }
 
+.bottoms input:hover {
+    color: white;
+    background-color: black;
+}
+
 .account-footer {
     text-align: center;
     height: 100px;
