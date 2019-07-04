@@ -23,7 +23,7 @@ body {
     text-align: center;
 }
 
-.success_text h2 {
+.success_text h3 {
     display: inline-block;
     margin-top: 0px;
     border-bottom: 3px solid rgb(124, 124, 124);

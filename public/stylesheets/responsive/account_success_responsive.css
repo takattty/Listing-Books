@@ -1,0 +1,11 @@
+@media (max-width: 450px) {
+
+    .header-title {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    .success_text {
+        padding: 45px 10px 30px 10px;
+    }
+}
