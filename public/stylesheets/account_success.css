@@ -17,8 +17,8 @@ body {
 }
 
 .success_text {
-    height: 130px;
-    padding-top: 40px;
+    height: 80px;
+    padding-top: 20px;
     background-color: rgb(194, 203, 255);
     text-align: center;
 }
@@ -30,19 +30,14 @@ body {
 }
 
 .success_content {
-    height: 540px;
+    height: 585px;
     text-align: center;
     background-color: rgb(255, 183, 183);
 }
 
-.user_content {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-    padding: 20px;
-    background-color: yellow;
+.content {
+    padding-top: 50px;
+
 }
 
 .user_content img {
@@ -51,10 +46,10 @@ body {
 }
 
 .show_room {
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-    padding: 20px;
+    padding-top: 30px;
+}
+
+button {
+    width: 300px;
+    height: 50px;
 }
