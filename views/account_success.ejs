@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Author" content="Takatty">
+        <meta name="title" content="Sharechat">
+        <title></title>
+        <link rel='stylesheet' href='/stylesheets/'/>
+        <link rel='stylesheet' href='/stylesheets/responsive/'/>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-title">
+                <h1>ようこそ、Sharechatへ！</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="success_text">
+                <p>アカウント作成に成功しました！</p>
+            </div>
+
+            <div class="success_content">
+                <div class="content">
+                    <div class="user_content">
+                        <a  href="#(show).ejs" class="user_img" target="_blank">
+                            <img src="images/" width="200" height="200">
+                        </a>
+                        <p>
+                            <a  href="#(show).ejs" target="_blank"><%= user_name %></a>
+                        </p>
+                    </div>
+
+                    <div class="show_room">
+                        <p>
+                            <button type="button">Room 一覧へ</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
