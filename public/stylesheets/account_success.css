@@ -16,6 +16,12 @@ body {
     background-color: rgb(251, 230, 255);
 }
 
+.header-title h1 {
+    display: inline-block;
+    color: rgb(255, 22, 236);
+    border-bottom: 2px solid rgb(78, 78, 78);
+}
+
 .success_text {
     height: 80px;
     padding-top: 20px;
@@ -26,7 +32,6 @@ body {
 .success_text h3 {
     display: inline-block;
     margin-top: 0px;
-    border-bottom: 3px solid rgb(124, 124, 124);
 }
 
 .success_content {
@@ -43,6 +48,10 @@ body {
 .user_content img {
     border-radius: 50%;
     background-color: white;
+}
+
+.user_content p {
+    padding-top: 10px;
 }
 
 .show_room {
