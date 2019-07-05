@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.header_title {
+    padding: 0px 400px 20px 400px;
+    text-align: center;
+    border-bottom:1px solid #ccc; 
+    background-color: rgb(251, 230, 255);
+}
+
+.header_title h1 {
+    color: rgb(255, 22, 236);
+    display: inline-block;
+    border-bottom: 2px solid rgb(78, 78, 78);
+}
+
+.header_title p {
+    margin: 0px 0px 0px 0px;
+}
+
+.room {
+    background-color: azure;
+}
+
+.room_content {
+    margin: 0 350px 30px 350px;
+}
+
+.room_show h3 {
+    display: inline-block;
+    margin-top: 0;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.room_text {
+    border-top: 2px solid rgb(255, 0, 0);
+}
+
+
+.room_memo_text {
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.room_memo_field {
+    display: inline-block;
+    background-color: white;
+    width: 90%;
+    height: 90px;
+    text-align: center;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.room_pass {
+    border-top: 2px solid rgb(255, 0, 0);
+}
+
+.room_pass_text {
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.room_pass_field {
+    box-sizing: border-box;
+    background-color: white;
+    width: 90%;
+    height: 40px;
+    text-align: center;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.join_bottons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.join_bottons input {
+    font-size: 15px;
+    margin: 5px 0;
+    border: 1px solid rgb(97, 97, 97);
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
+}
