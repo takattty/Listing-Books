@@ -9,9 +9,9 @@ const usersRouter = require('./routes/users');
 const homeRouter = require('./routes/home');
 const accountRouter = require('./routes/account');
 const editRouter = require('./routes/account');
-const account_successRouter = require('./routes/account_success');
-const room_indexRouter = require('./routes/room_index');
-const room_loginRouter = require('./routes/room_login');
+const account_successRouter = require('./routes/account-success');
+const room_indexRouter = require('./routes/room-index');
+const room_loginRouter = require('./routes/room-login');
 
 const app = express();
 console.log('Server start!');
