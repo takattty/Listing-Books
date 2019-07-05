@@ -40,11 +40,11 @@ body {
     margin-top: 0;
     border-bottom: 2px solid rgb(0, 0, 0);
     padding-top: 20px;
-    padding-bottom: 10px;
 }
 
 .room_text {
-    border-top: 2px solid rgb(255, 0, 0);
+    border-top: 2px solid #ccc;
+    margin-top: 10px;
 }
 
 
@@ -59,12 +59,13 @@ body {
     width: 90%;
     height: 90px;
     text-align: center;
-    margin-top: 0;
+    margin-top: 5px;
     margin-left: 10px;
+    border: 2px solid #ccc;
 }
 
 .room_pass {
-    border-top: 2px solid rgb(255, 0, 0);
+    border-top: 2px solid #ccc;
 }
 
 .room_pass_text {
@@ -78,13 +79,15 @@ body {
     width: 90%;
     height: 40px;
     text-align: center;
-    margin-top: 0;
+    margin-top: 5px;
     margin-left: 10px;
+    font-size: 25px;
 }
 
 .join_bottons {
     display: flex;
     justify-content: space-around;
+    padding-top: 20px;
 }
 
 .join_bottons input {
