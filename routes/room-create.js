@@ -14,4 +14,17 @@ router.get('/create', function(req, res, next) {
   res.render('account', roomCreate);
 });
 
+router.get('/edit', function(req, res, next) { 
+  const roomEdit = {
+      title1: 'ここではRoomの編集が出来ます。',
+      title2: 'Room名, パスワード, Roomの説明を編集しましょう！',
+      create: 'Room編集',
+      name: 'Room名',
+      text: 'Room紹介',
+      bottom: 'Roomを更新する'
+  };
+res.render('account', roomEdit);
+});
+
+
 module.exports = router;
