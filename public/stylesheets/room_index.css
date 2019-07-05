@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.header_title {
+    background-color: yellow;
+    border-bottom:1px solid #ccc; 
+}
+
+.header_title h1 {
+    color: rgb(255, 22, 236);
+    display: inline-block;
+    border-bottom: 2px solid rgb(78, 78, 78);
+    margin-bottom: 10px;
+}
+
+.header_title p {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
