@@ -28,7 +28,7 @@ body {
 }
 
 .create_room {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 3px solid #ccc;
 }
 
 button {
@@ -45,7 +45,9 @@ button {
 .room_index {
     margin: 0 250px 5px 250px;
     background-color: white;
-    border: 3px solid #ccc;
+    border-bottom: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+    border-left: 3px solid #ccc;
 }
 
 .room_index p {
@@ -58,6 +60,7 @@ button {
     border-bottom: 0px solid rgb(73, 72, 72);
     flex-direction: column;
     width: 100%;
+    margin-top: 0px;
 }
 
 .room_name a {
