@@ -22,19 +22,19 @@ body {
     border-bottom: 2px solid rgb(78, 78, 78);
 }
 
-.success_text {
+.success-text {
     height: 80px;
     padding-top: 20px;
     background-color: rgb(194, 203, 255);
     text-align: center;
 }
 
-.success_text h3 {
+.success-text h3 {
     display: inline-block;
     margin-top: 0px;
 }
 
-.success_content {
+.success_-content {
     height: 585px;
     text-align: center;
     background-color: rgb(255, 183, 183);
@@ -45,16 +45,16 @@ body {
 
 }
 
-.user_content img {
+.user-content img {
     border-radius: 50%;
     background-color: white;
 }
 
-.user_content p {
+.user-content p {
     padding-top: 10px;
 }
 
-.show_room {
+.show-room {
     padding-top: 30px;
 }
 

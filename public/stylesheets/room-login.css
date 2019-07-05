@@ -10,7 +10,7 @@ body {
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.header_title {
+.header-title {
     padding-top: 10px; 
     padding-bottom: 40px;
     text-align: center;
@@ -18,13 +18,13 @@ body {
     background-color: rgb(251, 230, 255);
 }
 
-.header_title h1 {
+.header-title h1 {
     color: rgb(255, 22, 236);
     display: inline-block;
     border-bottom: 2px solid rgb(78, 78, 78);
 }
 
-.header_title p {
+.header-title p {
     margin: 0px 0px 0px 0px;
 }
 
@@ -32,28 +32,28 @@ body {
     background-color: azure;
 }
 
-.room_content {
+.room-content {
     margin: 0 350px 30px 350px;
 }
 
-.room_show h3 {
+.room-show h3 {
     display: inline-block;
     margin-top: 0;
     border-bottom: 2px solid rgb(0, 0, 0);
     padding-top: 20px;
 }
 
-.room_text {
+.room-text {
     border-top: 2px solid #ccc;
     margin-top: 10px;
 }
 
 
-.room_memo_text {
+.room-memo-text {
     margin-bottom: 5px;
 }
 
-.room_memo_field {
+.room-memo-field {
     display: inline-block;
     background-color: white;
     width: 90%;
@@ -63,11 +63,11 @@ body {
     border: 2px solid #ccc;
 }
 
-.room_pass {
+.room-pass {
     border-top: 2px solid #ccc;
 }
 
-.room_pass_field {
+.roo-pass-field {
     box-sizing: border-box;
     background-color: white;
     width: 90%;
@@ -78,13 +78,13 @@ body {
     font-size: 25px;
 }
 
-.join_bottoms {
+.join-bottoms {
     display: flex;
     justify-content: space-around;
     padding-top: 20px;
 }
 
-.join_bottoms input {
+.join-bottoms input {
     font-size: 15px;
     margin: 5px 0;
     border: 1px solid rgb(97, 97, 97);

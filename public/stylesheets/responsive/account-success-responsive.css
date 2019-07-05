@@ -9,21 +9,21 @@
         margin-bottom: 5px;
     }
 
-    .success_text {
+    .success-text {
         padding: 20px 10px 20px 10px;
         height: 80px;
     }
 
-    .success_content {
+    .success-content {
         height: 610px;
     }
 
-    .user_content {
+    .user-content {
         background-color: aliceblue;
         padding: 30px 0 20px 0;
     }
 
-    .user_content p {
+    .user-content p {
         padding-top: 20px;
     }
 
