@@ -12,7 +12,7 @@ const editRouter = require('./routes/account');
 const accountSuccessRouter = require('./routes/account-success');
 const roomIndexRouter = require('./routes/room-index');
 const roomLoginRouter = require('./routes/room-login');
-const roomCreate = require('./routesroom-create');
+const roomCreate = require('./routes/room-create');
 
 const app = express();
 console.log('Server start!');

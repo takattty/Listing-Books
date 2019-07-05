@@ -22,19 +22,19 @@
         <main>
             <div class="createAccount">
                 <div class="create-text">
-                    <h3>アカウント新規作成</h3>
+                    <h3><%= create %></h3>
                 </div>
 
                 <div class="create-content">
                     <form action="#" method="POST">
-                        <p><label for="name-field">名前</label><br>
+                        <p><label for="name-field"><%= name %></label><br>
                         <input type="text" name="name" id="id-field" class="account-name"></p>
 
                         <p><label for="pw-field">パスワード</label><br>
                         <input type="password" name="pw" id="pw-field" class="account-password">
                         <input type="password" name="pw" id="pw-field" class="account-password"></p>
                         
-                        <p><label for="comment">自己紹介</label><br>
+                        <p><label for="comment"><%= text %></label><br>
                         <textarea name="comment" id="comment" class="account-introduction"></textarea></p>
                     
                     <div class="bottoms">
