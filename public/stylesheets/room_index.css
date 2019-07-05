@@ -37,3 +37,33 @@ button {
     background-color: rgb(167, 255, 251);
     font-size: 20px;
 }
+
+.room_content {
+    background-color: rgb(252, 198, 198);
+}
+
+.room_index {
+    margin: 0 250px 5px 250px;
+    background-color: white;
+    border: 3px solid #ccc;
+}
+
+.room_index p {
+    display: inline-block;
+    border-bottom: 2px solid rgb(78, 78, 78);
+}
+
+.room_name p {
+    display: flex;
+    border-bottom: 0px solid rgb(73, 72, 72);
+    flex-direction: column;
+    width: 100%;
+}
+
+.room_name a {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    background-color: rgb(105, 225, 255);
+}
