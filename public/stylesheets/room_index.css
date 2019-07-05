@@ -12,7 +12,7 @@ body {
 
 .header_title {
     background-color: yellow;
-    border-bottom:1px solid #ccc; 
+    border-bottom:3px solid #ccc; 
 }
 
 .header_title h1 {
@@ -45,6 +45,7 @@ button:hover {
 
 .room_content {
     background-color: rgb(252, 198, 198);
+    padding-top: 20px;
 }
 
 .room_index {
@@ -53,6 +54,7 @@ button:hover {
     border-bottom: 3px solid #ccc;
     border-right: 3px solid #ccc;
     border-left: 3px solid #ccc;
+    background-color: rgb(177, 253, 177);
 }
 
 .room_index p {

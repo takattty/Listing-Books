@@ -1,0 +1,32 @@
+@media (max-width: 820px) {
+
+    .room_index {
+        margin: 0 100px 0 100px;
+    }
+}
+
+@media (max-width: 570px) {
+
+    .header_title {
+        border-bottom:1px solid #ccc; 
+    }
+    
+    .header_title p {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+
+    .create_room {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .room_content {
+        padding-top: 10px;
+    }
+
+    .room_index {
+        margin: 10px 30px 0 30px;
+        background-color: rgb(177, 253, 177);
+        border-top: 3px solid #ccc;
+    }
+}
