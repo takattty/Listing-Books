@@ -26,3 +26,14 @@ body {
     margin-top: 10px;
     margin-bottom: 15px;
 }
+
+.create_room {
+    border-bottom: 1px solid #ccc;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    background-color: rgb(167, 255, 251);
+    font-size: 20px;
+}
