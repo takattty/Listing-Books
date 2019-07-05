@@ -1,0 +1,41 @@
+@media (max-width: 1150px) {
+
+    .room_content {
+        margin: 0 200px 0 200px;
+    }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 850px) {
+
+    .room_content {
+        margin: 0 70px 0 70px;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .join_bottoms {
+        display: flex;
+        flex-flow: column-reverse nowrap;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .header_title {
+        padding: 10px 20px 40px 20px;
+    }
+
+    .room_content {
+        margin: 0 20px 0 20px;
+    }
+}
