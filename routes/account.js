@@ -17,7 +17,7 @@ router.get('/edit', function(req, res, next) {
     const edit_text = {
         title1: 'ここではアカウントの編集が出来ます。',
         title2: '編集を終えたら、保存ボタンを押しましょう！',
-        create: 'アカウント新規作成',
+        create: 'アカウント編集',
         name: '名前',
         text: '自己紹介',
         bottom: '保存する'

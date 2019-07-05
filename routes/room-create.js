@@ -26,5 +26,17 @@ router.get('/edit', function(req, res, next) {
 res.render('account', roomEdit);
 });
 
+router.get('/show', function(req, res, next) { 
+  const roomShow = {
+      title1: 'ここではRoomの編集や削除の選択が出来ます。',
+      title2: '編集か削除を選んでください',
+      create: 'Roomについて',
+      name: 'Room名',
+      text: 'Room紹介',
+      delete_bottom: '削除',
+      edit_bottom: '編集'
+  };
+res.render('room-show', roomShow);
+});
 
 module.exports = router;
