@@ -38,6 +38,11 @@ button {
     font-size: 20px;
 }
 
+button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 .room_content {
     background-color: rgb(252, 198, 198);
 }
@@ -69,4 +74,9 @@ button {
     border: 1px solid #ccc;
     margin: 10px;
     background-color: rgb(105, 225, 255);
+}
+
+.room_name a:hover {
+    cursor: pointer;
+    opacity: 0.5;
 }
