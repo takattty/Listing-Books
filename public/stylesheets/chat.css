@@ -42,6 +42,7 @@ main {
     height: 70px;
 }
 
+
 .human {
     text-align: center;
     align-items: center;
@@ -61,13 +62,12 @@ main {
 }
 
 .text {
-    display: flex;
-    align-items: center;
     padding-left: 10px;
     width: 80%;
     border: 1px solid #ccc;
     font-size: 30px;
 }
+
 
 .text p {
     width: 100%;
@@ -96,7 +96,7 @@ main {
 
 
 .chat-submit {
-    background-color: crimson;
+    background-color: rgb(142, 168, 252);
     padding-top: 20px;
 }
 
