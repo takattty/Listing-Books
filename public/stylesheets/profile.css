@@ -8,3 +8,63 @@ body {
     margin: 0;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.header-title {
+    padding-top: 5px; 
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom:1px solid #ccc; 
+    background-color: rgb(251, 230, 255);
+}
+
+.header-title h1 {
+    color: rgb(255, 22, 236);
+    display: inline-block;
+    border-bottom: 2px solid rgb(78, 78, 78);
+    margin: 10px 0;
+}
+
+main {
+    background-color: antiquewhite;
+}
+
+.profile {
+    background-color: blue;
+}
+
+.profile-content {
+    margin: 0 200px;
+    background-color: blueviolet;
+    height: 500px;
+}
+
+.profile-title p {
+    text-align: center;
+    margin-top: 0;
+}
+
+.profile-human {
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.profile-si {
+    background-color: rgb(136, 255, 125);
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+.bottom {
+    text-align: center;
+    padding-top: 50px;
+}
