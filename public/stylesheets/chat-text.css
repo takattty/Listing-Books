@@ -91,3 +91,8 @@ body {
     width: 200px;
     border-radius: 20px;
 }
+
+.buttoms input:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

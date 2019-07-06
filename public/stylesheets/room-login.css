@@ -92,3 +92,8 @@ body {
     width: 200px;
     border-radius: 20px;
 }
+
+.join-bottoms input:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
