@@ -90,7 +90,7 @@ body {
     width: 100%;
 }
 
-.buttom {
+.bottom {
     display: flex;
     justify-content: space-around;
 }
@@ -104,7 +104,7 @@ body {
     border-radius: 20px;
 }
 
-.buttom input:hover {
+.bottom input:hover {
     cursor: pointer;
     opacity: 0.8;
 }
