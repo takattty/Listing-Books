@@ -71,8 +71,25 @@ main {
     padding: 20px;
 }
 
+.si {
+    display: flex;
+    align-items: center;
+}
 
 
+.si-text {
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    font-size: 30px;
+}
+
+.si-text p {
+    padding-left: 15px;
+    text-align: center;
+    width: 100%;
+}
 
 
 
