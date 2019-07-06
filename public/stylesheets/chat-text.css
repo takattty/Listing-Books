@@ -36,7 +36,7 @@ body {
     background-color: red;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 20px;
 }
 
 .chat-people-img {
@@ -48,11 +48,13 @@ body {
     display: flex;
     align-items: center;
     width: 70%;
-    font-size: 35px;
+    font-size: 50px;
 }
 
 .chat-people-name p {
     padding-left: 15px;
+    text-align: center;
+    width: 100%;
 }
 
 .chat-content {
@@ -63,8 +65,29 @@ body {
     background-color: chartreuse;
 }
 
+.chat-mess {
+    background-color: aliceblue;
+    margin: 10px 150px 10px 150px;
+}
+
+.chat-mess p {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    width: 100%;
+}
 
 .buttoms {
     display: flex;
     justify-content: space-around;
+    margin: 10px 150px 10px 150px;
+}
+
+.buttoms input {
+    font-size: 15px;
+    margin: 5px 0;
+    border: 1px solid rgb(97, 97, 97);
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
 }
