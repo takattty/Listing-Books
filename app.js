@@ -12,7 +12,8 @@ const editRouter = require('./routes/account');
 const accountSuccessRouter = require('./routes/account-success');
 const roomIndexRouter = require('./routes/room-index');
 const roomLoginRouter = require('./routes/room-login');
-const roomCreate = require('./routes/room-create');
+const roomCreateRouter = require('./routes/room-create');
+const chatTextRouter = require('./routes/chat-text');
 
 const app = express();
 console.log('Server start!');
@@ -35,7 +36,8 @@ app.use('/id', editRouter);
 app.use('/id', accountSuccessRouter);
 app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
-app.use('/room', roomCreate);
+app.use('/room', roomCreateRouter);
+app.use('/chat/text/id', chatTextRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
