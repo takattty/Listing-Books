@@ -10,8 +10,8 @@ body {
 }
 
 .header-title {
-    padding-top: 10px; 
-    padding-bottom: 20px;
+    padding-top: 5px; 
+    padding-bottom: 10px;
     text-align: center;
     border-bottom:1px solid #ccc; 
     background-color: rgb(251, 230, 255);
@@ -21,6 +21,7 @@ body {
     color: rgb(255, 22, 236);
     display: inline-block;
     border-bottom: 2px solid rgb(78, 78, 78);
+    margin: 10px 0;
 }
 
 .chat {
@@ -29,7 +30,7 @@ body {
 
 .chat-show {
     background-color: blueviolet;
-    margin: 0 200px 5px 200px;
+    margin: 0 200px;
 }
 
 .chat-people {
@@ -60,13 +61,12 @@ body {
 .chat-content {
     text-align: center;
     padding-top: 20px;
-    margin-top: 20px;
     background-color: chartreuse;
 }
 
 .chat-mess {
     background-color: aliceblue;
-    margin: 10px 150px 10px 150px;
+    margin: 10px 150px;
 }
 
 .chat-mess p {
@@ -79,7 +79,7 @@ body {
 .buttoms {
     display: flex;
     justify-content: space-around;
-    margin: 10px 150px 10px 150px;
+    margin: 10px 150px 0px 150px;
 }
 
 .buttoms input {
