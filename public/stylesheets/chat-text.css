@@ -29,13 +29,14 @@ body {
 
 .chat-show {
     background-color: blueviolet;
-    margin: 0 250px 5px 250px;
+    margin: 0 200px 5px 200px;
 }
 
 .chat-people {
     background-color: red;
     display: flex;
     justify-content: space-around;
+    padding: 10px;
 }
 
 .chat-people-img {
@@ -46,6 +47,8 @@ body {
     background-color: bisque;
     display: flex;
     align-items: center;
+    width: 70%;
+    font-size: 25px;
 }
 
 .chat-content {
