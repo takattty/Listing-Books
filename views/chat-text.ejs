@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="Author" content="Takatty">
         <meta name="title" content="Sharechat">
-        <title><%= home_title %></title>
+        <title></title>
         <link rel='stylesheet' href='/stylesheets/chat-text.css' />
         <link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
     </head>
@@ -13,11 +13,42 @@
     <body>
 
         <header>
-
+            <div class="header-title">
+                <h1>Room Name</h1>
+                <p>このページでは、チャットメッセージの編集や削除が選択出来ます。</p>
+            </div>
         </header>
 
         <main>
+            <div class="chat">
+                <div class="chat-show">
+                    <div class="chat-people">
+                        <div class="chat-people-img">
+                            <p>
+                                <img src="/images/human.png" width="200" height="200">
+                            </p>
+                        </div>
+                        <div class="chat-people-name">
+                            <p>ここにユーザーの名前が入ります。</p>
+                        </div>
+                    </div>
 
+                    <div class="chat-content">
+                        <div class="chat-mess">
+                            <p>ここはDBから持ってきたデータ（メッセージ内容）を表示する。</p>
+                        </div>
+                        <div class="buttoms">
+                            <p>
+                                <input type="button" value="<%= delete_bottom %>" class="account-bottom">
+                            </p>
+    
+                            <p>
+                                <input type="button" value="<%= edit_bottom %>"  class="account-bottom">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>

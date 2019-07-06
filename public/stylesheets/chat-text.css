@@ -8,3 +8,54 @@ body {
     margin: 0;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.header-title {
+    padding-top: 10px; 
+    padding-bottom: 20px;
+    text-align: center;
+    border-bottom:1px solid #ccc; 
+    background-color: rgb(251, 230, 255);
+}
+
+.header-title h1 {
+    color: rgb(255, 22, 236);
+    display: inline-block;
+    border-bottom: 2px solid rgb(78, 78, 78);
+}
+
+.chat {
+    padding-top: 20px;
+}
+
+.chat-show {
+    background-color: blueviolet;
+    margin: 0 250px 5px 250px;
+}
+
+.chat-people {
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+}
+
+.chat-people-img {
+    background-color: #ccc;
+}
+
+.chat-people-name {
+    background-color: bisque;
+}
+
+.chat-content {
+    text-align: center;
+    height: 500px;
+    padding-top: 20px;
+    margin-top: 20px;
+    background-color: chartreuse;
+}
+
+
+.buttoms {
+    display: flex;
+    justify-content: space-around;
+}
