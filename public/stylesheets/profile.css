@@ -50,11 +50,11 @@ body {
 }
 
 .profile-name {
-    background-color: bisque;
     display: flex;
     align-items: center;
     width: 70%;
     font-size: 30px;
+    border: 1px solid #ccc;
 }
 
 .profile-name p {
@@ -77,11 +77,11 @@ body {
 }
 
 .si-text {
-    background-color: bisque;
     display: flex;
     align-items: center;
     width: 70%;
     font-size: 30px;
+    border: 1px solid #ccc;
 }
 
 .si-text p {
