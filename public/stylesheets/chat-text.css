@@ -44,6 +44,8 @@ body {
 
 .chat-people-name {
     background-color: bisque;
+    display: flex;
+    align-items: center;
 }
 
 .chat-content {
