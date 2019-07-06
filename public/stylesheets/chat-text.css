@@ -48,7 +48,11 @@ body {
     display: flex;
     align-items: center;
     width: 70%;
-    font-size: 25px;
+    font-size: 35px;
+}
+
+.chat-people-name p {
+    padding-left: 15px;
 }
 
 .chat-content {
