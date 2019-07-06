@@ -50,6 +50,20 @@ main {
     padding: 20px;
 }
 
+.profile-name {
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    font-size: 30px;
+}
+
+.profile-name p {
+    padding-left: 15px;
+    text-align: center;
+    width: 100%;
+}
+
 .profile-si {
     background-color: rgb(136, 255, 125);
     display: flex;
