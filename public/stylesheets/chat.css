@@ -43,7 +43,7 @@ main {
 }
 
 .index {
-    height: 300px;
+    height: 200px;
     background-color: black;
     overflow: scroll;
 }
@@ -94,12 +94,6 @@ main {
     display: inline-block;
     border-bottom: 1px solid #ccc;
 }
-
-
-
-
-
-
 
 .chat-submit {
     background-color: rgb(142, 168, 252);
