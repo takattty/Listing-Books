@@ -53,7 +53,11 @@ main {
     text-align: center;
     align-items: center;
     width: 10%;
-    
+}
+
+.human:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .human-img p {
@@ -73,7 +77,6 @@ main {
     border: 1px solid #ccc;
     font-size: 30px;
 }
-
 
 .text p {
     width: 100%;
