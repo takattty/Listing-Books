@@ -30,10 +30,13 @@ body {
 
 .room {
     background-color: azure;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 .room-content {
     margin: 0 350px 30px 350px;
+    background-color: rgb(255, 169, 255);
 }
 
 .room-show h3 {
