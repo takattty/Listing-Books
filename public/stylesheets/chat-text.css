@@ -41,11 +41,11 @@ body {
 }
 
 .chat-people-img {
-    background-color: #ccc;
+    background-color: white;
 }
 
 .chat-people-name {
-    background-color: bisque;
+    background-color: white;
     display: flex;
     align-items: center;
     width: 70%;
@@ -65,7 +65,7 @@ body {
 }
 
 .chat-mess {
-    background-color: aliceblue;
+    background-color: white;
     margin: 10px 150px;
 }
 
