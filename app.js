@@ -39,7 +39,7 @@ app.use('/id', accountSuccessRouter);
 app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
 app.use('/room', roomCreateRouter);
-app.use('/chat/text/id', chatTextRouter);
+app.use('/chat/id/text', chatTextRouter);
 app.use('/profile', profileRouter);
 app.use('/chat', chatRouter);
 
