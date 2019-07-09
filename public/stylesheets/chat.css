@@ -25,7 +25,7 @@ body {
 }
 
 main {
-    background-color: blueviolet;
+    background-color: white;
 }
 
 .chat {
@@ -44,8 +44,8 @@ main {
 
 .index {
     height: 200px;
-    background-color: black;
     overflow: scroll;
+    border: 2px solid rgb(159, 241, 255);
 }
 
 .human {
@@ -75,6 +75,7 @@ main {
     width: 80%;
     border: 1px solid #ccc;
     font-size: 30px;
+    align-items: center;
 }
 
 .text p {
@@ -99,7 +100,7 @@ main {
 
 .chat-submit {
     background-color: rgb(142, 168, 252);
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 .submit-field {
@@ -108,7 +109,7 @@ main {
 }
 
 form {
-    padding: 0 10px;
+    padding: 0 5px;
     display: flex;
     justify-content: space-between;
 }
