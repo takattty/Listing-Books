@@ -14,7 +14,7 @@ router.get('/create', function(req, res, next) {
   res.render('account', roomCreate);
 });
 
-router.get('/edit', function(req, res, next) { 
+router.get('/id/edit', function(req, res, next) { 
   const roomEdit = {
       title1: 'ここではRoomの編集が出来ます。',
       title2: 'Room名, パスワード, Roomの説明を編集しましょう！',
@@ -26,7 +26,7 @@ router.get('/edit', function(req, res, next) {
 res.render('account', roomEdit);
 });
 
-router.get('/show', function(req, res, next) { 
+router.get('/id/show', function(req, res, next) { 
   const roomShow = {
       title1: 'ここではRoomの編集や削除の選択が出来ます。',
       title2: '編集か削除を選んでください',

@@ -13,7 +13,7 @@ router.get('/signup', function(req, res, next) {
     res.render('account', signup_text);
 });
 
-router.get('/edit', function(req, res, next) {
+router.get('/id/edit', function(req, res, next) {
     const edit_text = {
         title1: 'ここではアカウントの編集が出来ます。',
         title2: '編集を終えたら、保存ボタンを押しましょう！',
