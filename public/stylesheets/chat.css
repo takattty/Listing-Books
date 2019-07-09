@@ -43,7 +43,7 @@ main {
 }
 
 .index {
-    height: 200px;
+    height: 500px;
     overflow: scroll;
     border: 2px solid rgb(159, 241, 255);
 }
