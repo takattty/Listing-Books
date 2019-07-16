@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/id', function(req, res, next) {
     const chatTextShow = {
         delete_bottom: '削除',
         edit_bottom: '編集'
@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     res.render('chat-text', chatTextShow);
 });
 
-router.get('/edit', function(req, res, next) {
+router.get('/id/edit', function(req, res, next) {
     const chatTextEdit = {
         delete_bottom: '削除',
         edit_bottom: '更新'
