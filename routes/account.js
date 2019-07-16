@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const moment = require('moment');
 
 router.get('/signup', function(req, res, next) {
     const signup_text = {
@@ -17,10 +16,8 @@ router.get('/signup', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
     let name = req.body.name;
     let text = req.body.comment;
-    let createdAt = moment().format('HH:mm');
     console.log(name);
     console.log(text);
-    console.log(createdAt);
     
 })
 
