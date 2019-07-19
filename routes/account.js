@@ -13,13 +13,12 @@ router.get('/signup', function(req, res, next) {
     res.render('account', signup_text);
 });
 
-router.post('/signup', function(req, res, next) {
+router.post('/signup', function(req, res, next) {//このURLにPOST通信がきたら、コールバック関数を実行。
     let name = req.body.name;
     let text = req.body.comment;
     console.log(name);
     console.log(text);
-    
-})
+});
 
 
 router.get('/id/edit', function(req, res, next) {
