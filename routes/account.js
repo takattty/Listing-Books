@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const moment = require('moment');
+const connection = require('../mysqlConnection');
 
 router.get('/signup', function(req, res, next) {
     const signup_text = {
@@ -16,12 +16,13 @@ router.get('/signup', function(req, res, next) {
 
 router.post('/signup', function(req, res, next) {
     let name = req.body.name;
-    let pass = req.body.password;
+    let password = req.body.password;
     let si = req.body.comment;
-    console.log(name);
-    console.log(pass);
-    console.log(si);
-    res.end();
+    let NULL = null;
+    let query = 'INSERT INTO account (id, name, password, si) VALUES ("' + NULL + '", ' + '"' + name + '", ' + ' ' + '"' + password + '", ' + '"' + si + '")';
+    connection.query(query, function(err, rows) {
+        res.redirect('/');
+    });
 });
 
 
