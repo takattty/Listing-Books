@@ -14,13 +14,13 @@ router.get('/signup', function(req, res, next) {
     res.render('account', signup_text);
 });
 
-router.post('/signup', function(req, res, next) {//このURLにPOST通信がきたら、コールバック関数を実行。
+router.post('/signup', function(req, res, next) {
     let name = req.body.name;
-    let text = req.body.comment;
-    let createdAt = moment().format('HH:mm');
+    let pass = req.body.password;
+    let si = req.body.comment;
     console.log(name);
-    console.log(text);
-    console.log(createdAt);
+    console.log(pass);
+    console.log(si);
     res.end();
 });
 
