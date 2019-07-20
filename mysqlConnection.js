@@ -1,9 +1,10 @@
 const mysql = require('mysql');
 
 const dbConfig = {
-    host:     '127.0.0.1',
+    host:     'localhost',
     user:     'root',
-    password: '',
+    password: 'TaKaTo0814',
+    port:     3306,
     database: 'sharechat_test'
 };
 
