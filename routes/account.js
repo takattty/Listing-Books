@@ -19,7 +19,7 @@ router.post('/signup', function(req, res, next) {
     let password = req.body.password;
     let si = req.body.comment;
     let id = null;
-    let date = {'id': id,　'name': name, 'password': password, 'si': si};
+    let date = {id, name, password, si};
     connection.connect();
     connection.query('INSERT INTO account SET ?', date,
         function (error, results, fields) {
@@ -42,8 +42,6 @@ router.post('/signup', function(req, res, next) {
 
     connection.end();
 });
-
-
 
 
 router.get('/id/edit', function(req, res, next) {
