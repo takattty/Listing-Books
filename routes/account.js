@@ -15,10 +15,22 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-    let name = req.body.name;
-    let password = req.body.password;
-    let si = req.body.comment;
     let id = null;
+    let name = req.body.name;
+
+    function pass() {
+        let pass1 = req.body.password1;
+        let pass2 = req.body.password2;
+            if (pass1 == pass2) {
+                return pass1;
+            } else {
+                
+                res.redirect('/signup');
+            }
+    }
+
+    let password = pass(); 
+    let si = req.body.comment;
     let date = {id, name, password, si};
     connection.connect();
     connection.query('INSERT INTO account SET ?', date,
@@ -26,20 +38,7 @@ router.post('/signup', function(req, res, next) {
             if (error) throw error;
             res.redirect('/');
         });
-        console.log(date);
-
-    // let query = 'INSERT INTO account (id, name, password, si) VALUES ("' + NULL + '", ' + '"' + name + '", ' + ' ' + '"' + password + '", ' + '"' + si + '")';
-    // connection.query(query, function(err, rows) {
-    //     res.redirect('/');
-    // });
-    // console.log(query);
-
-    // let query = connection.query('INSERT INTO account SET ?', date, function (error, results, fields) {
-    //     if (error) throw error;
-    // });
-    // console.log(query);
-    // console.log(query.sql);
-
+    console.log(date);
     connection.end();
 });
 
