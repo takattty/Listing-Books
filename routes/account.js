@@ -21,6 +21,8 @@ router.post('/signup', (req, res, next) => {
         let pass2 = req.body.password2;
             if (pass1 == pass2) {
                 return pass1;
+            } else {
+                res.redirect('/account/signup');
             }
     }
     let id = null;
@@ -31,7 +33,7 @@ router.post('/signup', (req, res, next) => {
     connection.query('INSERT INTO account SET ?', date,
         (error, results, fields) => {
             if (error) throw error;
-            res.redirect('/');
+            res.redirect('/id/success');
         });
     console.log(date);
 });
