@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const { check, validationResult } = require('express-validator'); 
 
 router.get('/signup', function(req, res, next) {
     const signup_text = {
@@ -14,7 +15,7 @@ router.get('/signup', function(req, res, next) {
     res.render('account', signup_text);
 });
 
-router.post('/signup', function(req, res, next) {
+router.post('/signup', (req, res, next) => {
     let id = null;
     let name = req.body.name;
 
@@ -23,23 +24,18 @@ router.post('/signup', function(req, res, next) {
         let pass2 = req.body.password2;
             if (pass1 == pass2) {
                 return pass1;
-            } else {
-                
-                res.redirect('/signup');
             }
     }
 
     let password = pass(); 
     let si = req.body.comment;
     let date = {id, name, password, si};
-    connection.connect();
     connection.query('INSERT INTO account SET ?', date,
-        function (error, results, fields) {
+        (error, results, fields) => {
             if (error) throw error;
             res.redirect('/');
         });
     console.log(date);
-    connection.end();
 });
 
 
