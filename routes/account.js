@@ -16,9 +16,6 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-    let id = null;
-    let name = req.body.name;
-
     function pass() {
         let pass1 = req.body.password1;
         let pass2 = req.body.password2;
@@ -26,7 +23,8 @@ router.post('/signup', (req, res, next) => {
                 return pass1;
             }
     }
-
+    let id = null;
+    let name = req.body.name;
     let password = pass(); 
     let si = req.body.comment;
     let date = {id, name, password, si};
