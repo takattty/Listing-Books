@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 
-/* GET home page. */
 router.get('/success', function(req, res, next) {
 	let userId = req.session.user_id;
 	console.log("userId =" + userId);

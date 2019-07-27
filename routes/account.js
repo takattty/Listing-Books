@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
-const { check, validationResult } = require('express-validator'); 
 
 router.get('/signup', function(req, res, next) {
     const signup_text = {
