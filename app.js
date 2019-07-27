@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/users', usersRouter);
 app.use('/', homeRouter);
 app.use('/account', accountRouter);
-app.use('/id', accountSuccessRouter);
+app.use('/success', accountSuccessRouter);
 app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
 app.use('/room', roomCreateRouter);

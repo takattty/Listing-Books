@@ -68,17 +68,19 @@ router.post('/login', (req, res, next) => {
         } else {
             let userId = rows.length? rows[0].id: false;
             if (userId) {
+                req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
                 req.session.user_id = userId;
                 console.log(userId);
+                console.log(req.params);
                 console.log("セッションID登録完了！！！");
-                res.redirect('/id/success');
+                res.redirect('/success/' + userId );//ここに渡せていない。
             } else {
                 res.redirect('/account/login');
                 console.log("falseだよ");
             }
         }
-    })
-})
+    });
+});
 
 
 router.get('/id/edit', function(req, res, next) {
