@@ -73,7 +73,7 @@ router.post('/login', (req, res, next) => {
                 console.log(userId);
                 console.log(req.params);
                 console.log("セッションID登録完了！！！");
-                res.redirect('/success/' + userId );//ここに渡せていない。
+                res.redirect('/success/' + req.session.user_id );
             } else {
                 res.redirect('/account/login');
                 console.log("falseだよ");
