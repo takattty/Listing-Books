@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 
-router.get('/:userId', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
 	let userId = req.session.user_id;
 	console.log("userId =" + userId);
 	let query = 'SELECT id, name FROM account WHERE id = ' + userId;
