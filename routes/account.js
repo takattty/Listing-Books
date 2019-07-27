@@ -31,7 +31,7 @@ router.post('/signup', (req, res, next) => {
     let date = {id, name, password, si};
     connection.query('INSERT INTO account SET ?', date,
         (error, results, fields) => {
-            res.redirect('/id/success');
+            res.redirect('/account/login');
         });
     console.log(date);
 });
