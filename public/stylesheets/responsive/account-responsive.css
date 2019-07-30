@@ -36,7 +36,7 @@
     }
 
     .createAccount {
-        height: 580px;
+        height: 500px;
     }
 
     .create-content {
@@ -71,11 +71,11 @@
 @media (max-width: 420px) {
 
     .header-title {
-        padding: 20px 30px 30px 30px;
+        padding: 0px 20px 15px;
     }
 
     .create-content {
-        padding: 0 30px 20px 30px;
+        padding: 0 20px 20px;
         height: 400px;
     }
 
