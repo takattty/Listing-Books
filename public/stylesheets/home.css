@@ -38,12 +38,12 @@ p {
 
 .authentication {
     text-align: center;
-    height: 150px;
+    height: 140px;
     background-color: rgb(255, 255, 255);
 }
 
 .authentications {
-    padding: 50px 250px 50px 250px;
+    padding: 30px 250px;
     display: flex;
     justify-content: space-between;
 }
@@ -125,7 +125,7 @@ p {
 }
 
 .home-introduction {
-    padding: 200px 0 200px 0;
+    padding: 150px 0;
     background-color: rgb(220, 252, 253);
     text-align: center;
 }
