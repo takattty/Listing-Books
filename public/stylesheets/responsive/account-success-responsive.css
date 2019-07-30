@@ -11,20 +11,24 @@
 
     .success-text {
         padding: 20px 10px 20px 10px;
-        height: 80px;
+        height: 100px;
     }
 
     .success-content {
-        height: 610px;
+        height: 550px;
+    }
+
+    .content {
+        padding-top: 0px;
     }
 
     .user-content {
         background-color: aliceblue;
-        padding: 30px 0 20px 0;
+        padding: 30px 10px 10px;
     }
 
     .user-content p {
-        padding-top: 20px;
+        font-size: 25px;
     }
 
     button {

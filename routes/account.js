@@ -38,14 +38,13 @@ router.post('/signup', (req, res, next) => {
 
 router.get('/login', function(req, res, next) {
     const login_text = {
-        title1: 'ここではログインが出来ます。',
-        title2: '名前、パスワード、自己紹介を書いてログインしよう！',
+        title1: 'アカウント作成が完了したので、ログインしましょう！',
+        title2: '名前、パスワード、自己紹介を書いてください！',
         create: 'ログイン',
         name: '名前',
-        text: '自己紹介',
-        bottom: 'ログインする' 
+        bottom: 'ログイン' 
     };
-    res.render('account', login_text);
+    res.render('login', login_text);
 });
 
 router.post('/login', (req, res, next) => {

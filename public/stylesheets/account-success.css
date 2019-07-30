@@ -42,7 +42,6 @@ body {
 
 .content {
     padding-top: 50px;
-
 }
 
 .user-content img {
@@ -51,7 +50,7 @@ body {
 }
 
 .user-content p {
-    padding-top: 10px;
+    font-size: 25px;
 }
 
 .show-room {
