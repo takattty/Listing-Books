@@ -27,7 +27,7 @@ router.post('/:id/login', (req, res, next) => {//パスワードの検証
 		if (pass == rows[0].room_pass) {
 			let userId = req.session.user_id;
 			req.session.room_id = userId;
-			console.log(userId);
+			console.log(req.session.room_id);
 			res.redirect('/chat/' + req.params.id);
 			console.log('うまく行ったぞ！');
 		} else {
