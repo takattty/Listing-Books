@@ -31,7 +31,7 @@ router.post('/:id/login', (req, res, next) => {//パスワードの検証
 			res.redirect('/chat/' + req.params.id);
 			console.log('うまく行ったぞ！');
 		} else {
-			res.redirect('/:id/login');
+			res.redirect('/room/' + req.params.id + '/login');
 			console.log('間違ってるよ');
 		}
 	});
