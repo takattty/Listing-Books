@@ -33,8 +33,9 @@
                             <p class="room-memo-field"><%= room_show.room_memo %></p>
                         </div>
                         <div class="room-pass">
-                            <p class="room-pass-text"><label for="room_pass_text">ここはRoomのパスワード記入欄です。</label>
-                            <input type="password" name="pw" id="pw-fiels" class="room-pass-field"></p>
+                            <form action="" method="POST">
+                                <p class="room-pass-text"><label for="room_pass_text">ここはRoomのパスワード記入欄です。</label>
+                                <input type="password" name="pass" id="pw-fiels" class="room-pass-field"></p>
                         </div>
                     </div>
 
@@ -44,9 +45,10 @@
                         </p>
 
                         <p>
-                            <input type="button" value="参加する">
+                            <input type="submit" value="参加する">
                         </p>
                     </div>
+                            </form>
                 </div>
             </div>
         </main>
