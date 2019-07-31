@@ -32,18 +32,9 @@
                             <p>Room一覧</p>
                             <div class="room-name">
                                 <p>
-                                    <a herf="$" target="_blank">room_name1</a>
-                                    <a herf="$" target="_blank">room_name2</a>
-                                    <a herf="$" target="_blank">room_name3</a>
-                                    <a herf="$" target="_blank">room_name4</a>
-                                    <a herf="$" target="_blank">room_name5</a>
-                                    <a herf="$" target="_blank">room_name6</a>
-                                    <a herf="$" target="_blank">room_name7</a>
-                                    <a herf="$" target="_blank">room_name8</a>
-                                    <a herf="$" target="_blank">room_name9</a>
-                                    <a herf="$" target="_blank">room_name10</a>
-                                    <a herf="$" target="_blank">room_name11</a>
-                                    <a herf="$" target="_blank">room_name12</a>
+                                    <% room_info.forEach(function(room) { %>
+                                        <a href="$" target="_blank"><%= room.room_name %></a>
+                                    <% }); %>
                                 </p>
                             </div>
                         </div>
