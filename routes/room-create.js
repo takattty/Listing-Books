@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const connection = require('../mysqlConnection');
 
 /* GET home page. */
 router.get('/create', function(req, res, next) { 
@@ -12,6 +13,29 @@ router.get('/create', function(req, res, next) {
         bottom: 'Roomを作成する'
     };
   res.render('account', roomCreate);
+});
+
+router.post('/create', (req, res, next) => {
+    function pass() {
+        let pass1 = req.body.password1;
+        let pass2 = req.body.password2;
+            if (pass1 == pass2) {
+                return pass1;
+            } else {
+                res.redirect('/room/create');
+            }
+    }
+    let room_id = null;
+    let room_name = req.body.name;
+    let room_pass = pass(); 
+	let room_memo = req.body.comment;
+	let room_owner = req.session.user_id;
+	let date = {room_id, room_name, room_pass, room_memo, room_owner};
+	connection.query('INSERT INTO room SET ?', date,
+		(error, results, fields) => {
+			res.redirect('/room/index');
+		});
+	console.log(date);
 });
 
 router.get('/id/edit', function(req, res, next) { 
