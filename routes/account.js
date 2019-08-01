@@ -84,21 +84,47 @@ router.post('/login', (req, res, next) => {
 
 router.get('/:id/edit', function(req, res, next) {
     let id = req.params.id;
+    let userid = req.session.user_id;
     console.log(id);
-    let query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
-    connection.query(query, (err, rows) => {
+    console.log(userid)
+    if (id == userid) {
+        let query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
+        connection.query(query, (err, rows) => {
+            if (err) throw err;
+            console.log(rows[0]);
+            const edit_text = {
+                title1: 'ここではアカウントの編集が出来ます。',
+                title2: '編集を終えたら、保存ボタンを押しましょう！',
+                create: 'アカウント編集',
+                name: '名前',
+                text: '自己紹介',
+                bottom: '保存する',
+                user: rows[0]
+            }
+            res.render('account', edit_text);
+        });
+    } else {
+        res.redirect('/profile/' + userid);
+    }
+});
+
+router.post('/:id/edit', (req, res, next) => {
+    function pass() {
+        let pass1 = req.body.password1;
+        let pass2 = req.body.password2;
+            if (pass1 == pass2) {
+                return pass1;
+            } else {
+                res.redirect('/' + req.session.user_id + '/edit');
+            }
+    }
+    let id = req.params.id;
+    let name = req.body.name;
+    let password = pass(); 
+    let si = req.body.comment;
+    connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
         if (err) throw err;
-        console.log(rows[0]);
-        const edit_text = {
-            title1: 'ここではアカウントの編集が出来ます。',
-            title2: '編集を終えたら、保存ボタンを押しましょう！',
-            create: 'アカウント編集',
-            name: '名前',
-            text: '自己紹介',
-            bottom: '保存する',
-            user: rows[0]
-        }
-        res.render('account', edit_text);
+        res.redirect('/profile/' + id);
     });
 });
 
