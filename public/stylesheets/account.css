@@ -47,7 +47,16 @@ body {
     padding-top: 5px;
 }
 
-input, textarea {
+input, textarea{
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 5px 0;
+    border: 1px solid rgb(97, 97, 97);
+    height: 30px;
+    width: 200px;
+}
+
+.account-bottom {
     box-sizing: border-box;
     font-size: 15px;
     margin: 5px 0;
@@ -69,6 +78,11 @@ textarea {
 
 .bottoms p {
     border-top: 2px solid rgb(255, 183, 183);
+}
+
+.bottoms a:hover {
+    color: white;
+    background-color: black;
 }
 
 .bottoms input:hover {
