@@ -95,7 +95,7 @@ body {
     justify-content: space-around;
 }
 
-.bottom input{
+.bottom p{
     font-size: 15px;
     margin: 5px 0;
     border: 1px solid rgb(97, 97, 97);
@@ -104,7 +104,12 @@ body {
     border-radius: 20px;
 }
 
-.bottom input:hover {
+.bottom a {
+    font-size: 30px;
+    color: black;
+}
+
+.bottom p:hover {
     cursor: pointer;
     opacity: 0.8;
 }

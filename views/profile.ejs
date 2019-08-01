@@ -14,7 +14,7 @@
         <header>
             <div class="header-title">
                 <h1>Room name</h1>
-                <p>このページは、プロフィールページです。</p>
+                <p>このページは、<%= user_name %>のプロフィールページです。</p>
             </div>
         </header>
 
@@ -34,7 +34,7 @@
                                 </p>
                             </div>
                             <div class="profile-name">
-                                <p>ここに名前が入る。</p>
+                                <p><%= user_name %></p>
                             </div>
                         </div>
 
@@ -43,13 +43,13 @@
                                 <p>自己紹介</p>
                             </div>
                             <div class="si-text">
-                                <p>ここに自己紹介のコメントが入る。</p>
+                                <p><%= user_si %></p>
                             </div>
                         </div>
 
                         <div class="bottom">
                             <p>
-                                <input type="button" value="<%= bottom %>"  class="account-bottom">
+                                <a href='/account/<%= user_id %>/edit' class="account-bottom">編集する</a>
                             </p>
                         </div>
 
