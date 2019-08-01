@@ -9,7 +9,10 @@ router.get('/:id', function(req, res, next) {//多分ここのidは、下の処�
 	connection.query(query, (err, rows) => {
 		if (err) throw err; 
 		console.log(rows[0]);
-		res.render('account-success', { user_name: rows[0].name});
+		console.log("/profile/" + rows[0].id)
+		res.render('account-success', { 
+			user_name: rows[0].name,
+			user_num: rows[0].id});
 	});
 });
 module.exports = router;
