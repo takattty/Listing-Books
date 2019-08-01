@@ -28,14 +28,14 @@
                 <div class="create-content">
                     <form action="" method="POST">
                         <p><label for="name-field"><%= name %></label><br>
-                        <input type="text" name="name" id="id-field" class="account-name"></p>
+                        <input type="text" name="name" id="id-field" class="account-name" value='<%= user.name %>'></p>
 
                         <p><label for="pw-field">パスワード</label><br>
-                        <input type="password" name="password1" id="pw-field" class="account-password">
-                        <input type="password" name="password2" id="pw-field" class="account-password"></p>
+                        <input type="password" name="password1" id="pw-field" class="account-password" value='<%= user.password %>'>
+                        <input type="password" name="password2" id="pw-field" class="account-password" value='<%= user.password %>'></p>
                         
                         <p><label for="comment"><%= text %></label><br>
-                        <textarea name="comment" id="comment" class="account-introduction"></textarea></p>
+                        <textarea name="comment" id="comment" class="account-introduction"><%= user.si %></textarea></p>
                     
                     <div class="bottoms">
                         <p>

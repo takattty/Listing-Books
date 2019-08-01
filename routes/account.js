@@ -82,16 +82,24 @@ router.post('/login', (req, res, next) => {
 });
 
 
-router.get('/id/edit', function(req, res, next) {
-    const edit_text = {
-        title1: 'ここではアカウントの編集が出来ます。',
-        title2: '編集を終えたら、保存ボタンを押しましょう！',
-        create: 'アカウント編集',
-        name: '名前',
-        text: '自己紹介',
-        bottom: '保存する'
-    }
-    res.render('account', edit_text);
+router.get('/:id/edit', function(req, res, next) {
+    let id = req.params.id;
+    console.log(id);
+    let query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
+    connection.query(query, (err, rows) => {
+        if (err) throw err;
+        console.log(rows[0]);
+        const edit_text = {
+            title1: 'ここではアカウントの編集が出来ます。',
+            title2: '編集を終えたら、保存ボタンを押しましょう！',
+            create: 'アカウント編集',
+            name: '名前',
+            text: '自己紹介',
+            bottom: '保存する',
+            user: rows[0]
+        }
+        res.render('account', edit_text);
+    });
 });
 
 module.exports = router;
