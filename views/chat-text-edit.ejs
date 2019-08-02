@@ -8,6 +8,7 @@
         <title></title>
         <link rel='stylesheet' href='/stylesheets/chat-text.css' />
         <link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
+        <script src="../routes/chat.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -42,11 +43,11 @@
                             </div>
                             <div class="buttoms">
                                 <p>
-                                    <input type="button" value="<%= delete_bottom%>">
+                                    <input type="button" value="<%= delete_bottom %>" class="delete" onClick="" >
                                 </p>
         
                                 <p>
-                                    <input type="submit" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit'" class="account-bottom">
+                                    <input type="button" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>'" class="account-bottom">
                                 </p>
                             </div>
                         </form>

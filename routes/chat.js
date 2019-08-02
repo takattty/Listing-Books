@@ -76,10 +76,11 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
                         text: row1[0]
                     }
                     res.render('chat-text-edit', chatTextEdit );
-                });
+                })
             });
         });
     });
 });
+
 
 module.exports = router;
