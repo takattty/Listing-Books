@@ -70,10 +70,16 @@ body {
 }
 
 .chat-mess p {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 22px;
     width: 100%;
+}
+
+.chat-mess input {
+    font-size: 45px;
+    width: 90%;
+    text-align: center;
 }
 
 .buttoms {

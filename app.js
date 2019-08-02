@@ -14,7 +14,7 @@ const accountSuccessRouter = require('./routes/account-success');
 const roomIndexRouter = require('./routes/room-index');
 const roomLoginRouter = require('./routes/room-login');
 const roomCreateRouter = require('./routes/room-create');
-const chatTextRouter = require('./routes/chat-text');
+//const chatTextRouter = require('./routes/chat-text');
 const profileRouter = require('./routes/profile');
 const chatRouter = require('./routes/chat');
 
@@ -46,7 +46,7 @@ app.use('/success', accountSuccessRouter);
 app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
 app.use('/room', roomCreateRouter);
-app.use('/chat/id/text', chatTextRouter);
+//app.use('/chat/id', chatTextRouter);
 app.use('/profile', profileRouter);
 app.use('/chat', chatRouter);
 
@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};	
-	
+
 	// render the error page
 	res.status(err.status || 500);
 	res.render('error');

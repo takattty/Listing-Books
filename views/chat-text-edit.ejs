@@ -34,18 +34,22 @@
                     </div>
 
                     <div class="chat-content">
-                        <div class="chat-mess">
-                            <p><%= text.text %></p>
-                        </div>
-                        <div class="buttoms">
-                            <p>
-                                <input type="button" value="前のページへ戻る" onclick="history.back()">
-                            </p>
-    
-                            <p>
-                                <input type="button" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit'" class="account-bottom">
-                            </p>
-                        </div>
+                        <form action="" method="POST">
+                            <div class="chat-mess">
+                                <p>
+                                    <input type="text" value='<%= text.text %>' name="text">
+                                </p>
+                            </div>
+                            <div class="buttoms">
+                                <p>
+                                    <input type="button" value="<%= delete_bottom%>">
+                                </p>
+        
+                                <p>
+                                    <input type="submit" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit'" class="account-bottom">
+                                </p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
