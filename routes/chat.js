@@ -7,7 +7,6 @@ router.get('/:id', function(req, res, next) {
     console.log('roomId=' + roomId);
     let sessionId = req.session.room_id;
     console.log(sessionId);
-
     res.render('chat');
 });
 
@@ -82,5 +81,30 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
     });
 });
 
+router.post('/:room_id/text/:text_id/account/:user_id/edit', (req, res, next) => {
+    let room_id = req.params.room_id;
+    let text_id = req.params.text_id;
+    let text = req.body.text;
+    let num = req.body.kind;
+    console.log(text);
+    console.log(num);
+
+    if (num == 1) {
+        console.log('削除ボタンの処理が出来てるよ！');
+        let query = 'DELETE FROM message WHERE message_id =' + text_id;
+        connection.query(query, (err, rows) => {
+            if (err) throw err;
+            res.redirect('/chat/' + room_id);
+        });
+    } 
+    if (num == 2) {
+        console.log('更新の処理が出来るよ！');
+        connection.query('UPDATE message SET text=? WHERE message_id=?', [text, text_id], (err, rows) => {
+            if (err) throw err;
+            res.redirect('/chat/' + req.params.room_id + '/text/' + req.params.text_id + '/account/' + req.params.user_id);
+        });
+    }
+
+});
 
 module.exports = router;
