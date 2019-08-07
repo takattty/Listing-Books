@@ -57,6 +57,41 @@ router.get('/:id/edit', function(req, res, next) {
     });
 });
 
+router.post('/:id/edit', (req, res, next) => {
+    let room_id = req.params.id;
+    let room_name = req.body.name;
+    let room_pass = pass(); 
+	let room_memo = req.body.comment;
+    function pass() {
+        let pass1 = req.body.password1;
+        let pass2 = req.body.password2;
+            if (pass1 == pass2) {
+                return pass1;
+            } else {
+                res.redirect('/room/' + room_id);
+            }
+    }
+    let num = req.body.kind;
+    if (num == 1) {
+        console.log('削除ボタンの処理が出来てるよ！');
+        let query = 'DELETE FROM room WHERE room_id =' + room_id;
+        connection.query(query, (err, rows) => {
+            if (err) throw err;
+            res.redirect('/room/index');
+        });
+    } 
+    if (num == 2) {
+        console.log('更新の処理が出来るよ！');
+        connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', [room_name, room_pass, room_memo, room_id], (err, rows) => {
+            if (err) throw err;
+            console.log(room_id);
+            res.redirect('/room/' + room_id + '/show');
+        });
+    }
+})
+
+
+
 router.get('/:id/show', function(req, res, next) { 
     let room_id = req.params.id;
     console.log(room_id);
