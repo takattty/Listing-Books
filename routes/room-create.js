@@ -10,7 +10,8 @@ router.get('/create', function(req, res, next) {
         create: 'Room新規作成',
         name: 'Room名',
         text: 'Room紹介',
-        bottom: 'Roomを作成する'
+        bottom: 'Roomを作成する',
+        user: { name: ""}
     };
   res.render('account', roomCreate);
 });

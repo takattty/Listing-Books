@@ -9,7 +9,8 @@ router.get('/signup', function(req, res, next) {
         create: 'アカウント新規作成',
         name: '名前',
         text: '自己紹介',
-        bottom: 'アカウントを作成する' 
+        bottom: 'アカウントを作成する',
+        user: { name: ""}
     };
     res.render('account', signup_text);
 });

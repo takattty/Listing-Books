@@ -11,8 +11,6 @@
         <script src="../routes/chat.js" type="text/javascript"></script>
         <script>
             function abc(num) {
-                alert(num);
-                console.log(document.form);
                 document.form.kind.value = num;
                 document.form.action = "/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
                 document.form.submit();//フォーム名＋submit()でフォームを送信。
@@ -44,7 +42,7 @@
                     </div>
 
                     <div class="chat-content">
-                        <form action="" method="POST" name="sample">
+                        <form action="" method="POST" name="form">
                             <div class="chat-mess">
                                 <p>
                                     <input type="text" value='<%= text.text %>' name="text">
