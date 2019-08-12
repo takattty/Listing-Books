@@ -8,6 +8,8 @@
         <title></title>
         <link rel='stylesheet' href='/stylesheets/chat.css'/>
         <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
+        <script src="/sokect.id/socket.io.js"></script>
+        <script src="https://code.jquery.co/jquery-1.11.1.js"></script>
     </head>
 
     <body>
@@ -48,7 +50,7 @@
                                 </div>
                         </div>
 
-                        
+
             
                         <div class="chat-index">
         
@@ -435,7 +437,9 @@
                     <div class="submit-field">
 
                         <div class="text-field">
-                            <form action="URI" method="POST">
+
+
+                            <!-- <form>
                                 <div class="chat-text">
                                     <textarea type="chat-text"></textarea>
                                 </div>
@@ -443,9 +447,13 @@
                                 <div class="text-submit">
                                     <input type="submit" value="送信">
                                 </div>
+                            </form> -->
+                            <form id="message_form" action="#">
+                                <input id="input_msg" autocomplete="off" /><button>Send</button>
                             </form>
+
+
                         </div>
-    
                     </div>
                 </div>
 
@@ -455,6 +463,17 @@
         <footer>
 
         </footer>
+        
+        <script>
+            let socket = io();
+            $(function() {
+                $('#message_form').submit(function() {
+                    socketio.emit('message', $('#input_msg').val());
+                    $('#input_msg').val('');
+                    return false;
+                });
+            });
+        </script>
       
     </body>
 

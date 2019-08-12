@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const app = require('express');
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 router.get('/:id', function(req, res, next) {
     let roomId = req.params.id;
@@ -8,6 +11,11 @@ router.get('/:id', function(req, res, next) {
     let sessionId = req.session.room_id;
     console.log(sessionId);
     res.render('chat');
+});
+io.on('connection',function(socket){
+    socket.on('message',function(msg){//そしてここのmessageイベント名でデータを受信している。引数のmsgに入れてあげてる。フロントから送られている。
+        console.log('message: ' + msg);
+    });
 });
 
 router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) {
