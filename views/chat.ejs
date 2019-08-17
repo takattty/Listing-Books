@@ -8,6 +8,8 @@
         <title></title>
         <link rel='stylesheet' href='/stylesheets/chat.css'/>
         <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -463,6 +465,17 @@
         </footer>
         
         <script>
+            $(function() {
+                let socket = io();
+                $('#message_form').submit(() => {
+                    socket.emit('message', $('#input_msg').val());//送る。
+                    $('#input_msg').val('');
+                    return false;
+                });
+                socket.on('message', (msg) => {
+                    console.log(msg);
+                });
+            });
         </script>
     </body>
 

@@ -3,10 +3,33 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 
 router.get('/:id', function(req, res, next) {
-    let roomId = req.params.id;
-    console.log('roomId=' + roomId);
+    let room_id = req.params.id;
+    console.log('roomId=' + room_id);
     let sessionId = req.session.room_id;
     console.log(sessionId);
+    let user_id = req.session.user_id;
+    console.log(user_id);
+    let query = 'SELECT text, time, user_id FROM message WHERE room_id =' + room_id;
+    connection.query(query, (err, rows) => {
+        console.log(rows);
+    })
+    let message_id = null;
+    const server = require('../bin/www');
+    const io = require('socket.io').listen(server);
+    io.on('connection', (socket) => {
+    	socket.on('message', (msg) => {
+            console.log(msg);//この子がデータ。textのやつ。
+            io.emit('message', msg);
+            let text = msg;
+            let time = '20:00:00';
+            let date = {message_id, text, time, room_id, user_id}
+            connection.query('INSERT INTO message SET ?', date, 
+                (err, rows) => {
+                    console.log('good! ok!');
+                    console.log(rows);
+                });
+	    });
+    });
     res.render('chat');
 });
 

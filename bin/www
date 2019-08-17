@@ -20,6 +20,20 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+module.exports = server;
+//Socket.io
+const io = require('socket.io').listen(server);//これが一番大事。
+// const connection = require('../mysqlConnection');
+// // const roomId = req.session.room_id;
+// // console.log(roomId);
+// io.on('connection', (socket) => {
+//   console.log(JSON.stringify(socket.handshake));
+//   console.log(socket.handshake);
+// 	socket.on('message', (msg) => {
+//     	console.log(msg);
+// 		io.emit('message', msg);
+// 	});
+// });
 
 /**
  * Listen on provided port, on all network interfaces.
