@@ -419,11 +419,11 @@
                                 </div>
             
                                 <div class="text">
-                                    <p>ここはテキスト入りまーーす。</p>
+                                    <p></p>
                                 </div>
             
                                 <div class="time">
-                                    <p>20:00</p>
+                                    <p></p>
                                 </div>
                         </div>
 
@@ -473,7 +473,7 @@
                     return false;
                 });
                 socket.on('message', (msg) => {
-                    console.log(msg);
+                    console.log('フロントでの処理＝' + msg);
                 });
             });
         </script>

@@ -3,32 +3,25 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 
 router.get('/:id', function(req, res, next) {
-    let room_id = req.params.id;
+    let room_id = req.params.id;//roomの識別
     console.log('roomId=' + room_id);
-    let sessionId = req.session.room_id;
-    console.log(sessionId);
-    let user_id = req.session.user_id;
-    console.log(user_id);
-    let query = 'SELECT text, time, user_id FROM message WHERE room_id =' + room_id;
-    connection.query(query, (err, rows) => {
-        console.log(rows);
-    })
-    let message_id = null;
-    const server = require('../bin/www');
-    const io = require('socket.io').listen(server);
-    io.on('connection', (socket) => {
-    	socket.on('message', (msg) => {
-            console.log(msg);//この子がデータ。textのやつ。
-            io.emit('message', msg);
-            let text = msg;
-            let time = '20:00:00';
-            let date = {message_id, text, time, room_id, user_id}
-            connection.query('INSERT INTO message SET ?', date, 
-                (err, rows) => {
-                    console.log('good! ok!');
-                    console.log(rows);
+    let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
+    console.log('this is room_session_id =' + sessionId);
+    let user_id = req.session.user_id;//人の識別
+    console.log('user_session_id is = ' + user_id);
+    connection.beginTransaction((err) => {
+        if (err) throw err;
+        let query1 = 'SELECT text, time, user_id FROM message WHERE room_id=' + room_id;
+        connection.query(query1, (err, row1) => {
+            console.log(row1);//room別のmessageデータが入っている値。
+            for(let ar in row1) {
+                console.log(row1[ar]);
+                let query2 = ('SELECT name FROM account WHERE id=' + row1[ar].user_id);
+                connection.query(query2, (err, row2) => {
+                    console.log(row2);//それぞれのユーザーの名前を出力完了。
                 });
-	    });
+            }
+        });
     });
     res.render('chat');
 });
