@@ -125,6 +125,7 @@ router.post('/:id/edit', (req, res, next) => {
     let si = req.body.comment;
     connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
         if (err) throw err;
+        console.log('アカウント編集成功！');
         res.redirect('/profile/' + id);
     });
 });

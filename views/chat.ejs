@@ -9,7 +9,6 @@
         <link rel='stylesheet' href='/stylesheets/chat.css'/>
         <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -439,18 +438,18 @@
                         <div class="text-field">
 
 
-                            <!-- <form>
-                                <div class="chat-text">
-                                    <textarea type="chat-text"></textarea>
+                            <form id="message_form">
+                                <div>
+                                    <input id="input_msg" autocomplete="off">
                                 </div>
 
-                                <div class="text-submit">
-                                    <input type="submit" value="送信">
+                                <div>
+                                    <button>送信</button>
                                 </div>
-                            </form> -->
-                            <form id="message_form" action="#">
-                                <input id="input_msg" autocomplete="off" /><button>Send</button>
                             </form>
+                            <!-- <form id="message_form" action="">
+                                <input id="input_msg" autocomplete="off"><button>Send</button>
+                            </form> -->
 
 
                         </div>
@@ -463,7 +462,8 @@
         <footer>
 
         </footer>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="chat.js"></script>
         <script>
             $(function() {
                 let socket = io();
@@ -474,6 +474,13 @@
                 });
                 socket.on('message', (msg) => {
                     console.log('フロントでの処理＝' + msg);
+                    $.ajax({//ここでサーバーに対しての通信を行う。
+                        date: msg
+                    }).done(function(date) {//データの送信に成功した際の処理。
+                        console.log('ここはAjaxの処理＝' + msg);
+                        //console.log(date);//帰ってきてるのがchat.ejsなんだけどなんでね？
+                    })
+
                 });
             });
         </script>

@@ -26,6 +26,7 @@ router.get('/:id', function(req, res, next) {
     res.render('chat');
 });
 
+
 router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) {
     let text_id = req.params.text_id;
     let user_id = req.params.user_id;
