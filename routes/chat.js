@@ -4,27 +4,58 @@ const connection = require('../mysqlConnection');
 
 router.get('/:id', function(req, res, next) {
     let room_id = req.params.id;//roomの識別
-    console.log('roomId=' + room_id);
+    //console.log('roomId=' + room_id);
     let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
-    console.log('this is room_session_id =' + sessionId);
+    //console.log('this is room_session_id =' + sessionId);
     let user_id = req.session.user_id;//人の識別
-    console.log('user_session_id is = ' + user_id);
+    //console.log('user_session_id is = ' + user_id);
     connection.beginTransaction((err) => {
         if (err) throw err;
         let query1 = 'SELECT text, time, user_id FROM message WHERE room_id=' + room_id;
         connection.query(query1, (err, row1) => {
-            console.log(row1);//room別のmessageデータが入っている値。
+            //console.log(row1);//room別のmessageデータが入っている値。
             for(let ar in row1) {
-                console.log(row1[ar]);
+                //console.log(row1[ar]);
                 let query2 = ('SELECT name FROM account WHERE id=' + row1[ar].user_id);
                 connection.query(query2, (err, row2) => {
-                    console.log(row2);//それぞれのユーザーの名前を出力完了。
+                    //console.log(row2);//それぞれのユーザーの名前を出力完了。
                 });
             }
+
         });
     });
     res.render('chat');
 });
+
+router.post('/:id', function(req, res, next) {
+    let room_id = req.params.id;//roomの識別
+    //console.log('roomId=' + room_id);
+    let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
+    //console.log('this is room_session_id =' + sessionId);
+    let user_id = req.session.user_id;//人の識別
+    //console.log('user_session_id is = ' + user_id);
+    let mess = req.body.text;
+    console.log(req.body);
+    console.log(mess);
+    connection.beginTransaction((err) => {
+        if (err) throw err;
+        let query1 = 'SELECT text, time, user_id FROM message WHERE room_id=' + room_id;
+        connection.query(query1, (err, row1) => {
+            //console.log(row1);//room別のmessageデータが入っている値。
+            for(let ar in row1) {
+                //console.log(row1[ar]);
+                let query2 = ('SELECT name FROM account WHERE id=' + row1[ar].user_id);
+                connection.query(query2, (err, row2) => {
+                    //console.log(row2);//それぞれのユーザーの名前を出力完了。
+                });
+            }
+
+        });
+    });
+    res.render('chat');
+});
+
+
 
 
 router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) {

@@ -438,13 +438,14 @@
                         <div class="text-field">
 
 
-                            <form id="message_form">
+                            <form id="message_form" name="form" method="POST">
                                 <div>
                                     <input id="input_msg" autocomplete="off">
                                 </div>
 
                                 <div>
-                                    <button>submit</button>
+                                    <!-- <button>submit</button> -->
+                                    <input type="button" value="submit" onClick="insert()">
                                 </div>
                             </form>
                             <!-- <form id="message_form" action="">
@@ -465,23 +466,40 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" src="chat.js"></script>
         <script>
-            $(function() {
-                let socket = io();
-                $('#message_form').submit(() => {
-                    socket.emit('message', $('#input_msg').val());//送る。
-                    $('#input_msg').val('');
-                    return false;
+            let socket = io();
+            function insert() {
+                alert($('#input_msg').val());
+                $.ajax({
+                    url: '/chat/1',
+                    type: 'POST',
+                    async: true,
+                    dataType: 'text',
+                    data: {
+                        'text': $('#input_msg').val(),
+                    },
+                    success: function(result) {
+                        alert('成功！');
+                        socket.emit('message', $('#input_msg').val());//送る。
+                    },
+                    error: function(result) {
+                        alert('errorだよ');
+                    }
                 });
-                socket.on('message', (msg) => {
-                    console.log('フロントでの処理＝' + msg);
-                    $.ajax({//ここでサーバーに対しての通信を行う。
-                        date: msg
-                    }).done(function(date) {//データの送信に成功した際の処理。
-                        console.log('ここはAjaxの処理＝' + msg);
-                        //console.log(date);//帰ってきてるのがchat.ejsなんだけどなんでね？
-                    });
-                });
-            });
+            }
+            socket.on('message', (msg) => {
+                console.log('フロントでの処理＝' + msg);
+            })
+
+            //$(function() {
+            //    let socket = io();
+            //    $('#message_form').submit(() => {
+            //        $('#input_msg').val('');
+            //        return false;
+            //    });
+            //    socket.on('message', (msg) => {
+            //        console.log('フロントでの処理＝' + msg);
+            //    });
+            //});
         </script>
     </body>
 

@@ -69,7 +69,7 @@ router.post('/login', (req, res, next) => {
             let userId = rows.length? rows[0].id: false;
             if (userId) {
                 req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
-                req.session.user_id = userId;
+                req.session.user_id = userId;//サーバーにある。
                 console.log(userId);
                 console.log(req.params);
                 console.log("セッションID登録完了！！！");
@@ -86,6 +86,8 @@ router.post('/login', (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) {
     let id = req.params.id;
     let userid = req.session.user_id;
+    //サーバーで保持している情報。cookieは各ブラウザに持たせる。
+    //メモリで管理は何とかして識別している。
     console.log(id);
     console.log(userid)
     if (id == userid) {
