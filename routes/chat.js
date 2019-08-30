@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const moment = require('moment');
 
 router.get('/:id', function(req, res) {
     let room_id = req.params.id;//roomの識別
@@ -16,10 +17,9 @@ router.get('/:id', function(req, res) {
         connection.query(query2, (err, rows2) => {
         //console.log(rows2);
             let content = {
-                cont: 'コント',
-                time: '20:00',
                 roomid: room_id,
-                roomname: rows2[0].room_name
+                roomname: rows2[0].room_name,
+                date: rows1
             }
             res.render('chat',　content);
             //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
@@ -32,7 +32,6 @@ router.post('/:id', function(req, res, next) {
     //console.log('roomId=' + room_id);
     let user_id = req.session.user_id;//人の識別
     //console.log('user_session_id is = ' + user_id);
-
     connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {
         if (err) {
             console.log('セレクトミス');
@@ -40,7 +39,7 @@ router.post('/:id', function(req, res, next) {
         let text = req.body.text;
         console.log('ここでchat.jsの受け取り=' + text);
         let message_id = null;
-        let time = '18:00:00';
+        let time = moment().format('hh:mm');;
         let user_name = userName[0].name;
         let text_date = {message_id, text, time, room_id, user_id, user_name}
         console.log(text_date);
