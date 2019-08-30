@@ -1,0 +1,97 @@
+@media (max-width: 1160px) {
+
+    .header-title {
+        padding: 0 200px 20px 200px;
+    }
+
+    .create-content {
+        padding: 0 200px 0 200px;
+    }
+}
+
+@media (max-width: 860px) {
+
+    .header-title {
+        padding: 0 150px 20px 150px;
+    }
+
+    .create-content {
+        padding: 0 150px 20px 150px;
+    }
+
+    input, textarea {
+        box-sizing: border-box;
+        font-size: 15px;
+        margin: 5px 0;
+        width: 100%;
+        font-size: 20px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .header-title {
+        padding: 0 100px 20px 100px;
+    }
+
+    .createAccount {
+        height: 480px;
+    }
+
+    .create-content {
+        padding: 0 100px 20px 100px;
+    }
+
+    .bottoms {
+        display: flex;
+        flex-flow: column-reverse nowrap;
+        width: 100%;
+    }
+
+    .bottoms p {
+        border-top: 2px solid rgb(255, 183, 183);
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 670px) {
+
+    .header-title {
+        padding: 0 100px 20px 100px;
+    }
+
+    .create-content {
+        padding: 0 100px 20px 100px;
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .header-title {
+        padding: 0px 20px 15px;
+    }
+
+    .create-content {
+        padding: 0 20px 20px;
+        height: 400px;
+    }
+
+    textarea {
+        font-size: 15px;
+    }
+
+    input {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .bottoms p {
+        border-top: 2px solid rgb(255, 183, 183);
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+}
