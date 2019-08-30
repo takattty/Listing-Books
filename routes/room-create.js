@@ -41,9 +41,9 @@ router.post('/create', (req, res, next) => {
 
 router.get('/:id/edit', function(req, res, next) { 
     let room_id = req.params.id;
-    let query = 'SELECT room_id, room_name, room_pass, room_memo FROM room WHERE room_id =' + room_id;
+    let userid = req.session.user_id;
+    let query = 'SELECT room_id, room_name, room_pass, room_memo, room_owner FROM room WHERE room_id =' + room_id;
     connection.query(query, (err, rows) => {
-        if (err) throw err;
         const roomEdit = {
             title1: 'ここではRoomの更新が出来ます。',
             title2: 'Room名, パスワード, Roomの説明を編集しましょう！',
@@ -54,7 +54,11 @@ router.get('/:id/edit', function(req, res, next) {
             bottom: 'Roomを更新する',
             room: rows[0]
         };
-    res.render('room-edit', roomEdit);
+        if (userid == rows[0].room_owner) {
+            res.render('room-edit', roomEdit);
+        } else {
+            res.redirect('/room/' + room_id + '/show');
+        }
     });
 });
 
@@ -86,7 +90,8 @@ router.post('/:id/edit', (req, res, next) => {
         connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', [room_name, room_pass, room_memo, room_id], (err, rows) => {
             if (err) throw err;
             console.log(room_id);
-            res.redirect('/room/' + room_id + '/show');
+            res.redirect('/chat/' + room_id);
+            //res.redirect('/room/' + room_id + '/show');
         });
     }
 })

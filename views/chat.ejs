@@ -15,7 +15,7 @@
 
         <header>
             <div class="header-title">
-                <h1>Room name</h1>
+                <h1><a href="/room/<%= roomid %>/show"><%= roomname %></a></h1>
             </div>
         </header>
 
@@ -422,7 +422,7 @@
                                 </div>
             
                                 <div class="time">
-                                    <p></p>
+                                    <p><%= cont %></p>
                                 </div>
                         </div>
 
@@ -434,25 +434,16 @@
 
                 <div class="chat-submit">
                     <div class="submit-field">
-
                         <div class="text-field">
-
-
-                            <form id="message_form" name="form" method="POST">
-                                <div>
-                                    <input id="input_msg" autocomplete="off">
+                            <form id="message_form" name="form">
+                                <div class="chat-text">
+                                    <input id="input_msg" autocomplete="off" type="text">
                                 </div>
-
-                                <div>
+                                <div class="chat-button">
                                     <!-- <button>submit</button> -->
-                                    <input type="button" value="submit" onClick="insert()">
+                                    <input id="button" type="button" value="submit" onClick="insert('<%= roomid %>')">
                                 </div>
                             </form>
-                            <!-- <form id="message_form" action="">
-                                <input id="input_msg" autocomplete="off"><button>Send</button>
-                            </form> -->
-
-
                         </div>
                     </div>
                 </div>
@@ -464,13 +455,12 @@
 
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="chat.js"></script>
+        <!-- <script type="text/javascript" src="chat.js"></script>これコメントアウトしたらフロントのエラーが消えた！ -->
         <script>
             let socket = io();
-            function insert() {
-                alert($('#input_msg').val());
+            function insert(num) {
                 $.ajax({
-                    url: '/chat/1',
+                    url: '/chat/' + num,
                     type: 'POST',
                     async: true,
                     dataType: 'text',
@@ -478,8 +468,10 @@
                         'text': $('#input_msg').val(),
                     },
                     success: function(result) {
-                        alert('成功！');
+                        console.log('成功！');
+                        console.log(result);//ejsつまりこのファイルが返って来てる。
                         socket.emit('message', $('#input_msg').val());//送る。
+                        $('#input_msg').val('');
                     },
                     error: function(result) {
                         alert('errorだよ');
@@ -489,17 +481,6 @@
             socket.on('message', (msg) => {
                 console.log('フロントでの処理＝' + msg);
             })
-
-            //$(function() {
-            //    let socket = io();
-            //    $('#message_form').submit(() => {
-            //        $('#input_msg').val('');
-            //        return false;
-            //    });
-            //    socket.on('message', (msg) => {
-            //        console.log('フロントでの処理＝' + msg);
-            //    });
-            //});
         </script>
     </body>
 

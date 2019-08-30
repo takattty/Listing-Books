@@ -13,14 +13,12 @@ body {
     padding-top: 5px; 
     padding-bottom: 10px;
     text-align: center;
-    border-bottom:1px solid #ccc; 
     background-color: rgb(251, 230, 255);
 }
 
 .header-title h1 {
     color: rgb(255, 22, 236);
     display: inline-block;
-    border-bottom: 2px solid rgb(78, 78, 78);
     margin: 10px 0;
 }
 
@@ -125,7 +123,7 @@ textarea {
     font-size: 18px;
 }
 
-.text-submit {
+.chat-button {
     width: 10%;
 }
 
@@ -136,5 +134,5 @@ input {
 
 input:hover {
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.6;
 }

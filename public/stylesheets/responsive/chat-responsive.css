@@ -61,12 +61,42 @@
         font-size: 15px;
     }
 
-    .text-submit {
-        align-items: center;
+    input {
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    main {
+        height: 600px;
     }
 
+    .index {
+        height: 550px;
+    }
+
+    .chat {
+        height: 100%;
+        padding-top: 5px;
+        padding-bottom: 0px
+    }
+
+    .chat-text {
+        width: 85%;
+    }
+
+    .chat-button {
+        width: 15%;
+    } 
+
     input {
-        font-size: 13px;
-        padding: 1px 0;
+        font-size: 14px;
+    }
+
+    .chat-button input#button {
+        background-color: white;
+        padding: 0px
     }
 }

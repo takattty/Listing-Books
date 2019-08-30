@@ -12,7 +12,8 @@ router.get('/:id', function(req, res, next) {
 		res.render('profile', { 
 			user_name: rows[0].name, 
 			user_si: rows[0].si,
-			user_id: rows[0].id });
+			user_id: rows[0].id,
+			success: user_id });
 		});
 });
 
