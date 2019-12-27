@@ -1,81 +1,78 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/chat.css'/>
-        <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
-        <script src="/socket.io/socket.io.js"></script>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/chat.css'/>
+    <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
 
-    <body>
-
-        <header>
-            <div class="header-title">
-                <h1><a href="/room/<%= roomid %>/show"><%= roomname %></a></h1>
-            </div>
-        </header>
-
-        <main>
-            <div class="chat">
-                <div class="index">
-                        <% date.forEach(function(chatDate) { %>
-                            <div class="chat-index">
-                                <div class="human">
-                                    <div class="human-img">
-                                        <p>
-                                            <img src="/images/human.png" width="20" height="20">
-                                        </p>
-                                    </div>
-
-                                    <div class="human-name">
-                                        <p><%= chatDate.user_name %></p>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <p><%= chatDate.text %></p>
-                                </div>
-                                <div class="time">
-                                    <p><%= chatDate.time %></p>
-                                </div>
-                            </div>
-                        <% }); %>
-                        <div id="chat-index"></div>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1><a href="/room/<%= roomid %>/show"><%= roomname %></a></h1>
+      </div>
+    </header>
+    <main>
+      <div class="chat">
+        <div class="index">
+          <% date.forEach(function(chatDate) { %>
+            <div class="chat-index">
+              <div class="human">
+                <div class="human-img">
+                  <p>
+                  	<img src="/images/human.png" width="20" height="20">
+                  </p>
                 </div>
-                <div class="chat-submit">
-                    <div class="submit-field">
-                        <div class="text-field">
-                            <form id="message_form" name="form">
-                                <div class="chat-text">
-                                    <input id="input_msg" autocomplete="off" type="text">
-                                </div>
-                                <div class="chat-button">
-                                    <button>submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="human-name">
+                  <p><%= chatDate.user_name %></p>
                 </div>
+              </div>
+              <div class="text">
+                <p><%= chatDate.text %></p>
+              </div>
+              <div class="time">
+                <p><%= chatDate.time %></p>
+              </div>
             </div>
-        </main>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script>
-            let socket = io();
-            $(() => {
-                $('#message_form').submit(() => {
-                    socket.emit('message', $('#input_msg').val());
-                    $('#input_msg').val('');
-                    console.log('emit success');
-                    return false;
-                });
-                socket.on('message', (msg) => {
-                    console.log('フロントでの処理=' + msg );
-                });
-            });
-        </script>
-    </body>
+          <% }); %>
+          <div id="chat-index"></div>
+        </div>
+        <div class="chat-submit">
+          <div class="submit-field">
+            <div class="text-field">
+              <form id="message_form" name="form">
+                <div class="chat-text">
+                  <input id="input_msg" autocomplete="off" type="text">
+                </div>
+                <div class="chat-button">
+                  <button>submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+        let socket = io();
+        $(() => {
+          $('#message_form').submit(() => {
+            socket.emit('message', $('#input_msg').val());
+            $('#input_msg').val('');
+            console.log('emit success');
+            return false;
+          });
+          socket.on('message', (msg) => {
+            console.log('フロントでの処理=' + msg );
+          });
+        });
+      </script>
+  </body>
 
 </html>
