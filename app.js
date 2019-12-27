@@ -34,7 +34,8 @@ const io = require('socket.io').listen(server);
 io.on('connection', (socket) => {
   socket.on('message', (msg) => {
     console.log('サーバでの処理=' + msg);
-      io.emit('message', msg);
+	  io.emit('message', msg);
+	  
   });
 });
 
@@ -143,4 +144,4 @@ function onListening() {
 	debug('Listening on ' + bind);
 }  
 
-module.exports = io;
+module.exports = app;

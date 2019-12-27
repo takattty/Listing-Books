@@ -25,6 +25,7 @@ router.get('/:id', function(req, res) {
             //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
         });
     });
+
 });
 
 router.post('/:id', function(req, res, next) {
