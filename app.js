@@ -10,6 +10,7 @@ const debug = require('debug')('sharechat:server');
 const http = require('http');
 const router = express.Router();
 const connection = require('./mysqlConnection');
+const moment = require('moment');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -18,7 +19,6 @@ server.listen(port);//この子が探しているサーバーの待ち状態。
 server.on('error', onError);
 server.on('listening', onListening);
 
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const homeRouter = require('./routes/home');
 const accountRouter = require('./routes/account');
@@ -26,19 +26,10 @@ const accountSuccessRouter = require('./routes/account-success');
 const roomIndexRouter = require('./routes/room-index');
 const roomLoginRouter = require('./routes/room-login');
 const roomCreateRouter = require('./routes/room-create');
-//const chatTextRouter = require('./routes/chat-text');
 const profileRouter = require('./routes/profile');
 const chatRoomRouter = require('./routes/chat');
 
 console.log('Server start!');
-//Socket.io
-const io = require('socket.io').listen(server);
-io.on('connection', (socket) => {
-	socket.on('message', (msg) => {
-	  console.log('サーバでの処理=' + msg);
-		io.emit('message', msg);
-	});
-})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -65,34 +56,75 @@ app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
 app.use('/room', roomCreateRouter);
 app.use('/profile', profileRouter);
-
 app.use('/chat/room', chatRoomRouter);
+
 //chat画面だけのルーティング
-app.use('/chat', 
-	router.get('/:id', function(req, res) {
-	    let room_id = req.params.id;//roomの識別
-	    console.log('room_id=' + room_id);
-	    let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
-	    console.log('this is room_session_id =' + sessionId);
-	    let user_id = req.session.user_id;//人の識別
-	    console.log('user_session_id is = ' + user_id);
-	    let query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
-	    connection.query(query1, (err, rows1) => {
-	        //console.log(rows1);//POSTで保存しに持っていった値の前のデータを表示する。
-	        let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
-	        connection.query(query2, (err, rows2) => {
-	        //console.log(rows2);
-	            let content = {
-	                roomid: room_id,
-	                roomname: rows2[0].room_name,
-	                date: rows1
-	            }
-	            res.render('chat',　content);
-	            //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
-	        });
+const chat = router.get('/:id', function(req, res) {
+	const room_id = req.params.id;
+	console.log('room_id=' + room_id);
+	const sessionId = req.session.room_id;
+	console.log('this is room_session_id =' + sessionId);
+	const user_id = req.session.user_id;
+	console.log('user_session_id is = ' + user_id);
+	const time = moment().format('hh:mm');
+	const message = null;
+	const query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
+
+	connection.query(query1, (err, rows1) => {
+		let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
+		connection.query(query2, (err, rows2) => {
+			let content = {
+				roomid: room_id,
+				roomname: rows2[0].room_name,
+				date: rows1
+			}
+			res.render('chat',　content);
+			connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {
+				if(err) {
+					console.log('セレクトミス');
+				}
+				const users__Name = userName[0].name;
+				console.log(users__Name);
+				function dates() {
+					const date = {
+						message_id: message,
+						time:       time,
+						room_id:    room_id,
+						user_id:    user_id,
+						user_name:  users__Name
+					}
+					return date;
+				}
+				const dateObject = dates();
+				//Socket.io
+				const io = require('socket.io').listen(server);
+				io.on('connection', (socket) => {
+					socket.on('message', (msg) => {
+						console.log('サーバでの処理=' + msg);
+						const messageDate = dateObject;
+						const message_id = messageDate.message_id;
+						const text = msg;
+						const time = messageDate.time;
+						const room_id = messageDate.room_id;
+						const user_id = messageDate.user_id;
+						const user_name = messageDate.user_name;
+						const messageDb = { message_id, text, time, room_id, user_id, user_name };
+						connection.query('INSERT INTO message SET ?', messageDb,
+							(err, results) => {
+								if(err) {
+									console.log('DBに保存出来てない〜〜');
+								}
+								console.log('DBに保存おっけい！！');
+							})
+						io.emit('message', msg);
+					});
+				});
+			});
 		});
-	})
-);
+	});
+});
+app.use('/chat', chat)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

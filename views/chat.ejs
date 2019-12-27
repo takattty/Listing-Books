@@ -54,8 +54,6 @@
                                 </div>
                                 <div class="chat-button">
                                     <button>submit</button>
-                                    <!-- onClick="insert('<%= roomid %>')" -->
-                                    <!-- <input id="input" type="button" value="submit"> -->
                                 </div>
                             </form>
                         </div>
@@ -63,12 +61,11 @@
                 </div>
             </div>
         </main>
-
-        <!-- <script type="text/javascript" src="chat.js"></script>これコメントアウトしたらフロントのエラーが消えた！ -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             let socket = io();
-            $(function() {
-                $('#message_form').submit(function() {
+            $(() => {
+                $('#message_form').submit(() => {
                     socket.emit('message', $('#input_msg').val());
                     $('#input_msg').val('');
                     console.log('emit success');
