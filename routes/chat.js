@@ -3,58 +3,57 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 const moment = require('moment');
 
-router.get('/:id', function(req, res) {
-    let room_id = req.params.id;//roomの識別
-    console.log('room_id=' + room_id);
-    let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
-    console.log('this is room_session_id =' + sessionId);
-    let user_id = req.session.user_id;//人の識別
-    console.log('user_session_id is = ' + user_id);
-    let query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
-    connection.query(query1, (err, rows1) => {
-        //console.log(rows1);//POSTで保存しに持っていった値の前のデータを表示する。
-        let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
-        connection.query(query2, (err, rows2) => {
-        //console.log(rows2);
-            let content = {
-                roomid: room_id,
-                roomname: rows2[0].room_name,
-                date: rows1
-            }
-            res.render('chat',　content);
-            //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
-        });
-    });
+// router.get('/:id', function(req, res) {
+//     let room_id = req.params.id;//roomの識別
+//     console.log('room_id=' + room_id);
+//     let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
+//     console.log('this is room_session_id =' + sessionId);
+//     let user_id = req.session.user_id;//人の識別
+//     console.log('user_session_id is = ' + user_id);
+//     let query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
+//     connection.query(query1, (err, rows1) => {
+//         //console.log(rows1);//POSTで保存しに持っていった値の前のデータを表示する。
+//         let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
+//         connection.query(query2, (err, rows2) => {
+//         //console.log(rows2);
+//             let content = {
+//                 roomid: room_id,
+//                 roomname: rows2[0].room_name,
+//                 date: rows1
+//             }
+//             res.render('chat',　content);
+//             //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
+//         });
+//     });
+// });
 
-});
-
-router.post('/:id', function(req, res, next) {
-    let room_id = req.params.id;//roomの識別
-    //console.log('roomId=' + room_id);
-    let user_id = req.session.user_id;//人の識別
-    //console.log('user_session_id is = ' + user_id);
-    connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {
-        if (err) {
-            console.log('セレクトミス');
-        }
-        let text = req.body.text;
-        console.log('ここでchat.jsの受け取り=' + text);
-        let message_id = null;
-        let time = moment().format('hh:mm');;
-        let user_name = userName[0].name;
-        let text_date = {message_id, text, time, room_id, user_id, user_name}
-        console.log(text_date);
-        connection.query('INSERT INTO message SET ?', text_date,
-            (err, results) => {
-                if (err) {
-                    console.log('DBに保存出来てない〜〜');
-                }
-                console.log('DB保存おっけい！');
-            }
-        );
-    });
-    res.redirect('/chat/' + room_id);
-});
+// router.post('/:id', function(req, res, next) {
+//     let room_id = req.params.id;//roomの識別
+//     //console.log('roomId=' + room_id);
+//     let user_id = req.session.user_id;//人の識別
+//     //console.log('user_session_id is = ' + user_id);
+//     connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {
+//         if (err) {
+//             console.log('セレクトミス');
+//         }
+//         let text = req.body.text;
+//         console.log('ここでchat.jsの受け取り=' + text);
+//         let message_id = null;
+//         let time = moment().format('hh:mm');;
+//         let user_name = userName[0].name;
+//         let text_date = {message_id, text, time, room_id, user_id, user_name}
+//         console.log(text_date);
+//         connection.query('INSERT INTO message SET ?', text_date,
+//             (err, results) => {
+//                 if (err) {
+//                     console.log('DBに保存出来てない〜〜');
+//                 }
+//                 console.log('DB保存おっけい！');
+//             }
+//         );
+//     });
+//     res.redirect('/chat/' + room_id);
+// });
 
 
 //各ルームのコメント詳細ページ

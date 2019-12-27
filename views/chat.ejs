@@ -53,8 +53,9 @@
                                     <input id="input_msg" autocomplete="off" type="text">
                                 </div>
                                 <div class="chat-button">
-                                    <!-- <button>submit</button> -->
-                                    <input id="button" type="button" value="submit" onClick="insert('<%= roomid %>')">
+                                    <button>submit</button>
+                                    <!-- onClick="insert('<%= roomid %>')" -->
+                                    <!-- <input id="input" type="button" value="submit"> -->
                                 </div>
                             </form>
                         </div>
@@ -63,34 +64,19 @@
             </div>
         </main>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="chat.js"></script>これコメントアウトしたらフロントのエラーが消えた！ -->
         <script>
             let socket = io();
-            function insert(num) {
-                $.ajax({
-                    url: '/chat/' + num,
-                    type: 'POST',
-                    async: true,
-                    dataType: 'text',
-                    data: {
-                        'text': $('#input_msg').val(),
-                    },
-                    success: function(result) {
-                        console.log('成功！');
-                        // console.log(result);//ejsつまりこのファイルが返って来てる。
-                        socket.emit('message', $('#input_msg').val());//送る。
-                        $('#input_msg').val('');
-                    },
-                    error: function(result) {
-                        alert('errorだよ');
-                    }
+            $(function() {
+                $('#message_form').submit(function() {
+                    socket.emit('message', $('#input_msg').val());
+                    $('#input_msg').val('');
+                    console.log('emit success');
+                    return false;
                 });
-            }
-            socket.on('message', (msg) => {
-                console.log('フロントでの処理＝' + msg);
-                // $('#socket-text').append(("<p>" + msg + "</p>"));
-                //$('#chat-index').append('<div class=“human”><div class=“human-img”><p><img src=“/images/human.png” width=“20" height=“20”></p></div><div class=“human-name”><p>Takatty</p></div></div><div class=“text”><p>' + msg + '</p></div><div class=“time”><p>15:00</p></div>');
+                socket.on('message', (msg) => {
+                    console.log('フロントでの処理=' + msg );
+                });
             });
         </script>
     </body>

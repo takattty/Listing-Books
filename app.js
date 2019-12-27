@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const debug = require('debug')('sharechat:server');
 const http = require('http');
+const router = express.Router();
+const connection = require('./mysqlConnection');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -26,18 +28,17 @@ const roomLoginRouter = require('./routes/room-login');
 const roomCreateRouter = require('./routes/room-create');
 //const chatTextRouter = require('./routes/chat-text');
 const profileRouter = require('./routes/profile');
-const chatRouter = require('./routes/chat');
+const chatRoomRouter = require('./routes/chat');
 
 console.log('Server start!');
 //Socket.io
 const io = require('socket.io').listen(server);
 io.on('connection', (socket) => {
-  socket.on('message', (msg) => {
-    console.log('サーバでの処理=' + msg);
-	  io.emit('message', msg);
-	  
-  });
-});
+	socket.on('message', (msg) => {
+	  console.log('サーバでの処理=' + msg);
+		io.emit('message', msg);
+	});
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +57,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', homeRouter);
 app.use('/account', accountRouter);
@@ -64,9 +64,35 @@ app.use('/success', accountSuccessRouter);
 app.use('/room', roomIndexRouter);
 app.use('/room', roomLoginRouter);
 app.use('/room', roomCreateRouter);
-//app.use('/chat/id', chatTextRouter);
 app.use('/profile', profileRouter);
-app.use('/chat', chatRouter);
+
+app.use('/chat/room', chatRoomRouter);
+//chat画面だけのルーティング
+app.use('/chat', 
+	router.get('/:id', function(req, res) {
+	    let room_id = req.params.id;//roomの識別
+	    console.log('room_id=' + room_id);
+	    let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
+	    console.log('this is room_session_id =' + sessionId);
+	    let user_id = req.session.user_id;//人の識別
+	    console.log('user_session_id is = ' + user_id);
+	    let query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
+	    connection.query(query1, (err, rows1) => {
+	        //console.log(rows1);//POSTで保存しに持っていった値の前のデータを表示する。
+	        let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
+	        connection.query(query2, (err, rows2) => {
+	        //console.log(rows2);
+	            let content = {
+	                roomid: room_id,
+	                roomname: rows2[0].room_name,
+	                date: rows1
+	            }
+	            res.render('chat',　content);
+	            //ここで渡している値って言うのはsocketではなくDBの値なので、フロントに反映させる時に工夫が必要。
+	        });
+		});
+	})
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
