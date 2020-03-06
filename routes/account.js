@@ -34,7 +34,7 @@ router.post('/signup', (req, res, next) => {
         (error, results, fields) => {
             res.redirect('/account/login');
         });
-    console.log(date);
+    //console.log(date);
 });
 
 router.get('/login', function(req, res, next) {
@@ -69,10 +69,10 @@ router.post('/login', (req, res, next) => {
             let userId = rows.length? rows[0].id: false;
             if (userId) {
                 req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
-                req.session.user_id = userId;//サーバーにある。
-                console.log(userId);
-                console.log(req.params);
-                console.log("セッションID登録完了！！！");
+                req.session.user_id = userId;//サーバーにある。ここで保存
+                //console.log(userId);
+                //console.log(req.params);
+                //console.log("セッションID登録完了！！！");
                 res.redirect('/success/' + req.session.user_id );
             } else {
                 res.redirect('/account/login');
@@ -84,17 +84,17 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/:id/edit', function(req, res, next) {
-    let id = req.params.id;
-    let userid = req.session.user_id;
+    const id = req.params.id;
+    const userid = req.session.user_id;
     //サーバーで保持している情報。cookieは各ブラウザに持たせる。
     //メモリで管理は何とかして識別している。
-    console.log(id);
-    console.log(userid)
+    //console.log(id);
+    //console.log(userid)
     if (id == userid) {
         let query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
         connection.query(query, (err, rows) => {
             if (err) throw err;
-            console.log(rows[0]);
+            //console.log(rows[0]);
             const edit_text = {
                 title1: 'ここではアカウントの編集が出来ます。',
                 title2: '編集を終えたら、保存ボタンを押しましょう！',
@@ -127,7 +127,7 @@ router.post('/:id/edit', (req, res, next) => {
     let si = req.body.comment;
     connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
         if (err) throw err;
-        console.log('アカウント編集成功！');
+        //console.log('アカウント編集成功！');
         res.redirect('/success/' + id);
     });
 });

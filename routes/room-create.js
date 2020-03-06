@@ -36,7 +36,7 @@ router.post('/create', (req, res, next) => {
 		(error, results, fields) => {
 			res.redirect('/room/index');
 		});
-	console.log(date);
+	//console.log(date);
 });
 
 router.get('/:id/edit', function(req, res, next) { 
@@ -78,7 +78,7 @@ router.post('/:id/edit', (req, res, next) => {
     }
     let num = req.body.kind;
     if (num == 1) {
-        console.log('削除ボタンの処理が出来てるよ！');
+        //console.log('削除ボタンの処理が出来てるよ！');
         let query = 'DELETE FROM room WHERE room_id =' + room_id;
         connection.query(query, (err, rows) => {
             if (err) throw err;
@@ -89,7 +89,7 @@ router.post('/:id/edit', (req, res, next) => {
         console.log('更新の処理が出来るよ！');
         connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', [room_name, room_pass, room_memo, room_id], (err, rows) => {
             if (err) throw err;
-            console.log(room_id);
+            //console.log(room_id);
             res.redirect('/chat/' + room_id);
             //res.redirect('/room/' + room_id + '/show');
         });
@@ -100,11 +100,11 @@ router.post('/:id/edit', (req, res, next) => {
 
 router.get('/:id/show', function(req, res, next) { 
     let room_id = req.params.id;
-    console.log(room_id);
+    //console.log(room_id);
     let query = 'SELECT room_id, room_name, room_pass, room_memo FROM room WHERE room_id =' + room_id;
     connection.query(query, (err, rows) => {
         if (err) throw err;
-        console.log(rows[0]);
+        //console.log(rows[0]);
         const roomShow = {
             title1: 'ここではRoomの編集や削除の選択が出来ます。',
             title2: '編集か削除を選んでください',

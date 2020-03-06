@@ -8,7 +8,6 @@
     <title></title>
     <link rel='stylesheet' href='/stylesheets/chat.css'/>
     <link rel='stylesheet' href='/stylesheets/responsive/chat-responsive.css'/>
-    <script src="/socket.io/socket.io.js"></script>
   </head>
 
   <body>
@@ -19,9 +18,9 @@
     </header>
     <main>
       <div class="chat">
-        <div class="index">
+        <div class="index" id="index">
           <% date.forEach(function(chatDate) { %>
-            <div class="chat-index">
+            <div class="chatIndex">
               <div class="human">
                 <div class="human-img">
                   <p>
@@ -40,8 +39,7 @@
               </div>
             </div>
           <% }); %>
-          <div id="chat-index"></div>
-        </div>
+          </div>
         <div class="chat-submit">
           <div class="submit-field">
             <div class="text-field">
@@ -59,20 +57,22 @@
       </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script>
-        let socket = io();
-        $(() => {
-          $('#message_form').submit(() => {
-            socket.emit('message', $('#input_msg').val());
-            $('#input_msg').val('');
-            console.log('emit success');
-            return false;
-          });
-          socket.on('message', (msg) => {
-            console.log('フロントでの処理=' + msg );
-          });
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();//画面を開いた時点でここまで実行。submitを押したら下にいく。
+      $(function() {
+        console.log(data);
+        $('#message_form').submit(function() {
+          socket.emit('message', $('#input_msg').val());//送信
+          $('#input_msg').val('');
+          return false;
         });
-      </script>
+        socket.on('message', function(messageFront) {//受け取り。SocketIDも受け取る
+          console.log(messageFront.socketId);
+          console.log('フロントでの処理=' + messageFront.text );
+          $('#index').append('<div class="chatIndex"><div class="human"><div class="human-img"><p><img src="/images/human.png" width="20" height="20"></p></div><div class="human-name"><p>' + messageFront.user_name + '</p></div></div><div class="text"><p>' + messageFront.text + '</p></div><div class="time"><p>' + messageFront.time + '</p></div></div>');
+        });
+      });
+    </script>
   </body>
-
 </html>

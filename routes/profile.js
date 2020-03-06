@@ -8,7 +8,7 @@ router.get('/:id', function(req, res, next) {
 	let query = 'SELECT id, name, si FROM account WHERE id =' + user_id;
 	connection.query(query, (err, rows) => {
 		if (err) throw err;
-		console.log(rows[0]);
+		//console.log(rows[0]);
 		res.render('profile', { 
 			user_name: rows[0].name, 
 			user_si: rows[0].si,
