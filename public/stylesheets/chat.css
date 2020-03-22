@@ -1,139 +1,139 @@
 @charset "utf-8";
 
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .header-title {
-    padding-top: 0px; 
-    padding-bottom: 0px;
-    text-align: center;
-    background-color: rgb(251, 230, 255);
+  padding-top: 0px; 
+  padding-bottom: 0px;
+  text-align: center;
+  background-color: rgb(251, 230, 255);
 }
 
 .header-title h1 {
-    color: rgb(255, 22, 236);
-    display: inline-block;
-    margin: 10px 0;
+  color: rgb(255, 22, 236);
+  display: inline-block;
+  margin: 10px 0;
 }
 
 main {
-    background-color: white;
+  background-color: white;
 }
 
 .chat {
-    margin: 0 200px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  margin: 0 200px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .chatIndex {
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
-    padding: 10px;
-    height: 70px;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  padding: 10px;
+  height: 70px;
 }
 
 .index {
-    height: 500px;
-    overflow: scroll;
-    border: 2px solid rgb(159, 241, 255);
+  height: 500px;
+  overflow: scroll;
+  border: 2px solid rgb(159, 241, 255);
 }
 
 .human {
-    text-align: center;
-    align-items: center;
-    width: 10%;
+  text-align: center;
+  align-items: center;
+  width: 10%;
 }
 
 .human:hover {
-    cursor: pointer;
-    opacity: 0.8;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .human-img p {
-    padding-top: 0px;
-    margin: 0;
+  padding-top: 0px;
+  margin: 0;
 }
 
 .human-name p {
-    align-items: center;
-    margin: 0;
-    font-size: 13px;
+  align-items: center;
+  margin: 0;
+  font-size: 13px;
 }
 
 .text {
-    padding-left: 10px;
-    width: 80%;
-    border: 1px solid #ccc;
-    font-size: 30px;
-    align-items: center;
+  padding-left: 10px;
+  width: 80%;
+  border: 1px solid #ccc;
+  font-size: 30px;
+  align-items: center;
 }
 
 .text p {
-    width: 100%;
-    font-size: 18px;
-    margin: 0;
+  width: 100%;
+  font-size: 18px;
+  margin: 0;
 }
 
 .time {
-    display: flex;
-    width: 10%;
-    border: 1px solid #ccc;
-    text-align: center;
-    align-items: center;
+  display: flex;
+  width: 10%;
+  border: 1px solid #ccc;
+  text-align: center;
+  align-items: center;
 }
 
 .time p {
-    width: 100%;
-    display: inline-block;
-    border-bottom: 1px solid #ccc;
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #ccc;
 }
 
 .chat-submit {
-    background-color: rgb(142, 168, 252);
-    padding-top: 0px;
+  background-color: rgb(142, 168, 252);
+  padding-top: 0px;
 }
 
 .submit-field {
-    background-color: rgb(241, 191, 248);
-    padding: 10px 0;
+  background-color: rgb(241, 191, 248);
+  padding: 10px 0;
 }
 
 form {
-    padding: 0 5px;
-    display: flex;
-    justify-content: space-between;
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .chat-text {
-    width: 90%;
+  width: 90%;
 }
 
 textarea {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    font-size: 18px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  font-size: 18px;
 }
 
 .chat-button {
-    width: 10%;
-    padding-left: 5px;
+  width: 10%;
+  padding-left: 5px;
 }
 
 input {
-    width: 100%;
-    font-size: 16px;
+  width: 100%;
+  font-size: 16px;
 }
 
 input:hover {
-    cursor: pointer;
-    opacity: 0.6;
+  cursor: pointer;
+  opacity: 0.6;
 }

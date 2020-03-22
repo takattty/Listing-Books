@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/chat-text.css' />
-        <link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
-    </head>
-
-    <body>
-
-        <header>
-            <div class="header-title">
-                <h1>Room Name</h1>
-                <p>このページでは、チャットメッセージの編集や削除が選択出来ます。</p>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/chat-text.css' />
+    <link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
+  </head>
+  
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>Room Name</h1>
+        <p>このページでは、チャットメッセージの編集や削除が選択出来ます。</p>
+      </div>
+    </header>
+    <main>
+      <div class="chat">
+        <div class="chat-show">
+          <div class="chat-people">
+            <div class="chat-people-img">
+              <p>
+                <img src="/images/human.png" width="130" height="130">
+              </p>
             </div>
-        </header>
-
-        <main>
-            <div class="chat">
-                <div class="chat-show">
-                    <div class="chat-people">
-                        <div class="chat-people-img">
-                            <p>
-                                <img src="/images/human.png" width="130" height="130">
-                            </p>
-                        </div>
-                        <div class="chat-people-name">
-                            <p><%= user.name %></p>
-                        </div>
-                    </div>
-
-                    <div class="chat-content">
-                        <div class="chat-mess">
-                            <p><%= text.text %></p>
-                        </div>
-                        <div class="buttoms">
-                            <p>
-                                <input type="button" value="前のページへ戻る" onclick="history.back()">
-                            </p>
-    
-                            <p>
-                                <input type="button" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit'" class="account-bottom">
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <div class="chat-people-name">
+              <p><%= user.name %></p>
             </div>
-        </main>
-
-        <footer>
-
-        </footer>
-      
-    </body>
-
+          </div>
+          <div class="chat-content">
+            <div class="chat-mess">
+              <p><%= text.text %></p>
+            </div>
+            <div class="buttoms">
+              <p>
+                <input type="button" value="前のページへ戻る" onclick="history.back()">
+              </p>
+              <p>
+                <input type="button" value="<%= edit_bottom %>" onClick="location.href='/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit'" class="account-bottom">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
 </html>

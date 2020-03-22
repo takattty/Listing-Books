@@ -1,75 +1,73 @@
 @media (max-width: 1050px) {
 
-    .chat-show {
-        margin: 0 100px;
-    }
+  .chat-show {
+    margin: 0 100px;
+  }
 }
 
 @media (max-width: 850px) {
 
-    .chat-show {
-        margin: 0 40px;
-    }
+  .chat-show {
+    margin: 0 40px;
+  }
 
-    .chat-mess p {
-        padding: 15px 10px;
-    }
+  .chat-mess p {
+    padding: 15px 10px;
+  }
 }
 
 @media (max-width: 750px) {
 
-    .chat-people-name {
-        font-size: 35px;
-    }
+  .chat-people-name {
+    font-size: 35px;
+  }
 
-    .chat-mess {
-        margin: 10px 100px;
-    }
+  .chat-mess {
+    margin: 10px 100px;
+  }
 
-    .chat-mess p {
-        font-size: 20px;
-        padding: 15px 3px;
-    }
+  .chat-mess p {
+    font-size: 20px;
+    padding: 15px 3px;
+  }
 
-    .buttoms {
-        margin: 10px 80px 0 80px;
-        display: flex;
-        flex-flow: column-reverse nowrap;
-    }
+  .buttoms {
+    margin: 10px 80px 0;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+  }
 }
 
 @media (max-width: 500px) {
 
-    .header-title {
-        padding: 10px 20px;
-    }
+  .header-title {
+    padding: 10px 20px;
+  }
 
-    .chat-show {
-        margin: 0 15px;
-    }
+  .chat-show {
+    margin: 0 15px;
+  }
 
-    .chat-people {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  .chat-people {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .chat-people-img p {
-        text-align: center;
-    }
+  .chat-people-img p {
+    text-align: center;
+  }
 
-    .chat-people-name {
-        width: 100%;
-        font-size: 35px;
-    }
+  .chat-people-name {
+    width: 100%;
+    font-size: 35px;
+  }
 
-    .chat-mess {
-        margin: 10px 15px;
-    }
+  .chat-mess {
+    margin: 10px 15px;
+  }
 
-    .chat-mess p {
-        padding: 15px 3px;
-    }
-
-    
+  .chat-mess p {
+    padding: 15px 3px;
+  }
 }

@@ -1,52 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/room-index.css' />
-        <link rel='stylesheet' href='/stylesheets/responsive/room-index-responsive.css'/>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/room-index.css' />
+    <link rel='stylesheet' href='/stylesheets/responsive/room-index-responsive.css'/>
+  </head>
 
-    <body>
-
-        <header>
-            <div class="header-title">
-                <h1>Sharechat</h1>
-                <p>このページでは、参加したいグループを選べます！<br>参加する際には、そのグループを選択してパスワードを入力して下さい</p>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>Sharechat</h1>
+        <p>このページでは、参加したいグループを選べます！<br>参加する際には、そのグループを選択してパスワードを入力して下さい</p>
+      </div>
+    </header>
+    <main>
+      <div class="index-content">
+        <div class="content">
+          <div class="create-room">
+            <p>
+              <a href="/room/create"><button type="button">Room作成へ</button></a>
+            </p>
+          </div>
+          <div class="room-content">
+            <div class="room-index">
+              <p>Room一覧</p>
+              <div class="room-name">
+                <p>
+                  <% room_info.forEach(function(room) { %>
+                    <a href='/room/<%= room.room_id %>/login' ><%= room.room_name %></a>
+                  <% }); %>
+                </p>
+              </div>
             </div>
-        </header>
-
-        <main>
-            <div class="index-content">
-                <div class="content">
-                    <div class="create-room">
-                        <p>
-                            <a href="/room/create"><button type="button">Room作成へ</button></a>
-                        </p>
-                    </div>
-                    <div class="room-content">
-                        <div class="room-index">
-                            <p>Room一覧</p>
-                            <div class="room-name">
-                                <p>
-                                    <% room_info.forEach(function(room) { %>
-                                        <a href='/room/<%= room.room_id %>/login' ><%= room.room_name %></a>
-                                    <% }); %>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-
-        </footer>
-      
-    </body>
-
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
 </html>

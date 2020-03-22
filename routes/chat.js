@@ -3,19 +3,19 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 
 // router.get('/:id', function(req, res) {
-//     let room_id = req.params.id;//roomの識別
+//     const room_id = req.params.id;//roomの識別
 //     console.log('room_id=' + room_id);
-//     let sessionId = req.session.room_id;//ちゃんとログインしたかの確認
+//     const sessionId = req.session.room_id;//ちゃんとログインしたかの確認
 //     console.log('this is room_session_id =' + sessionId);
-//     let user_id = req.session.user_id;//人の識別
+//     const user_id = req.session.user_id;//人の識別
 //     console.log('user_session_id is = ' + user_id);
-//     let query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
+//     const query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
 //     connection.query(query1, (err, rows1) => {
 //         //console.log(rows1);//POSTで保存しに持っていった値の前のデータを表示する。
-//         let query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
+//         const query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;
 //         connection.query(query2, (err, rows2) => {
 //         //console.log(rows2);
-//             let content = {
+//             const content = {
 //                 roomid: room_id,
 //                 roomname: rows2[0].room_name,
 //                 date: rows1
@@ -27,25 +27,25 @@ const connection = require('../mysqlConnection');
 // });
 
 // router.post('/:id', function(req, res, next) {
-//     let room_id = req.params.id;//roomの識別
+//     const room_id = req.params.id;//roomの識別
 //     //console.log('roomId=' + room_id);
-//     let user_id = req.session.user_id;//人の識別
+//     const user_id = req.session.user_id;//人の識別
 //     //console.log('user_session_id is = ' + user_id);
 //     connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {
 //         if (err) {
 //             console.log('セレクトミス');
 //         }
-//         let text = req.body.text;
+//         const text = req.body.text;
 //         console.log('ここでchat.jsの受け取り=' + text);
-//         let message_id = null;
-//         let time = moment().format('hh:mm');;
-//         let user_name = userName[0].name;
-//         let text_date = {message_id, text, time, room_id, user_id, user_name}
+//         const message_id = null;
+//         const time = moment().format('hh:mm');;
+//         const user_name = userName[0].name;
+//         const text_date = {message_id, text, time, room_id, user_id, user_name}
 //         console.log(text_date);
 //         connection.query('INSERT INTO message SET ?', text_date,
 //             (err, results) => {
 //                 if (err) {
-//                     console.log('DBに保存出来てない〜〜');
+//                     console.log('DBに保存出来てない 〜〜');
 //                 }
 //                 console.log('DB保存おっけい！');
 //             }
@@ -55,15 +55,15 @@ const connection = require('../mysqlConnection');
 // });
 
 
-//各ルームのコメント詳細ページ
+//各ルームのメッセージ詳細ページ
 router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) {
-	let text_id = req.params.text_id;
-	let user_id = req.params.user_id;
+	const text_id = req.params.text_id;
+	const user_id = req.params.user_id;
 	connection.beginTransaction((err) => {
-		if (err) { throw err; }
+		if (err) { throw err };
 		connection.query('SELECT * FROM message WHERE message_id=' + text_id, (err, row1) => {
 			if (err) {
-					console.log('最初でミスってる！');
+				console.log('最初でミスってる！');
 			}
 			//console.log(row1);
 			//console.log(row1[0].text);
@@ -91,12 +91,12 @@ router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) 
 	});
 });
 
-//各ルームのコメントの編集ページ
+//各ルームのメッセージ編集ページ
 router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, next) {
-	let text_id = req.params.text_id;
-	let user_id = req.params.user_id;
+	const text_id = req.params.text_id;
+	const user_id = req.params.user_id;
 	connection.beginTransaction((err) => {
-		if (err) { throw err; }
+		if (err) { throw err };
 		connection.query('SELECT * FROM message WHERE message_id=' + text_id, (err, row1) => {
 			if (err) {
 					console.log('最初でミスってる！');
@@ -116,7 +116,7 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
 					}
 					//console.log('success!!!!!');
 					const chatTextEdit = {
-						delete_bottom: '削除',
+						deconste_bottom: '削除',
 						edit_bottom: '更新',
 						user: row2[0],
 						text: row1[0]
@@ -129,15 +129,15 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
 });
 
 router.post('/:room_id/text/:text_id/account/:user_id/edit', (req, res, next) => {
-	let room_id = req.params.room_id;
-	let text_id = req.params.text_id;
-	let text = req.body.text;
-	let num = req.body.kind;
+	const room_id = req.params.room_id;
+	const text_id = req.params.text_id;
+	const text = req.body.text;
+	const num = req.body.kind;
 	//console.log(text);
 	//console.log(num);
 	if (num == 1) {
 		//console.log('削除ボタンの処理が出来てるよ！');
-		let query = 'DELETE FROM message WHERE message_id =' + text_id;
+		const query = 'DELETE FROM message WHERE message_id =' + text_id;
 		connection.query(query, (err, rows) => {
 			if (err) throw err;
 			res.redirect('/chat/' + room_id);

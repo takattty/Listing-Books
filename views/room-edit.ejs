@@ -1,70 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/account.css'/>
-        <link rel='stylesheet' href='/stylesheets/responsive/account-responsive.css'/>
-        <script src="../routes/room-create.js" type="text/javascript"></script>
-        <script>
-            function xyz(num) {
-                document.room_form.kind.value = num;//ここのundefinedのプロパティが読み込めないって言ってる。
-                //kindの前のオブジェクトのformがundefinedになっている。
-                document.room_form.action = "/room/<%= room.room_id %>/edit"
-                document.room_form.submit();
-            }
-        </script>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/account.css'/>
+    <link rel='stylesheet' href='/stylesheets/responsive/account-responsive.css'/>
+    <script src="../routes/room-create.js" type="text/javascript"></script>
+    <script>
+      function xyz(num) {
+        document.room_form.kind.value = num;//ここのundefinedのプロパティが読み込めないって言ってる。
+        //kindの前のオブジェクトのformがundefinedになっている。
+        document.room_form.action = "/room/<%= room.room_id %>/edit"
+        document.room_form.submit();
+      }
+    </script>
+  </head>
 
-    <body>
-        <header>
-            <div class="header-title">
-                <h1>Sharechat</h1>
-                <p><%= title1 %></p>
-                <p><%= title2 %></p>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>Sharechat</h1>
+        <p><%= title1 %></p>
+        <p><%= title2 %></p>
+      </div>
+    </header>
+    <main>
+      <div class="createAccount">
+        <div class="create-text">
+          <h3><%= create %></h3>
+        </div>
+        <div class="create-content">
+          <form action="" method="POST" name="room_form">
+            <p><label for="name-field"><%= name %></label><br>
+            <input type="text" name="name" id="id-field" class="account-name" value='<%= room.room_name %>'></p>
+            <p><label for="pw-field">パスワード</label><br>
+            <input type="password" name="password1" id="pw-field" class="account-password" value='<%= room.room_pass %>'>
+            <input type="password" name="password2" class="account-password" value='<%= room.room_pass %>'></p>
+            
+            <p><label for="comment"><%= text %></label><br>
+            <textarea name="comment" id="comment" class="account-introduction"><%= room.room_memo %></textarea></p>
+        
+            <div class="bottoms">
+              <p>
+                <input type="button" value="<%= delete_bottom %>"  onClick="xyz(1);" class="account-bottom">
+                <input type="hidden" value="" name="kind">
+              </p>
+              <p>
+                <input type="button" value="<%= bottom %>" onClick="xyz(2);" class="account-bottom">
+              </p>
             </div>
-        </header>
-
-        <main>
-            <div class="createAccount">
-                <div class="create-text">
-                    <h3><%= create %></h3>
-                </div>
-
-                <div class="create-content">
-                    <form action="" method="POST" name="room_form">
-                        <p><label for="name-field"><%= name %></label><br>
-                        <input type="text" name="name" id="id-field" class="account-name" value='<%= room.room_name %>'></p>
-
-                        <p><label for="pw-field">パスワード</label><br>
-                        <input type="password" name="password1" id="pw-field" class="account-password" value='<%= room.room_pass %>'>
-                        <input type="password" name="password2" class="account-password" value='<%= room.room_pass %>'></p>
-                        
-                        <p><label for="comment"><%= text %></label><br>
-                        <textarea name="comment" id="comment" class="account-introduction"><%= room.room_memo %></textarea></p>
-                    
-                        <div class="bottoms">
-                            <p>
-                                <input type="button" value="<%= delete_bottom %>"  onClick="xyz(1);" class="account-bottom">
-                                <input type="hidden" value="" name="kind">
-                            </p>
-
-                            <p>
-                                <input type="button" value="<%= bottom %>" onClick="xyz(2);" class="account-bottom">
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <div class="account-footer">
-                <h2>Sharechat</h2>
-            </div>
-        </footer>
-    </body>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="account-footer">
+        <h2>Sharechat</h2>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,58 +1,57 @@
 @media (max-width: 850px) {
 
+  .profile-content {
+    margin: 0 50px;
+  }
 
-    .profile-content {
-        margin: 0 50px;
-    }
+  .profile-human {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .profile-human {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  .profile-name {
+    width: 100%;
+  }
 
-    .profile-name {
-        width: 100%;
-    }
+  .profile-name p {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+  }
 
-    .profile-name p {
-        padding-right: 10px;
-        padding-left: 10px;
-        font-size: 20px;
-    }
+  .profile-si {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .profile-si {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  .si p {
+    width: 100%;
+  }
 
-    .si p {
-        width: 100%;
-    }
+  .si-text {
+    width: 100%;
+  }
 
-    .si-text {
-        width: 100%;
-    }
+  .si-text p {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+  }
 
-    .si-text p {
-        padding-right: 10px;
-        padding-left: 10px;
-        font-size: 20px;
-    }
-
-    .bottom {
-        padding: 30px 0;
-    }
+  .bottom {
+    padding: 30px 0;
+  }
 }
 
 @media (max-width: 640px) {
 
-    .profile-content {
-        margin: 0 30px;
-    }
+  .profile-content {
+    margin: 0 30px;
+  }
 
-    .profile-name p {
-        font-size: 20px;
-    }
+  .profile-name p {
+    font-size: 20px;
+  }
 }

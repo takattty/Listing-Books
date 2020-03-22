@@ -1,65 +1,57 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/profile.css'/>
-        <link rel='stylesheet' href='/stylesheets/responsive/profile-responsive.css'/>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/profile.css'/>
+    <link rel='stylesheet' href='/stylesheets/responsive/profile-responsive.css'/>
+  </head>
 
-    <body>
-        <header>
-            <div class="header-title">
-                <h1><a href="/success/<%= success %>"><%= user_name %></a></h1>
-                <p>このページは、<%= user_name %>のプロフィールページです。</p>
+  <body>
+    <header>
+      <div class="header-title">
+        <h1><a href="/success/<%= success %>"><%= user_name %></a></h1>
+        <p>このページは、<%= user_name %>のプロフィールページです。</p>
+      </div>
+    </header>
+    <main>
+      <div class ="profile">
+        <div class="profile-content">
+          <div class="profile-title">
+            <p>プロフィール</p>
+          </div>
+          <div class="profile-text">
+            <div class="profile-human">
+              <div class="profile-img">
+                <p>
+                <img src="/images/human.png" width="100" height="100">
+                </p>
+              </div>
+              <div class="profile-name">
+                <p><%= user_name %></p>
+              </div>
             </div>
-        </header>
-
-        <main>
-            <div class ="profile">
-                <div class="profile-content">
-
-                    <div class="profile-title">
-                        <p>プロフィール</p>
-                    </div>
-
-                    <div class="profile-text">
-                        <div class="profile-human">
-                            <div class="profile-img">
-                                <p>
-                                    <img src="/images/human.png" width="100" height="100">
-                                </p>
-                            </div>
-                            <div class="profile-name">
-                                <p><%= user_name %></p>
-                            </div>
-                        </div>
-
-                        <div class="profile-si">
-                            <div class="si">
-                                <p>自己紹介</p>
-                            </div>
-                            <div class="si-text">
-                                <p><%= user_si %></p>
-                            </div>
-                        </div>
-
-                        <div class="bottom">
-                            <p>
-                                <a href='/account/<%= user_id %>/edit' class="account-bottom">編集する</a>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="profile-si">
+              <div class="si">
+                <p>自己紹介</p>
+              </div>
+              <div class="si-text">
+                <p><%= user_si %></p>
+              </div>
             </div>
-        </main>
-
-        <footer>
-
-        </footer>
-    </body>
+            <div class="bottom">
+              <p>
+                <a href='/account/<%= user_id %>/edit' class="account-bottom">編集する</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
 </html>

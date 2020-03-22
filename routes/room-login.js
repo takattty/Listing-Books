@@ -4,9 +4,9 @@ const connection = require('../mysqlConnection');
 
 /* GET home page. */
 router.get('/:id/login', function(req, res, next) { 
-	let roomId_url = req.params.id;
+	const roomId_url = req.params.id;
 	//console.log(roomId_url);//ここに入る数値がroom_idです。
-	let query = 'SELECT room_id, room_name, room_memo, room_pass FROM room WHERE room_id =' + roomId_url;
+	const query = 'SELECT room_id, room_name, room_memo, room_pass FROM room WHERE room_id =' + roomId_url;
 	connection.query(query, (err, rows) => {
 		if (err) throw err;
 		//console.log(rows[0]);
@@ -15,13 +15,13 @@ router.get('/:id/login', function(req, res, next) {
 });
 
 router.post('/:id/login', (req, res, next) => {//パスワードの検証
-	let roomId = req.params.id;
+	const roomId = req.params.id;
 	//console.log(roomId);
-	let query = 'SELECT room_id, room_pass FROM room WHERE room_id =' + roomId;
+	const query = 'SELECT room_id, room_pass FROM room WHERE room_id =' + roomId;
 	connection.query(query, (err, rows) => {
 		if (err) throw err;
 		//console.log(rows[0]);//この中には、roomのidとpassがある。
-		let pass = req.body.pass;
+		const pass = req.body.pass;
 		//console.log(pass);
 		//console.log(rows[0].room_pass);
 		if (pass == rows[0].room_pass) {
@@ -35,6 +35,5 @@ router.post('/:id/login', (req, res, next) => {//パスワードの検証
 		}
 	});
 });
-
 
 module.exports = router;

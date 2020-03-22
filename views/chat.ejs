@@ -61,7 +61,6 @@
     <script>
       const socket = io();//画面を開いた時点でここまで実行。submitを押したら下にいく。
       $(function() {
-        console.log(data);
         $('#message_form').submit(function() {
           socket.emit('message', $('#input_msg').val());//送信
           $('#input_msg').val('');
