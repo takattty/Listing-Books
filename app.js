@@ -61,44 +61,44 @@ app.use('/chat/room', chatRoomRouter);
 
 //chat画面だけのルーティング
 function sessionData(room, user){
-  const room_id = room;
-  const user_id = user;
-  console.log(room_id, user_id);
+	const room_id = room;
+	const user_id = user;
+	console.log(room_id, user_id);
 }
 
 io.on('connection', (socket) => {
-  console.log('This is socket.id = ' + socket.id);
-  socket.on('message', (msg) => {//フロントでデータを送信したら処理開始。
-    console.log('サーバでの処理=' + msg);
-    connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
-      if(err) {
-        console.log('セレクトミス');
-      }
-      const user_name = userName[0].name;//ここがuser_nameの箇所。これがDBから取得した値。
-      console.log(user_name);
-      const message_id = null;
-      const time = String(moment().format('hh:mm'));
-      const text = msg;
-      const socketId = socket.id;
-      const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
-      const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
-      connection.query('INSERT INTO message SET ?', messageDb,
-        (err, results) => {
-          if(err) {
-            console.log('DBに保存出来てない〜〜');
-            console.log(err);
-          }
-          console.log('DBに保存おっけい！！');
-        })
-      io.emit('message', messageFront);//フロントに渡すデータはここ。
-    });
-  });
+	console.log('This is socket.id = ' + socket.id);
+	socket.on('message', (msg) => {//フロントでデータを送信したら処理開始。
+		console.log('サーバでの処理=' + msg);
+		connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
+			if(err) {
+				console.log('セレクトミス');
+			}
+			const user_name = userName[0].name;//ここがuser_nameの箇所。これがDBから取得した値。
+			console.log(user_name);
+			const message_id = null;
+			const time = String(moment().format('hh:mm'));
+			const text = msg;
+			const socketId = socket.id;
+			const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
+			const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
+			connection.query('INSERT INTO message SET ?', messageDb,
+				(err, results) => {
+					if(err) {
+						console.log('DBに保存出来てない〜〜');
+						console.log(err);
+					}
+					console.log('DBに保存おっけい！！');
+				})
+			io.emit('message', messageFront);//フロントに渡すデータはここ。
+		});
+	});
 });
 
 app.use('/chat', router.get('/:id', function(req, res) {
 	const room_id = req.session.room_id;//これはsessionに入ってる
-  const user_id = req.session.user_id;//これも元々持ってる
-  const query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
+	const user_id = req.session.user_id;//これも元々持ってる
+	const query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
 	connection.query(query1, (err, rows1) => {
 		const query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;//ルームの名前を引っ張ってきてる
 		connection.query(query2, (err, rows2) => {
@@ -106,11 +106,11 @@ app.use('/chat', router.get('/:id', function(req, res) {
 				roomid: room_id,//リンクの中で使用
 				roomname: rows2[0].room_name,//リンクでルームの名前として使用
 				date: rows1//ここにはSELECTで指定したプロパティが入ってる
-      }
-      res.render('chat',　content);//ここでフロントのレンダリング処理完了
-    });
-  });
-  sessionData(room_id, user_id);
+			}
+			res.render('chat',　content);//ここでフロントのレンダリング処理完了
+		});
+	});
+	sessionData(room_id, user_id);
 }));
 
 
