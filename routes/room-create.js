@@ -49,7 +49,7 @@ router.get('/:id/edit', function(req, res, next) {
 			create: 'Room編集',
 			name: 'Room名',
 			text: 'Room紹介',
-			deconste_bottom: '削除',
+			delete_bottom: '削除',
 			bottom: 'Roomを更新する',
 			room: rows[0]
 		};

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 
-/* GET home page. */
 router.get('/:id/login', function(req, res, next) { 
 	const roomId_url = req.params.id;
 	//console.log(roomId_url);//ここに入る数値がroom_idです。
@@ -28,7 +27,6 @@ router.post('/:id/login', (req, res, next) => {//パスワードの検証
       req.session.room_id = roomId;//ここでroom_idの保存
 			//console.log(req.session.room_id);
 			res.redirect('/chat/' + req.params.id);
-			//console.log('うまく行ったぞ！');
 		} else {
 			res.redirect('/room/' + req.params.id + '/login');
 			console.log('間違ってるよ');

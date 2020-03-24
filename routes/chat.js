@@ -94,7 +94,7 @@ router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) 
 //各ルームのメッセージ編集ページ
 router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, next) {
 	const text_id = req.params.text_id;
-	const user_id = req.params.user_id;
+  const user_id = req.session.user_id;
 	connection.beginTransaction((err) => {
 		if (err) { throw err };
 		connection.query('SELECT * FROM message WHERE message_id=' + text_id, (err, row1) => {
@@ -116,7 +116,7 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
 					}
 					//console.log('success!!!!!');
 					const chatTextEdit = {
-						deconste_bottom: '削除',
+						delete_bottom: '削除',
 						edit_bottom: '更新',
 						user: row2[0],
 						text: row1[0]
@@ -147,7 +147,7 @@ router.post('/:room_id/text/:text_id/account/:user_id/edit', (req, res, next) =>
 		//console.log('更新の処理が出来るよ！');
 		connection.query('UPDATE message SET text=? WHERE message_id=?', [text, text_id], (err, rows) => {
 			if (err) throw err;
-			res.redirect('/chat/' + req.params.room_id + '/text/' + req.params.text_id + '/account/' + req.params.user_id);
+			res.redirect('/chat/room/' + req.params.room_id + '/text/' + req.params.text_id + '/account/' + req.params.user_id);
 		});
 	}
 });

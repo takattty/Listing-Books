@@ -49,39 +49,35 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', (req, res, next) => {
-	function pass() {
-		const pass1 = req.body.password1;
-		const pass2 = req.body.password2;
-			if (pass1 == pass2) {
-				return pass1;
-			} else {
-				res.redirect('/account/login');
-			}
-	}
-	const name = req.body.name;
-	const password = pass();
-	const query = 'SELECT id FROM account WHERE name="' + name + '" AND password = "' + password + '" LIMIT 1';//失敗したときにpasswordの値が無いからクエリが失敗してるんだ。
-	connection.query(query, (error, rows) => {
-		if (error) {
-			console.log("ここでエラーになってるよ！");
-			res.redirect('/account/login');
-		} else {
-			const userId = rows.length? rows[0].id: false;
-			if (userId) {
-				req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
-				req.session.user_id = userId;//サーバーにある。ここで保存
-				//console.log(userId);
-				//console.log(req.params);
-				//console.log("セッションID登録完了！！！");
-				res.redirect('/success/' + req.session.user_id );
-			} else {
-				res.redirect('/account/login');
-				console.log("falseだよ");
-			}
-		}
-	});
+  const pass1 = req.body.password1;
+  const pass2 = req.body.password2;
+  if (pass1 === pass2) {
+    const password = pass2;
+    const name = req.body.name;
+    const query = 'SELECT id FROM account WHERE name="' + name + '" AND password = "' + password + '" LIMIT 1';
+    connection.query(query, (error, rows) => {
+      if (error) {
+        console.log("ここでエラーになってるよ！");
+        res.redirect('/account/login');
+      } else {
+        const userId = rows.length? rows[0].id: false;
+        if (userId) {
+          req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
+          req.session.user_id = userId;//サーバーにある。ここで保存
+          //console.log(userId);
+          //console.log(req.params);
+          //console.log("セッションID登録完了！！！");
+          res.redirect('/success/' + req.session.user_id );
+        } else {
+          res.redirect('/account/login');
+          console.log("falseだよ");
+        }
+      }
+    });
+  } else {
+    res.redirect('/account/login');
+  }
 });
-
 
 router.get('/:id/edit', function(req, res, next) {
 	const id = req.params.id;

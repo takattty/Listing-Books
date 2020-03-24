@@ -67,8 +67,7 @@ function sessionData(room, user){
 }
 
 io.on('connection', (socket) => {
-  console.log('ここはまだsocket.onの上');
-  console.log(socket.id);//ああでもここで既に出てきてるな
+  console.log('This is socket.id = ' + socket.id);
   socket.on('message', (msg) => {//フロントでデータを送信したら処理開始。
     console.log('サーバでの処理=' + msg);
     connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id

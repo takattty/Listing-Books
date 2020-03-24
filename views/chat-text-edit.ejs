@@ -10,9 +10,9 @@
 		<link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
 		<script src="../routes/chat.js" type="text/javascript"></script>
 		<script>
-			function abc(num) {
+			function edit(num) {
 				document.form.kind.value = num;
-				document.form.action = "/chat/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
+				document.form.action = "/chat/room/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
 				document.form.submit();//フォーム名＋submit()でフォームを送信。
 			}
 		</script>
@@ -48,11 +48,11 @@
 							</div>
 							<div class="buttoms">
 								<p>
-									<input type="button" value="<%= delete_bottom %>" class="delete" onClick="abc(1);" >
+									<input type="button" value="<%= delete_bottom %>" class="delete" onClick="edit(1);" >
 									<input type="hidden" value="" name="kind" >
 								</p>
 								<p>
-									<input type="button" value="<%= edit_bottom %>" onClick="abc(2);" class="account-bottom">
+									<input type="button" value="<%= edit_bottom %>" onClick="edit(2);" class="account-bottom">
 								</p>
 							</div>
 						</form>
