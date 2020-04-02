@@ -59,17 +59,18 @@ app.use('/room', roomCreateRouter);
 app.use('/profile', profileRouter);
 app.use('/chat/room', chatRoomRouter);
 
-//chat画面だけのルーティング
-function sessionData(room, user){
-  const room_id = room;
-  const user_id = user;
-  console.log(room_id, user_id);
-}
 
-io.on('connection', (socket) => {
+io.on('connection', (socket) => {//ルーティングとは独立していないといけない
+  let room = '';
   console.log('This is socket.id = ' + socket.id);
   socket.on('message', (msg) => {//フロントでデータを送信したら処理開始。
-    console.log('サーバでの処理=' + msg);
+    console.log('サーバでの処理=' + msg.message);
+    const text = msg.message;
+    const room_id = msg.roomId;
+    const user_id = msg.userId;
+    room = room_id;
+    socket.join(room);
+    
     connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
       if(err) {
         console.log('セレクトミス');
@@ -78,7 +79,6 @@ io.on('connection', (socket) => {
       console.log(user_name);
       const message_id = null;
       const time = String(moment().format('hh:mm'));
-      const text = msg;
       const socketId = socket.id;
       const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
       const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
@@ -95,6 +95,7 @@ io.on('connection', (socket) => {
   });
 });
 
+//chat画面だけのルーティング
 app.use('/chat', router.get('/:id', function(req, res) {
   const room_id = req.session.room_id;//これはsessionに入ってる
   const user_id = req.session.user_id;//これも元々持ってる
@@ -104,13 +105,13 @@ app.use('/chat', router.get('/:id', function(req, res) {
     connection.query(query2, (err, rows2) => {
       const content = {
         roomid: room_id,//リンクの中で使用
+        userid: user_id,
         roomname: rows2[0].room_name,//リンクでルームの名前として使用
         date: rows1//ここにはSELECTで指定したプロパティが入ってる
       }
       res.render('chat',　content);//ここでフロントのレンダリング処理完了
     });
   });
-  sessionData(room_id, user_id);
 }));
 
 

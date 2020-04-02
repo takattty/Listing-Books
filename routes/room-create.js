@@ -4,8 +4,8 @@ const connection = require('../mysqlConnection');
 
 router.get('/create', function(req, res, next) { 
   const roomCreate = {
-      itle1: 'ここではRoomの新規作成が出来ます。',
-      itle2: 'Room名, パスワード, Roomの説明を書きましょう！また、Roomを作成した方がそのRoomのオーナーとなります。',
+      tile1: 'ここではRoomの新規作成が出来ます。',
+      tile2: 'Room名, パスワード, Roomの説明を書きましょう！また、Roomを作成した方がそのRoomのオーナーとなります。',
       reate: 'Room新規作成',
       ame: 'Room名',
       ext: 'Room紹介',
