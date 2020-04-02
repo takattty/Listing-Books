@@ -1,118 +1,116 @@
 @media (max-width: 1160px) {
 
-    .home-title {
-        padding: 260px 0;
-        text-align: center;
-        background-image: url("/images/architecture-1477041_1280.jpg");
-        background-size: auto;
-  
-    }
-
+  .home-title {
+     padding: 260px 0;
+     text-align: center;
+     background-image: url("/images/architecture-1477041_1280.jpg");
+     background-size: auto;
+  }
 }
 
 @media (max-width: 850px) {
 
-    .home-title {
-        padding: 150px 0;
-    }
+  .home-title {
+    padding: 150px 0;
+  }
 
-    .authentication {
-        height: 200px;
-    }
+  .authentication {
+    height: 200px;
+  }
 
-    .authentications{
-        display: block;
-        width: 100%;
-        padding-top: 20px;
-    }
+  .authentications{
+    display: block;
+    width: 100%;
+    padding-top: 20px;
+  }
 
-    .authentication-newaccount {
-        padding-top: 20px;
-    }
+  .authentication-newaccount {
+    padding-top: 20px;
+  }
 
-    .authentication-login {
-        padding-top: 30px;
-    }
+  .authentication-login {
+    padding-top: 30px;
+  }
 
-    .home-introduction {
-        padding: 150px 15px;
-    }
+  .home-introduction {
+    padding: 150px 15px;
+  }
 }
 
 @media (max-width: 760px) {
 
-    .home-title {
-        padding: 150px 0;
-    }
+  .home-title {
+    padding: 150px 0;
+  }
 
-    .home-introduction {
-        padding: 150px 15px;
-    }
+  .home-introduction {
+    padding: 150px 15px;
+  }
 }
 
 @media (max-width: 700px) {
 
-    .authentications {
-        padding: 10px 0px;
-    }
-    
-    .authentication {
-        height: 250px;
-    }
+  .authentications {
+    padding: 10px 0px;
+  }
+  
+  .authentication {
+    height: 250px;
+  }
 }
 
 @media (max-width: 610px) {
 
-    .home-title {
-        padding: 150px 0 150px 0;
-    }
+  .home-title {
+    padding: 150px 0 150px;
+  }
 
-    .authenticaiton {
-        height: 250px;
-    }
+  .authenticaiton {
+    height: 250px;
+  }
 
-    .home-introduction {
-        padding: 150px 15px;
-    }
+  .home-introduction {
+    padding: 150px 15px;
+  }
 }
 
 @media (max-width: 540px) {
 
-    .home-footer-content{
-        height: 500px;
-    }
+  .home-footer-content{
+    height: 500px;
+  }
 
-    .home-footer-content h2 {
-        margin-right: 15px;
-        margin-left: 15px;
-    }
+  .home-footer-content h2 {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
 
-    .home-footer-twitter{
-        height: 300px;
-    }
+  .home-footer-twitter{
+    height: 300px;
+  }
 
-    .home-footer-twitter:hover {
-        cursor: pointer;
-        border: 0px solid white;
-    }
+  .home-footer-twitter:hover {
+    cursor: pointer;
+    border: 0px solid white;
+  }
 }
 
 @media (max-width: 420px) {
 
-    .home-title-text p {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
+  .home-title-text p {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 }
 
 @media (max-width: 380px) {
 
-    .home-title-text p {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
+  .home-title-text p {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 
-    .home-footer-content{
-        height: 600px;
-    }
+  .home-footer-content{
+    height: 600px;
+  }
 }

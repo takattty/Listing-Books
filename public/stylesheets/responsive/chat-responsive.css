@@ -1,72 +1,101 @@
 @media (max-width: 1000px) {
 
-    .chat {
-        margin: 0 20px;
-    }
+  .chat {
+    margin: 0 20px;
+  }
 } 
 
 @media (max-width: 650px) {
 
+  html {
+    height: 100%;
+  }
 
-    html {
-        height: 100%;
-    }
+  .main {
+    height: 100%;
+  }
 
-    .main {
-        height: 100%;
-    }
+  .chat {
+    margin: 0 5px;
+    height: 100%;
+  }
 
-    .chat {
-        margin: 0 5px;
-        height: 100%;
-    }
+  .chat-index {
+    height: 50px;
+    padding: 5px 2px;;
+  }
 
-    .chat-index {
-        height: 50px;
-        padding: 5px 2px;;
-    }
+  .index {
+    height: 450px;
+    background-color: black;
+    overflow: scroll;
+  }
 
-    .index {
-        height: 450px;
-        background-color: black;
-        overflow: scroll;
-    }
+  .human {
+    padding-top: 5px;
+    padding-right: 3px;
+  }
 
-    .human {
-        padding-top: 5px;
-        padding-right: 3px;
-    }
+  .human-name p {
+    font-size: 3px;
+  }
 
-    .human-name p {
-        font-size: 3px;
-    }
+  .text p {
+    font-size: 10px;
+  }
 
-    .text p {
-        font-size: 10px;
-    }
+  .time p {
+    font-size: 8px;
+  }
 
-    .time p {
-        font-size: 8px;
-    }
+  .submit-field {
+    padding: 5px;
+  }
 
-    .submit-field {
-        padding: 5px;
-    }
+  form {
+    padding: 0;
+  }
 
-    form {
-        padding: 0;
-    }
+  textarea {
+    font-size: 15px;
+  }
 
-    textarea {
-        font-size: 15px;
-    }
+  input {
+    width: 100%;
+    font-size: 15px;
+  }
+}
 
-    .text-submit {
-        align-items: center;
-    }
+@media (max-width: 400px) {
 
-    input {
-        font-size: 13px;
-        padding: 1px 0;
-    }
+  main {
+    height: 600px;
+  }
+
+  .index {
+    height: 550px;
+  }
+
+  .chat {
+    height: 100%;
+    padding-top: 5px;
+    padding-bottom: 0px
+  }
+
+  .chat-text {
+    width: 85%;
+  }
+
+  .chat-button {
+    width: 15%;
+  } 
+
+  input {
+    font-size: 14px;
+  }
+
+  .chat-button input#button {
+    background-color: white;
+    padding: 0px
+  }
 }

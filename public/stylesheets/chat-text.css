@@ -1,103 +1,103 @@
 @charset "utf-8";
 
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .header-title {
-    padding-top: 5px; 
-    padding-bottom: 10px;
-    text-align: center;
-    border-bottom:1px solid #ccc; 
-    background-color: rgb(251, 230, 255);
+  padding-top: 5px; 
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom:1px solid #ccc; 
+  background-color: rgb(251, 230, 255);
 }
 
 .header-title h1 {
-    color: rgb(255, 22, 236);
-    display: inline-block;
-    border-bottom: 2px solid rgb(78, 78, 78);
-    margin: 10px 0;
+  color: rgb(255, 22, 236);
+  display: inline-block;
+  border-bottom: 2px solid rgb(78, 78, 78);
+  margin: 10px 0;
 }
 
 .chat {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .chat-show {
-    background-color: blueviolet;
-    margin: 0 200px;
+  background-color: blueviolet;
+  margin: 0 200px;
 }
 
 .chat-people {
-    background-color: red;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+  background-color: red;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
 }
 
 .chat-people-img {
-    background-color: white;
+  background-color: white;
 }
 
 .chat-people-name {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    width: 70%;
-    font-size: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  font-size: 50px;
 }
 
 .chat-people-name p {
-    padding-left: 15px;
-    text-align: center;
-    width: 100%;
+  padding-left: 15px;
+  text-align: center;
+  width: 100%;
 }
 
 .chat-content {
-    text-align: center;
-    padding-top: 20px;
-    background-color: chartreuse;
+  text-align: center;
+  padding-top: 20px;
+  background-color: chartreuse;
 }
 
 .chat-mess {
-    background-color: white;
-    margin: 10px 150px;
+  background-color: white;
+  margin: 10px 150px;
 }
 
 .chat-mess p {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 22px;
-    width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 22px;
+  width: 100%;
 }
 
 .chat-mess input {
-    font-size: 45px;
-    width: 90%;
-    text-align: center;
+  font-size: 45px;
+  width: 90%;
+  text-align: center;
 }
 
 .buttoms {
-    display: flex;
-    justify-content: space-around;
-    margin: 10px 150px 0px 150px;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 150px 0px;
 }
 
 .buttoms input {
-    font-size: 15px;
-    margin: 5px 0;
-    border: 1px solid rgb(97, 97, 97);
-    height: 50px;
-    width: 200px;
-    border-radius: 20px;
+  font-size: 15px;
+  margin: 5px 0;
+  border: 1px solid rgb(97, 97, 97);
+  height: 50px;
+  width: 200px;
+  border-radius: 20px;
 }
 
 .buttoms input:hover {
-    cursor: pointer;
-    opacity: 0.8;
+  cursor: pointer;
+  opacity: 0.8;
 }

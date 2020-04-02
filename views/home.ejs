@@ -1,81 +1,73 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title><%= home_title %></title>
-        <link rel='stylesheet' href='/stylesheets/home.css' />
-        <link rel='stylesheet' href='/stylesheets/responsive/home-responsive.css'/>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title><%= home_title %></title>
+    <link rel='stylesheet' href='/stylesheets/home.css' />
+    <link rel='stylesheet' href='/stylesheets/responsive/home-responsive.css'/>
+  </head>
 
-    <body>
-
-        <header>
-            <div class="home-title">
-                <div class="home-title-text">
-                    <h1><%= home_title %></h1>
-                    <p>これはシェアハウス専用のチャットアプリです</p>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="authentication">
-                <div class="authentications">
-                    <div class="authentication-newaccount">
-                        <p>
-                            <a href="/account/signup"><button>アカウント新規作成</button></a>
-                        </p>
-                    </div>
-                    <div class="authentication-login">
-                        <p>
-                            <a href="/account/login"><button>ログイン</button></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="home-introduction">
-                <p>このアプリでは、各シェアハウスでのグループを作りそれぞれでチャットする事が可能です。<br>
-                    グループ作成やチャットを始めるには、アカウントを作りログインする必要があります。<br>
-                    まだの方は是非ログインしてチャットに参加しましょう！</p>
-            </div>
-
-            <div class="authentication">
-                <div class="authentications">
-                    <div class="authentication-newaccount">
-                        <p>
-                            <a href="/account/signup"><button>アカウント新規作成</button></a>
-                        </p>
-                    </div>
-                    <div class="authentication-login">
-                        <p>
-                            <a href="/account/login"><button>ログイン</button></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-
-        <footer>
-            <div class="home-footer">
-                <div class="home-footer-content">
-                    <h2>質問があれば、こちらまでご連絡下さい！</h2>
-                    <div class="home-footer-twitter">
-                        <a  href="https://twitter.com/R9rT9t" class="twitter-icon" target="_blank">
-                            <img src="images/13.29.39.png" width="200" height="200">
-                        </a>
-                        <p>
-                            <a  href="https://twitter.com/R9rT9t" target="_blank">Twitter</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-      
-    </body>
-
+  <body>
+    <header>
+      <div class="home-title">
+        <div class="home-title-text">
+          <h1><%= home_title %></h1>
+          <p>これはシェアハウス専用のチャットアプリです</p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="authentication">
+        <div class="authentications">
+          <div class="authentication-newaccount">
+            <p>
+              <a href="/account/signup"><button>アカウント新規作成</button></a>
+            </p>
+          </div>
+          <div class="authentication-login">
+            <p>
+              <a href="/account/login"><button>ログイン</button></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="home-introduction">
+        <p>このアプリでは、各シェアハウスでのグループを作りそれぞれでチャットする事が可能です。<br>
+            グループ作成やチャットを始めるには、アカウントを作りログインする必要があります。<br>
+            まだの方は是非ログインしてチャットに参加しましょう！</p>
+      </div>
+      <div class="authentication">
+        <div class="authentications">
+          <div class="authentication-newaccount">
+            <p>
+              <a href="/account/signup"><button>アカウント新規作成</button></a>
+            </p>
+          </div>
+          <div class="authentication-login">
+            <p>
+              <a href="/account/login"><button>ログイン</button></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="home-footer">
+        <div class="home-footer-content">
+          <h2>質問があれば、こちらまでご連絡下さい！</h2>
+          <div class="home-footer-twitter">
+            <a  href="https://twitter.com/R9rT9t" class="twitter-icon" target="_blank">
+              <img src="images/13.29.39.png" width="200" height="200">
+            </a>
+            <p>
+              <a  href="https://twitter.com/R9rT9t" target="_blank">Twitter</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

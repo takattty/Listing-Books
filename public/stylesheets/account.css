@@ -1,103 +1,103 @@
 @charset "utf-8";
 
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .header-title {
-    padding: 0px 400px 20px 400px;
-    text-align: center;
-    border-bottom:1px solid #ccc; 
-    background-color: rgb(251, 230, 255);
+  padding: 0px 400px 20px 400px;
+  text-align: center;
+  border-bottom:1px solid #ccc; 
+  background-color: rgb(251, 230, 255);
 }
 
 .header-title h1 {
-    color: rgb(255, 22, 236);
-    display: inline-block;
-    border-bottom: 2px solid rgb(78, 78, 78);
+  color: rgb(255, 22, 236);
+  display: inline-block;
+  border-bottom: 2px solid rgb(78, 78, 78);
 }
 
 .header-title p {
-    margin: 0px 0px 0px 0px;
+  margin: 0px;
 }
 
 .createAccount {
-    height: 525px;
-    text-align: center;
-    background-color: rgb(255, 183, 183);
+  height: 525px;
+  text-align: center;
+  background-color: rgb(255, 183, 183);
 }
 
 .create-text h3 {
-    margin-top: 0px;
-    padding-top: 20px;
-    color: black;
+  margin-top: 0px;
+  padding-top: 20px;
+  color: black;
 }
 
 .create-content {
-    padding: 0 400px 0 400px;
+  padding: 0 400px;
 }
 
 .create-content p {
-    border-top: 2px solid rgb(194, 194, 194);
-    padding-top: 5px;
+  border-top: 2px solid rgb(194, 194, 194);
+  padding-top: 5px;
 }
 
 input, textarea{
-    box-sizing: border-box;
-    font-size: 15px;
-    margin: 5px 0;
-    border: 1px solid rgb(97, 97, 97);
-    height: 30px;
-    width: 200px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin: 5px 0;
+  border: 1px solid rgb(97, 97, 97);
+  height: 30px;
+  width: 200px;
 }
 
 .account-bottom {
-    box-sizing: border-box;
-    font-size: 15px;
-    margin: 5px 0;
-    border: 1px solid rgb(97, 97, 97);
-    height: 30px;
-    width: 200px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin: 5px 0;
+  border: 1px solid rgb(97, 97, 97);
+  height: 30px;
+  width: 200px;
 }
 
 textarea {
-    padding: 10px;
-    height: 100px;
-    width: 100%;
+  padding: 10px;
+  height: 100px;
+  width: 100%;
 }
 
 .bottoms {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .bottoms p {
-    border-top: 2px solid rgb(255, 183, 183);
+  border-top: 2px solid rgb(255, 183, 183);
 }
 
 .bottoms a:hover {
-    color: white;
-    background-color: black;
+  color: white;
+  background-color: black;
 }
 
 .bottoms input:hover {
-    color: white;
-    background-color: black;
+  color: white;
+  background-color: black;
 }
 
 .account-footer {
-    text-align: center;
-    height: 100px;
-    border-top: 1px solid #ccc;
-    background-color: rgb(204, 224, 250);
+  text-align: center;
+  height: 100px;
+  border-top: 1px solid #ccc;
+  background-color: rgb(204, 224, 250);
 }
 
 .account-footer h2 {
-    margin-top: 0px;
-    padding-top: 30px;
+  margin-top: 0px;
+  padding-top: 30px;
 }

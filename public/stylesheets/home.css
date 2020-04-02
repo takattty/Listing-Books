@@ -1,80 +1,85 @@
 @charset "utf-8";
 
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 p {
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-  }
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+}
 
 .home-title {
-    padding: 260px 0 260px 0;
-    text-align: center;
-    background-image: url("../images/architecture-1477041_1280.jpg");
-    background-position: 50%;
-    background-size: 100%;
-    opacity: 0.9;
-    font-size: 120%;
+  padding: 260px 0;
+  text-align: center;
+  background-image: url("../images/architecture-1477041_1280.jpg");
+  background-position: 50%;
+  background-size: 100%;
+  opacity: 0.9;
+  font-size: 120%;
 }
 
 .home-title h1 {
-    color: rgb(255, 22, 236);
-    display: inline-block;
-    margin-bottom: 2px;
-    border-bottom: 2px solid rgb(78, 78, 78);
+  color: rgb(255, 22, 236);
+  display: inline-block;
+  border-bottom: 2px solid rgb(78, 78, 78);
 }
 
 .home-title-text {
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.home-title-text p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 15px 0;
 }
 
 .authentication {
-    text-align: center;
-    height: 140px;
-    background-color: rgb(255, 255, 255);
+  text-align: center;
+  height: 140px;
+  background-color: rgb(255, 255, 255);
 }
 
 .authentications {
-    padding: 30px 250px;
-    display: flex;
-    justify-content: space-between;
+  padding: 30px 250px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .authentication-newaccount button {
-    z-index: 1;
-    position: relative;
-    font-size: inherit;
-    font-family: inherit;
-    color: white;
-    padding: 0.5em 1em;
-    outline: none;
-    border: none;
-    background-color: hsl(236, 32%, 26%);
-    overflow: hidden;
-    transition: color 0.4s ease-in-out;
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
 }
  
 .authentication-newaccount button::before {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    background-color: #3cefff;
-    transform-origin: center;
-    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
-    transition: transform 0.45s ease-in-out;
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #3cefff;
+  transform-origin: center;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
 }
  
 .authentication-newaccount button:hover {
@@ -87,32 +92,32 @@ p {
 }
 
 .authentication-login button {
-    z-index: 1;
-    position: relative;
-    font-size: inherit;
-    font-family: inherit;
-    color: white;
-    padding: 0.5em 1em;
-    outline: none;
-    border: none;
-    background-color: hsl(236, 32%, 26%);
-    overflow: hidden;
-    transition: color 0.4s ease-in-out;
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
 }
  
 .authentication-login button::before {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    background-color: #3cefff;
-    transform-origin: center;
-    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
-    transition: transform 0.45s ease-in-out;
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #3cefff;
+  transform-origin: center;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
 }
  
 .authentication-login button:hover {
@@ -125,59 +130,59 @@ p {
 }
 
 .home-introduction {
-    padding: 150px 0;
-    background-color: rgb(220, 252, 253);
-    text-align: center;
+  padding: 150px 0;
+  background-color: rgb(220, 252, 253);
+  text-align: center;
 }
 
 .home-footer {
-    text-align: center;
-    background-color: rgb(255, 251, 255);
-    border-top: 1px solid #ccc;
+  text-align: center;
+  background-color: rgb(255, 251, 255);
+  border-top: 1px solid #ccc;
 }
 
 .home-footer-content {
-    height: 450px;
-    position: relative;
-    background-color: rgb(226, 226, 226);
+  height: 450px;
+  position: relative;
+  background-color: rgb(226, 226, 226);
 }
 
 .home-footer-content h2 {
-    display: inline-block;
-    margin-bottom: 2px;
-    border-bottom: 2px solid rgb(121, 121, 121);
+  display: inline-block;
+  margin-bottom: 2px;
+  border-bottom: 2px solid rgb(121, 121, 121);
 }
 
 .home-footer h2 {
-    display: inline-block;
-    padding-top: 20px;
+  display: inline-block;
+  padding-top: 20px;
 }
 
 .home-footer-twitter {
-    text-align: center;
-    display: block;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-    padding: 20px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  padding: 20px;
     
 }
 
 .home-footer-twitter:hover {
-    cursor: pointer;
-    border: 3px solid rgb(247, 185, 255);
+  cursor: pointer;
+  border: 3px solid rgb(247, 185, 255);
 }
 
 .home-footer-twitter img {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .twitter-icon:hover img {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .home-footer-twitter a {
-    color: black;
+  color: black;
 }

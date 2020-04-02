@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Takatty">
-        <meta name="title" content="Sharechat">
-        <title></title>
-        <link rel='stylesheet' href='/stylesheets/account-success.css'/>
-        <link rel='stylesheet' href='/stylesheets/responsive/account-success-responsive.css'/>
-    </head>
-
-    <body>
-        <header>
-            <div class="header-title">
-                <h1>ようこそ、Sharechatへ！</h1>
-            </div>
-        </header>
-
-        <main>
-            <div class="success-text">
-                <h3>アカウント作成とログインに成功しました！</h3>
-            </div>
-
-            <div class="success-content">
-                <div class="content">
-                    <div class="user-content">
-                        <a  href='/profile/<%= user_num %>' class="user_img">
-                            <img src="/images/human.png" width="200" height="200">
-                        </a>
-                        <p>
-                            <a  href='/profile/<%= user_num %>'><%= user_name %></a>さん
-                        </p>
-                    </div>
-
-                    <div class="show-room">
-                        <p>
-                            <a href='/room/index/'><button type="button">Room 一覧へGo!!</button></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Takatty">
+    <meta name="title" content="Sharechat">
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/account-success.css'/>
+    <link rel='stylesheet' href='/stylesheets/responsive/account-success-responsive.css'/>
+  </head>
+  
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>ようこそ、Sharechatへ！</h1>
+      </div>
+    </header>
+    <main>
+      <div class="success-text">
+        <h3>アカウント作成とログインに成功しました！</h3>
+      </div>
+      <div class="success-content">
+        <div class="content">
+          <div class="user-content">
+            <a  href='/profile/<%= user_num %>' class="user_img">
+              <img src="/images/human.png" width="200" height="200">
+            </a>
+            <p>
+              <a  href='/profile/<%= user_num %>'><%= user_name %></a>さん
+            </p>
+          </div>
+          <div class="show-room">
+            <p>
+              <a href='/room/index/'><button type="button">Room 一覧へGo!!</button></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

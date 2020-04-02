@@ -1,34 +1,33 @@
 @media (max-width: 1150px) {
 
-    .room-content {
-        margin: 0 200px 0 200px;
-    }
+  .room-content {
+    margin: 0 200px;
+  }
 }
 
 @media (max-width: 850px) {
 
-    .room-content {
-        margin: 0 70px 0 70px;
-    }
+  .room-content {
+    margin: 0 70px;
+  }
 }
 
 @media (max-width: 560px) {
 
-    .join-bottoms {
-        display: flex;
-        flex-flow: column-reverse nowrap;
-        width: 100%;
-    }
-
+  .join-bottoms {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
 
-    .header-title {
-        padding: 10px 20px 40px 20px;
-    }
+  .header-title {
+    padding: 10px 20px 40px;
+  }
 
-    .room-content {
-        margin: 0 20px 0 20px;
-    }
+  .room-content {
+    margin: 0 20px;
+  }
 }
