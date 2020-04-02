@@ -11,7 +11,7 @@
     <script src="../routes/chat.js" type="text/javascript"></script>
     <script>
       function edit(num) {
-        document.form.kind.value = num;
+        document.form.edit.value = num;
         document.form.action = "/chat/room/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
         document.form.submit();//フォーム名＋submit()でフォームを送信。
       }

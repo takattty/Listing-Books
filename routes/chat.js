@@ -56,7 +56,7 @@ const connection = require('../mysqlConnection');
 
 
 //各ルームのメッセージ詳細ページ
-router.get('/:room_id/text/:text_id/account/:user_id', function(req, res, next) {
+router.get('/:room_id/text/:text_id/account/:user_id/show', function(req, res, next) {
   const text_id = req.params.text_id;
   const user_id = req.params.user_id;
   connection.beginTransaction((err) => {
@@ -132,7 +132,7 @@ router.post('/:room_id/text/:text_id/account/:user_id/edit', (req, res, next) =>
   const room_id = req.params.room_id;
   const text_id = req.params.text_id;
   const text = req.body.text;
-  const num = req.body.kind;
+  const num = req.body.edit;
   //console.log(text);
   //console.log(num);
   if (num == 1) {

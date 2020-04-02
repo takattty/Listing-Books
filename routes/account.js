@@ -62,7 +62,7 @@ router.post('/login', (req, res, next) => {
       } else {
         const userId = rows.length? rows[0].id: false;
         if (userId) {
-          req.params.id = userId;//ここでidのキーにDBの値を記入出来ている。
+          req.sesiion.id = userId;//ここでidのキーにDBの値を記入出来ている。
           req.session.user_id = userId;//サーバーにある。ここで保存
           //console.log(userId);
           //console.log(req.params);
