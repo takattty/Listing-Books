@@ -70,27 +70,34 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
     const user_id = msg.userId;
     room = room_id;
     socket.join(room);
-    
-    connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
-      if(err) {
-        console.log('セレクトミス');
-      }
-      const user_name = userName[0].name;//ここがuser_nameの箇所。これがDBから取得した値。
-      console.log(user_name);
-      const message_id = null;
-      const time = String(moment().format('hh:mm'));
-      const socketId = socket.id;
-      const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
-      const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
-      connection.query('INSERT INTO message SET ?', messageDb,
-        (err, results) => {
-          if(err) {
-            console.log('DBに保存出来てない〜〜');
-            console.log(err);
-          }
-          console.log('DBに保存おっけい！！');
-        })
-      io.emit('message', messageFront);//フロントに渡すデータはここ。
+    console.log('this is room info = ' + room);
+
+    connection.beginTransaction((err) => {
+      if (err) throw err;
+      connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
+        if(err) {
+          console.log('セレクトミス');
+        }
+        const user_name = userName[0].name;//ここがuser_nameの箇所。これがDBから取得した値。
+        console.log(user_name);
+        const message_id = null;
+        const time = String(moment().format('hh:mm'));
+        const socketId = socket.id;
+        const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
+        const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
+        connection.query('INSERT INTO message SET ?', messageDb,
+          (err, results) => {
+            if(err) {
+              console.log('DBに保存出来てない〜〜');
+              console.log(err);
+            }
+            console.log('DBに保存おっけい！！');
+          });
+        io.to(room).emit('message', messageFront);//フロントに渡すデータはここ。各ルーム別ににデータを送信
+        connection.commit((err) => {
+          if (err) throw err;
+        });
+      });
     });
   });
 });
