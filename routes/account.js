@@ -121,7 +121,7 @@ router.post('/:id/edit', (req, res, next) => {
   const id = req.params.id;
   const name = req.body.name;
   const password = pass(); 
-  const si = req.body.comment;
+  const si = req.body.comment;//下の配列は連想配列に直した方がよくないですか？？
   connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
     if (err) throw err;
     //console.log('アカウント編集成功！');
