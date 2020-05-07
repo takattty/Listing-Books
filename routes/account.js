@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const hashed = require('../hash-password');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -27,14 +28,20 @@ router.post('/signup', (req, res, next) => {
   }
   const id = null;
   const name = req.body.name;
-  const password = pass(); 
+  const plaintextPassword = pass(); 
   const si = req.body.comment;
-  const date = {id, name, password, si};
-  connection.query('INSERT INTO account SET ?', date,
-    (error, results, fields) => {
-      res.redirect('/account/login');
+  hashed.generatedHash(plaintextPassword).then((hash) =>{
+    const password = hash;
+    const date = {id, name, password, si};
+    connection.query('INSERT INTO account SET ?', date,
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+        } else {
+          res.redirect('/account/login');
+        }
     });
-  //console.log(date);
+  });
 });
 
 router.get('/login', function(req, res, next) {
