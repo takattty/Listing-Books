@@ -31,8 +31,13 @@ router.post('/signup', (req, res, next) => {
   const plaintextPassword = pass(); 
   const si = req.body.comment;
   hashed.generatedHash(plaintextPassword).then((hash) =>{
-    const password = hash;
-    const date = {id, name, password, si};
+    const hashedPassword = hash;
+    const date = {
+      id: id, 
+      name: name, 
+      password: hashedPassword,
+      si: si
+    };
     connection.query('INSERT INTO account SET ?', date,
       (error, results, fields) => {
         if (error) {
