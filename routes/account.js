@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
+const bcrypt = require('bcrypt');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -28,7 +29,7 @@ router.post('/signup', (req, res, next) => {
   }
   const id = null;
   const name = req.body.name;
-  const plaintextPassword = pass(); 
+  const plaintextPassword = pass();
   const si = req.body.comment;
   hashed.generatedHash(plaintextPassword).then((hash) =>{
     const hashedPassword = hash;
@@ -61,28 +62,31 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', (req, res, next) => {
+  const name = req.body.name;
   const pass1 = req.body.password1;
   const pass2 = req.body.password2;
   if (pass1 === pass2) {
-    const password = pass2;
-    const name = req.body.name;
-    const query = 'SELECT id FROM account WHERE name="' + name + '" AND password = "' + password + '" LIMIT 1';
-    connection.query(query, (error, rows) => {
-      if (error) {
-        console.log("ここでエラーになってるよ！");
-        res.redirect('/account/login');
-      } else {
-        const userId = rows.length? rows[0].id: false;
-        if (userId) {
-          req.session.id = userId;//ここでidのキーにDBの値を記入出来ている。
-          req.session.user_id = userId;//サーバーにある。ここで保存
-          res.redirect('/success/' + req.session.user_id );
-        } else {
+    const plaintextPassword = pass2;
+      const query1 = 'SELECT id, password FROM account WHERE name = ?';
+      connection.query(query1, name, (error, rows) => {
+        if (error) {
+          console.error(error);
           res.redirect('/account/login');
-          console.log("falseだよ");
+        } else {
+          const userPass = rows.length ? rows[0].password : null;
+          const userId = rows.length ? rows[0].id : undefined;
+          if (userId) {
+            bcrypt.compare(plaintextPassword, userPass, (err, result) => {
+              if (result == true) {
+                req.session.user_id = userId;
+                res.redirect('/success/' + req.session.user_id );
+              }
+            });
+          } else {
+            res.redirect('/account/login');
+          }
         }
-      }
-    });
+      });
   } else {
     res.redirect('/account/login');
   }
