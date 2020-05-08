@@ -86,9 +86,9 @@ router.post('/:id/edit', (req, res, next) => {
   }
   const room_id = req.params.id;
   const room_name = req.body.name;
-  const room_pass = pass(); 
   const room_memo = req.body.comment;
   const num = req.body.kind;
+  const room_plaintextPassword = pass(); 
   if (num == 1) {
     const query = 'DELETE FROM room WHERE room_id =' + room_id;
     connection.query(query, (err, rows) => {
@@ -97,14 +97,16 @@ router.post('/:id/edit', (req, res, next) => {
     });
   } 
   if (num == 2) {
-    console.log('更新の処理が出来るよ！');
-    connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', [room_name, room_pass, room_memo, room_id], (err, rows) => {
-      if (err) throw err;
-      res.redirect('/chat/' + room_id);
-      //res.redirect('/room/' + room_id + '/show');
+    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+      const room_hashedpassword = room_hash;
+      const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
+      connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', queryDate, (err, rows) => {
+        if (err) throw err;
+        res.redirect('/chat/' + room_id);
+      });
     });
   }
-})
+});
 
 //ルームの詳細ページ
 router.get('/:id/show', function(req, res, next) { 
