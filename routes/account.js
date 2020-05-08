@@ -129,7 +129,8 @@ router.post('/:id/edit', (req, res, next) => {
   const plaintextPassword = pass(); 
   hashed.generatedHash(plaintextPassword).then((hash) => {
     const hashedPassword = hash;
-    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', [id, name, hashedPassword, si, id], (err, rows) => {
+    const queryDate = [id, name, hashedPassword, si, id]
+    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
       if (err) throw err;
       res.redirect('/success/' + id);
     });
