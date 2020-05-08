@@ -32,13 +32,13 @@ router.post('/signup', (req, res, next) => {
   const si = req.body.comment;
   hashed.generatedHash(plaintextPassword).then((hash) =>{
     const hashedPassword = hash;
-    const date = {
+    const queryDate = {
       id: id, 
       name: name, 
       password: hashedPassword,
       si: si
-    };
-    connection.query('INSERT INTO account SET ?', date,
+    }
+    connection.query('INSERT INTO account SET ?', queryDate,
       (error, results, fields) => {
         if (error) {
           console.log(error);
@@ -76,9 +76,6 @@ router.post('/login', (req, res, next) => {
         if (userId) {
           req.session.id = userId;//ここでidのキーにDBの値を記入出来ている。
           req.session.user_id = userId;//サーバーにある。ここで保存
-          //console.log(userId);
-          //console.log(req.params);
-          //console.log("セッションID登録完了！！！");
           res.redirect('/success/' + req.session.user_id );
         } else {
           res.redirect('/account/login');
@@ -94,10 +91,6 @@ router.post('/login', (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) {
   const id = req.params.id;
   const userid = req.session.user_id;
-  //サーバーで保持している情報。cookieは各ブラウザに持たせる。
-  //メモリで管理は何とかして識別している。
-  //console.log(id);
-  //console.log(userid)
   if (id == userid) {
     const query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
     connection.query(query, (err, rows) => {
@@ -132,12 +125,16 @@ router.post('/:id/edit', (req, res, next) => {
   }
   const id = req.params.id;
   const name = req.body.name;
-  const password = pass(); 
-  const si = req.body.comment;//下の配列は連想配列に直した方がよくないですか？？
-  connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
-    if (err) throw err;
-    //console.log('アカウント編集成功！');
-    res.redirect('/success/' + id);
+  const si = req.body.comment;
+  const plaintextPassword = pass(); 
+  hashed.generatedHash(plaintextPassword).then((hash) => {
+    const hashedPassword = hash;
+    // const queryDate = [id, name, hashedPassword, si];
+    // console.log(queryDate);
+    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', [id, name, hashedPassword, si, id], (err, rows) => {
+      if (err) throw err;
+      res.redirect('/success/' + id);
+    });
   });
 });
 
