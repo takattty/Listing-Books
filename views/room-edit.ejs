@@ -11,8 +11,7 @@
     <script src="../routes/room-create.js" type="text/javascript"></script>
     <script>
       function edit(num) {
-        document.room_form.kind.value = num;//ここのundefinedのプロパティが読み込めないって言ってる。
-        //kindの前のオブジェクトのformがundefinedになっている。
+        document.room_form.kind.value = num;
         document.room_form.action = "/room/<%= room.room_id %>/edit"
         document.room_form.submit();
       }

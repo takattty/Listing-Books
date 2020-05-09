@@ -1,43 +1,52 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const hashed = require('../hash-password');
 
+//ルーム作成ページ
 router.get('/create', function(req, res, next) { 
   const roomCreate = {
-      tile1: 'ここではRoomの新規作成が出来ます。',
-      tile2: 'Room名, パスワード, Roomの説明を書きましょう！また、Roomを作成した方がそのRoomのオーナーとなります。',
-      reate: 'Room新規作成',
-      ame: 'Room名',
-      ext: 'Room紹介',
-      ottom: 'Roomを作成する',
-      ser: { name: ""}
+      title1: 'ここではRoomの新規作成が出来ます。',
+      title2: 'Room名, パスワード, Roomの説明を書きましょう！また、Roomを作成した方がそのRoomのオーナーとなります。',
+      create: 'Room新規作成',
+      name: 'Room名',
+      text: 'Room紹介',
+      bottom: 'Roomを作成する',
+      user: ''
   };
   res.render('account', roomCreate);
 });
 
+//ルーム作成処理
 router.post('/create', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-      if (pass1 == pass2) {
-        return pass1;
-      } else {
-        res.redirect('/room/create');
-      }
-  }
   const room_id = null;
   const room_name = req.body.name;
-  const room_pass = pass(); 
   const room_memo = req.body.comment;
   const room_owner = req.session.user_id;
-  const date = {room_id, room_name, room_pass, room_memo, room_owner};
-  connection.query('INSERT INTO room SET ?', date,
-    (error, results, fields) => {
-      res.redirect('/room/index');
+  const pass1 = req.body.password1;
+  const pass2 = req.body.password2;
+  if (pass1 == pass2) {
+    const room_plaintextPassword = pass1; 
+    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+      const room_hashedpassword = room_hash;
+      const date = {
+        room_id: room_id,
+        room_name: room_name,
+        room_pass: room_hashedpassword,
+        room_memo: room_memo,
+        room_owner: room_owner
+      };
+      connection.query('INSERT INTO room SET ?', date,
+        (error, results, fields) => {
+          res.redirect('/room/index');
+        });
     });
-  //console.log(date);
+  } else {
+    res.redirect('/room/create');
+  }
 });
 
+//ルーム更新画面
 router.get('/:id/edit', function(req, res, next) { 
   const room_id = req.params.id;
   const userid = req.session.user_id;
@@ -61,6 +70,7 @@ router.get('/:id/edit', function(req, res, next) {
   });
 });
 
+//ルーム情報更新処理
 router.post('/:id/edit', (req, res, next) => {
   function pass() {
     const pass1 = req.body.password1;
@@ -73,28 +83,29 @@ router.post('/:id/edit', (req, res, next) => {
   }
   const room_id = req.params.id;
   const room_name = req.body.name;
-  const room_pass = pass(); 
   const room_memo = req.body.comment;
   const num = req.body.kind;
+  const room_plaintextPassword = pass(); 
   if (num == 1) {
-    //console.log('削除ボタンの処理が出来てるよ！');
-    const query = 'DEconstE FROM room WHERE room_id =' + room_id;
+    const query = 'DELETE FROM room WHERE room_id =' + room_id;
     connection.query(query, (err, rows) => {
       if (err) throw err;
       res.redirect('/room/index');
     });
   } 
   if (num == 2) {
-    console.log('更新の処理が出来るよ！');
-    connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', [room_name, room_pass, room_memo, room_id], (err, rows) => {
-      if (err) throw err;
-      //console.log(room_id);
-      res.redirect('/chat/' + room_id);
-      //res.redirect('/room/' + room_id + '/show');
+    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+      const room_hashedpassword = room_hash;
+      const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
+      connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', queryDate, (err, rows) => {
+        if (err) throw err;
+        res.redirect('/chat/' + room_id);
+      });
     });
   }
-})
+});
 
+//ルームの詳細ページ
 router.get('/:id/show', function(req, res, next) { 
     const room_id = req.params.id;
     //console.log(room_id);

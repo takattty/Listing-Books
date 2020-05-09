@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
+const hashed = require('../hash-password');
+const bcrypt = require('bcrypt');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -16,25 +18,33 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-      if (pass1 == pass2) {
-        return pass1;
-      } else {
-        res.redirect('/account/signup');
-      }
-  }
   const id = null;
   const name = req.body.name;
-  const password = pass(); 
   const si = req.body.comment;
-  const date = {id, name, password, si};
-  connection.query('INSERT INTO account SET ?', date,
-    (error, results, fields) => {
-      res.redirect('/account/login');
+  const pass1 = req.body.password1;
+  const pass2 = req.body.password2;
+  if (pass1 === pass2) {
+    const plaintextPassword = pass1;
+    hashed.generatedHash(plaintextPassword).then((hash) =>{
+      const hashedPassword = hash;
+      const queryDate = {
+        id: id, 
+        name: name, 
+        password: hashedPassword,
+        si: si
+      }
+      connection.query('INSERT INTO account SET ?', queryDate,
+        (error, results, fields) => {
+          if (error) {
+            console.log(error);
+          } else {
+            res.redirect('/account/login');
+          }
+      });
     });
-  //console.log(date);
+  } else {
+    res.redirect('/account/signup');
+  }
 });
 
 router.get('/login', function(req, res, next) {
@@ -49,31 +59,31 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', (req, res, next) => {
+  const name = req.body.name;
   const pass1 = req.body.password1;
   const pass2 = req.body.password2;
   if (pass1 === pass2) {
-    const password = pass2;
-    const name = req.body.name;
-    const query = 'SELECT id FROM account WHERE name="' + name + '" AND password = "' + password + '" LIMIT 1';
-    connection.query(query, (error, rows) => {
-      if (error) {
-        console.log("ここでエラーになってるよ！");
-        res.redirect('/account/login');
-      } else {
-        const userId = rows.length? rows[0].id: false;
-        if (userId) {
-          req.session.id = userId;//ここでidのキーにDBの値を記入出来ている。
-          req.session.user_id = userId;//サーバーにある。ここで保存
-          //console.log(userId);
-          //console.log(req.params);
-          //console.log("セッションID登録完了！！！");
-          res.redirect('/success/' + req.session.user_id );
-        } else {
+    const plaintextPassword = pass2;
+      const query1 = 'SELECT id, password FROM account WHERE name = ?';
+      connection.query(query1, name, (error, rows) => {
+        if (error) {
+          console.error(error);
           res.redirect('/account/login');
-          console.log("falseだよ");
+        } else {
+          const userPass = rows.length ? rows[0].password : undefined;
+          const userId = rows.length ? rows[0].id : undefined;
+          if (userId) {
+            bcrypt.compare(plaintextPassword, userPass, (err, result) => {
+              if (result === true) {
+                req.session.user_id = userId;
+                res.redirect('/success/' + req.session.user_id );
+              }
+            });
+          } else {
+            res.redirect('/account/login');
+          }
         }
-      }
-    });
+      });
   } else {
     res.redirect('/account/login');
   }
@@ -82,10 +92,6 @@ router.post('/login', (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) {
   const id = req.params.id;
   const userid = req.session.user_id;
-  //サーバーで保持している情報。cookieは各ブラウザに持たせる。
-  //メモリで管理は何とかして識別している。
-  //console.log(id);
-  //console.log(userid)
   if (id == userid) {
     const query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
     connection.query(query, (err, rows) => {
@@ -120,12 +126,15 @@ router.post('/:id/edit', (req, res, next) => {
   }
   const id = req.params.id;
   const name = req.body.name;
-  const password = pass(); 
-  const si = req.body.comment;//下の配列は連想配列に直した方がよくないですか？？
-  connection.query('UPDATE account SET name=?, password=?, si=? WHERE id = ?', [name, password, si, id], (err, rows) => {
-    if (err) throw err;
-    //console.log('アカウント編集成功！');
-    res.redirect('/success/' + id);
+  const si = req.body.comment;
+  const plaintextPassword = pass(); 
+  hashed.generatedHash(plaintextPassword).then((hash) => {
+    const hashedPassword = hash;
+    const queryDate = [id, name, hashedPassword, si, id]
+    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
+      if (err) throw err;
+      res.redirect('/success/' + id);
+    });
   });
 });
 
