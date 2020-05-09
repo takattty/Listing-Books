@@ -18,36 +18,33 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-      if (pass1 === pass2) {
-        return pass1;
-      } else {
-        res.redirect('/account/signup');
-      }
-  }
   const id = null;
   const name = req.body.name;
-  const plaintextPassword = pass();
   const si = req.body.comment;
-  hashed.generatedHash(plaintextPassword).then((hash) =>{
-    const hashedPassword = hash;
-    const queryDate = {
-      id: id, 
-      name: name, 
-      password: hashedPassword,
-      si: si
-    }
-    connection.query('INSERT INTO account SET ?', queryDate,
-      (error, results, fields) => {
-        if (error) {
-          console.log(error);
-        } else {
-          res.redirect('/account/login');
-        }
+  const pass1 = req.body.password1;
+  const pass2 = req.body.password2;
+  if (pass1 === pass2) {
+    const plaintextPassword = pass1;
+    hashed.generatedHash(plaintextPassword).then((hash) =>{
+      const hashedPassword = hash;
+      const queryDate = {
+        id: id, 
+        name: name, 
+        password: hashedPassword,
+        si: si
+      }
+      connection.query('INSERT INTO account SET ?', queryDate,
+        (error, results, fields) => {
+          if (error) {
+            console.log(error);
+          } else {
+            res.redirect('/account/login');
+          }
+      });
     });
-  });
+  } else {
+    res.redirect('/account/signup');
+  }
 });
 
 router.get('/login', function(req, res, next) {
