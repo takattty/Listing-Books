@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
   function pass() {
     const pass1 = req.body.password1;
     const pass2 = req.body.password2;
-      if (pass1 == pass2) {
+      if (pass1 === pass2) {
         return pass1;
       } else {
         res.redirect('/account/signup');
@@ -73,11 +73,11 @@ router.post('/login', (req, res, next) => {
           console.error(error);
           res.redirect('/account/login');
         } else {
-          const userPass = rows.length ? rows[0].password : null;
+          const userPass = rows.length ? rows[0].password : undefined;
           const userId = rows.length ? rows[0].id : undefined;
           if (userId) {
             bcrypt.compare(plaintextPassword, userPass, (err, result) => {
-              if (result == true) {
+              if (result === true) {
                 req.session.user_id = userId;
                 res.redirect('/success/' + req.session.user_id );
               }
