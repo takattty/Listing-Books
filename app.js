@@ -129,13 +129,13 @@ app.use('/chat', router.get('/:id', function(req, res) {
   });
 }));
 
-function escape(texts) {
-  return String(texts)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#x27;');
+function escape(input) {
+  return String(input)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
 }
 
 function unescape(input) {
