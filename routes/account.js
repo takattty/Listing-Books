@@ -33,7 +33,7 @@ router.post('/signup', (req, res, next) => {
         password: hashedPassword,
         si: si
       }
-      connection.query('INSERT INTO account SET ?', queryDate,
+      connection.query('INSERT INTO account SET ?', [queryDate],
         (error, results, fields) => {
           if (error) {
             console.log(error);
@@ -65,7 +65,7 @@ router.post('/login', (req, res, next) => {
   if (pass1 === pass2) {
     const plaintextPassword = pass2;
       const query1 = 'SELECT id, password FROM account WHERE name = ?';
-      connection.query(query1, name, (error, rows) => {
+      connection.query(query1, [name], (error, rows) => {
         if (error) {
           console.error(error);
           res.redirect('/account/login');
@@ -94,7 +94,7 @@ router.get('/:id/edit', function(req, res, next) {
   const userid = req.session.user_id;
   if (id == userid) {
     const query = 'SELECT id, name, password, si FROM account WHERE id = ?';
-    connection.query(query, id, (err, rows) => {
+    connection.query(query, [id], (err, rows) => {
       if (err) throw err;
       const edit_text = {
         title1: 'ここではアカウントの編集が出来ます。',
@@ -130,7 +130,7 @@ router.post('/:id/edit', (req, res, next) => {
   hashed.generatedHash(plaintextPassword).then((hash) => {
     const hashedPassword = hash;
     const queryDate = [id, name, hashedPassword, si, id]
-    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
+    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', [queryDate], (err, rows) => {
       if (err) throw err;
       res.redirect('/success/' + id);
     });

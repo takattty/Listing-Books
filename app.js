@@ -74,7 +74,7 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
 
     connection.beginTransaction((err) => {
       if (err) throw err;
-      connection.query('SELECT name FROM account WHERE id = ?', user_id, (err, userName) => {//必要なのはuser_id
+      connection.query('SELECT name FROM account WHERE id = ?', [user_id], (err, userName) => {//必要なのはuser_id
         if(err) {
           console.log('セレクトミス');
         }
@@ -85,7 +85,7 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
         const socketId = socket.id;
         const messageDb = { message_id, text, time, room_id, user_id, user_name };//保存に必要なデータ。DBとのやりとりが必要なのはuser_nameのみ
         const messageFront = { user_name, text, time, socketId };//表示に必要なデータ。DBとのやりとりに必要なのはuser_nameのみ
-        connection.query('INSERT INTO message SET ?', messageDb,
+        connection.query('INSERT INTO message SET ?', [messageDb],
           (err, results) => {
             if(err) {
               console.log('DBに保存出来てない〜〜');
@@ -107,9 +107,9 @@ app.use('/chat', router.get('/:id', function(req, res) {
   const room_id = req.session.room_id;//これはsessionに入ってる
   const user_id = req.session.user_id;//これも元々持ってる
   const query1 = 'SELECT text, time, user_name FROM message WHERE room_id = ?';
-  connection.query(query1, room_id, (err, rows1) => {
+  connection.query(query1, [room_id], (err, rows1) => {
     const query2 = 'SELECT room_name FROM room WHERE room_id = ?';//ルームの名前を引っ張ってきてる
-    connection.query(query2, room_id, (err, rows2) => {
+    connection.query(query2, [room_id], (err, rows2) => {
       const unescapedDate = rows1.map(value => {
         const unescapedObject = {};
         const unescapedText = unescape(value.text);

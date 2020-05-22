@@ -5,7 +5,7 @@ const connection = require('../mysqlConnection');
 router.get('/:id', function(req, res, next) {
   const user_id = req.params.id;
   const query = 'SELECT id, name, si FROM account WHERE id = ?';
-  connection.query(query, user_id, (err, rows) => {
+  connection.query(query, [user_id], (err, rows) => {
     if (err) throw err;
     //console.log(rows[0]);
     res.render('profile', { 
