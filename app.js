@@ -74,7 +74,7 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
 
     connection.beginTransaction((err) => {
       if (err) throw err;
-      connection.query('SELECT name FROM account WHERE id=' + user_id, (err, userName) => {//必要なのはuser_id
+      connection.query('SELECT name FROM account WHERE id = ?', user_id, (err, userName) => {//必要なのはuser_id
         if(err) {
           console.log('セレクトミス');
         }
@@ -106,10 +106,10 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
 app.use('/chat', router.get('/:id', function(req, res) {
   const room_id = req.session.room_id;//これはsessionに入ってる
   const user_id = req.session.user_id;//これも元々持ってる
-  const query1 = 'SELECT text, time, user_name FROM message WHERE room_id=' + room_id;
-  connection.query(query1, (err, rows1) => {
-    const query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;//ルームの名前を引っ張ってきてる
-    connection.query(query2, (err, rows2) => {
+  const query1 = 'SELECT text, time, user_name FROM message WHERE room_id = ?';
+  connection.query(query1, room_id, (err, rows1) => {
+    const query2 = 'SELECT room_name FROM room WHERE room_id = ?';//ルームの名前を引っ張ってきてる
+    connection.query(query2, room_id, (err, rows2) => {
       const unescapedDate = rows1.map(value => {
         const unescapedObject = {};
         const unescapedText = unescape(value.text);

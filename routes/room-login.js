@@ -6,8 +6,8 @@ const bcryot = require('bcrypt');
 //ルームログインページの表示
 router.get('/:id/login', function(req, res, next) { 
   const roomId_url = req.params.id;
-  const query = 'SELECT room_id, room_name, room_memo, room_pass FROM room WHERE room_id =' + roomId_url;
-  connection.query(query, (err, rows) => {
+  const query = 'SELECT room_id, room_name, room_memo, room_pass FROM room WHERE room_id = ?';
+  connection.query(query, roomId_url, (err, rows) => {
     if (err) throw err;
     res.render('room-login', { room_show: rows[0]});
   });
@@ -16,8 +16,8 @@ router.get('/:id/login', function(req, res, next) {
 //ルームログイン処理
 router.post('/:id/login', (req, res, next) => {
   const roomId = req.params.id;
-  const query = 'SELECT room_id, room_pass FROM room WHERE room_id =' + roomId;
-  connection.query(query, (err, rows) => {
+  const query = 'SELECT room_id, room_pass FROM room WHERE room_id = ?';
+  connection.query(query, roomId, (err, rows) => {
     if (err) throw err;
     const plaintextPassword = req.body.pass;
     const room_pass = rows[0].room_pass;

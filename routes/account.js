@@ -93,10 +93,9 @@ router.get('/:id/edit', function(req, res, next) {
   const id = req.params.id;
   const userid = req.session.user_id;
   if (id == userid) {
-    const query = 'SELECT id, name, password, si FROM account WHERE id =' + id;
-    connection.query(query, (err, rows) => {
+    const query = 'SELECT id, name, password, si FROM account WHERE id = ?';
+    connection.query(query, id, (err, rows) => {
       if (err) throw err;
-      //console.log(rows[0]);
       const edit_text = {
         title1: 'ここではアカウントの編集が出来ます。',
         title2: '編集を終えたら、保存ボタンを押しましょう！',

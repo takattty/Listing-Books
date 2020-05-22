@@ -50,8 +50,8 @@ router.post('/create', (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) { 
   const room_id = req.params.id;
   const userid = req.session.user_id;
-  const query = 'SELECT room_id, room_name, room_pass, room_memo, room_owner FROM room WHERE room_id =' + room_id;
-  connection.query(query, (err, rows) => {
+  const query = 'SELECT room_id, room_name, room_pass, room_memo, room_owner FROM room WHERE room_id = ?';
+  connection.query(query, room_id, (err, rows) => {
     const roomEdit = {
       title1: 'ここではRoomの更新が出来ます。',
       title2: 'Room名, パスワード, Roomの説明を編集しましょう！',
@@ -87,8 +87,8 @@ router.post('/:id/edit', (req, res, next) => {
   const num = req.body.kind;
   const room_plaintextPassword = pass(); 
   if (num == 1) {
-    const query = 'DELETE FROM room WHERE room_id =' + room_id;
-    connection.query(query, (err, rows) => {
+    const query = 'DELETE FROM room WHERE room_id = ?';
+    connection.query(query, room_id, (err, rows) => {
       if (err) throw err;
       res.redirect('/room/index');
     });
@@ -97,7 +97,7 @@ router.post('/:id/edit', (req, res, next) => {
     hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
       const room_hashedpassword = room_hash;
       const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
-      connection.query('UPDATE room SET room_name=?, room_pass=?, room_memo=? WHERE room_id=?', queryDate, (err, rows) => {
+      connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', queryDate, (err, rows) => {
         if (err) throw err;
         res.redirect('/chat/' + room_id);
       });
@@ -108,11 +108,9 @@ router.post('/:id/edit', (req, res, next) => {
 //ルームの詳細ページ
 router.get('/:id/show', function(req, res, next) { 
     const room_id = req.params.id;
-    //console.log(room_id);
-    const query = 'SELECT room_id, room_name, room_pass, room_memo FROM room WHERE room_id =' + room_id;
-    connection.query(query, (err, rows) => {
+    const query = 'SELECT room_id, room_name, room_pass, room_memo FROM room WHERE room_id = ?';
+    connection.query(query, room_id,(err, rows) => {
         if (err) throw err;
-        //console.log(rows[0]);
         const roomShow = {
             title1: 'ここではRoomの編集や削除の選択が出来ます。',
             title2: '編集か削除を選んでください',
