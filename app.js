@@ -65,12 +65,12 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
   console.log('This is socket.id = ' + socket.id);
   socket.on('message', (msg) => {//フロントでデータを送信したら処理開始。
     console.log('サーバでの処理=' + msg.message);
-    const text = msg.message;
+    const notEscapedText = msg.message;
+    const text = escape(notEscapedText);
     const room_id = msg.roomId;
     const user_id = msg.userId;
     room = room_id;
     socket.join(room);
-    console.log('this is room info = ' + room);
 
     connection.beginTransaction((err) => {
       if (err) throw err;
@@ -110,16 +110,42 @@ app.use('/chat', router.get('/:id', function(req, res) {
   connection.query(query1, (err, rows1) => {
     const query2 = 'SELECT room_name FROM room WHERE room_id=' + room_id;//ルームの名前を引っ張ってきてる
     connection.query(query2, (err, rows2) => {
+      const unescapedDate = rows1.map(value => {
+        const unescapedObject = {};
+        const unescapedText = unescape(value.text);
+        unescapedObject.text = unescapedText;
+        unescapedObject.time = value.time;
+        unescapedObject.user_name = value.user_name;
+        return unescapedObject;
+      });
       const content = {
         roomid: room_id,//リンクの中で使用
         userid: user_id,
         roomname: rows2[0].room_name,//リンクでルームの名前として使用
-        date: rows1//ここにはSELECTで指定したプロパティが入ってる
+        date: unescapedDate//ここにはSELECTで指定したプロパティが入ってる.unescape済み
       }
       res.render('chat',　content);//ここでフロントのレンダリング処理完了
     });
   });
 }));
+
+function escape(texts) {
+  return String(texts)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#x27;');
+}
+
+function unescape(input) {
+  return String(input)
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#x27;/g, "'");//validator.jsリポジトリのマネ
+}
 
 
 // catch 404 and forward to error handler
