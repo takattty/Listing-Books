@@ -125,12 +125,12 @@ router.post('/:id/edit', (req, res, next) => {
   }
   const id = req.params.id;
   const name = req.body.name;
-  const si = req.body.comment;
+  const si = req.body.comment;//エスケープ処理大事。
   const plaintextPassword = pass(); 
   hashed.generatedHash(plaintextPassword).then((hash) => {
     const hashedPassword = hash;
-    const queryDate = [id, name, hashedPassword, si, id]
-    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', [queryDate], (err, rows) => {
+    const queryDate = [id, name, hashedPassword, si, id];
+    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
       if (err) throw err;
       res.redirect('/success/' + id);
     });

@@ -50,7 +50,7 @@ router.post('/create', (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) { 
   const room_id = req.params.id;
   const userid = req.session.user_id;
-  const query = 'SELECT room_id, room_name, room_pass, room_memo, room_owner FROM room WHERE room_id = ?';
+  const query = 'SELECT room_id, room_name, room_memo, room_owner FROM room WHERE room_id = ?';
   connection.query(query, [room_id], (err, rows) => {
     const roomEdit = {
       title1: 'ここではRoomの更新が出来ます。',
@@ -108,7 +108,7 @@ router.post('/:id/edit', (req, res, next) => {
 //ルームの詳細ページ
 router.get('/:id/show', function(req, res, next) { 
     const room_id = req.params.id;
-    const query = 'SELECT room_id, room_name, room_pass, room_memo FROM room WHERE room_id = ?';
+    const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
     connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
         const roomShow = {

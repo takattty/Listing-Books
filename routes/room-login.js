@@ -6,7 +6,7 @@ const bcryot = require('bcrypt');
 //ルームログインページの表示
 router.get('/:id/login', function(req, res, next) { 
   const roomId_url = req.params.id;
-  const query = 'SELECT room_id, room_name, room_memo, room_pass FROM room WHERE room_id = ?';
+  const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
   connection.query(query, [roomId_url], (err, rows) => {
     if (err) throw err;
     res.render('room-login', { room_show: rows[0]});

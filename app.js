@@ -105,26 +105,26 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
 //chat画面だけのルーティング
 app.use('/chat', router.get('/:id', function(req, res) {
   const room_id = req.session.room_id;//これはsessionに入ってる
-  const user_id = req.session.user_id;//これも元々持ってる
+  const user_id = req.session.user_id;
   const query1 = 'SELECT text, time, user_name FROM message WHERE room_id = ?';
   connection.query(query1, [room_id], (err, rows1) => {
-    const query2 = 'SELECT room_name FROM room WHERE room_id = ?';//ルームの名前を引っ張ってきてる
+    const unescapedDate = rows1.map(value => {
+      const unescapedObject = {};
+      const unescapedText = unescape(value.text);
+      unescapedObject.text = unescapedText;
+      unescapedObject.time = value.time;
+      unescapedObject.user_name = value.user_name;
+      return unescapedObject;
+    });
+    const query2 = 'SELECT room_name FROM room WHERE room_id = ?';
     connection.query(query2, [room_id], (err, rows2) => {
-      const unescapedDate = rows1.map(value => {
-        const unescapedObject = {};
-        const unescapedText = unescape(value.text);
-        unescapedObject.text = unescapedText;
-        unescapedObject.time = value.time;
-        unescapedObject.user_name = value.user_name;
-        return unescapedObject;
-      });
       const content = {
-        roomid: room_id,//リンクの中で使用
+        roomid: room_id,
         userid: user_id,
-        roomname: rows2[0].room_name,//リンクでルームの名前として使用
-        date: unescapedDate//ここにはSELECTで指定したプロパティが入ってる.unescape済み
+        roomname: rows2[0].room_name,
+        date: unescapedDate//unescape済み
       }
-      res.render('chat',　content);//ここでフロントのレンダリング処理完了
+      res.render('chat',　content);
     });
   });
 }));
