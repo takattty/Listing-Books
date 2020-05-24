@@ -3,6 +3,8 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
+const validationCheck = require('../public/javascripts/validation/account/validation');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -17,33 +19,40 @@ router.get('/signup', function(req, res, next) {
   res.render('account', signup_text);
 });
 
-router.post('/signup', (req, res, next) => {
-  const id = null;
-  const name = req.body.name;
-  const si = req.body.comment;
-  const pass1 = req.body.password1;
-  const pass2 = req.body.password2;
-  if (pass1 === pass2) {
-    const plaintextPassword = pass1;
-    hashed.generatedHash(plaintextPassword).then((hash) =>{
-      const hashedPassword = hash;
-      const queryDate = {
-        id: id, 
-        name: name, 
-        password: hashedPassword,
-        si: si
-      }
-      connection.query('INSERT INTO account SET ?', [queryDate],
-        (error, results, fields) => {
-          if (error) {
-            console.log(error);
-          } else {
-            res.redirect('/account/login');
-          }
-      });
-    });
-  } else {
+router.post('/signup', validationCheck, (req, res, next) => {
+  const validationError = validationResult(req);
+  if (!validationError.isEmpty()) {
+    console.info(validationError.errors);//ここからフロントに表示して上げないといけない。最初に教えてあげるのも良いかもね。
     res.redirect('/account/signup');
+  } else {
+    const id = null;
+    const name = req.body.name;
+    const si = req.body.comment;
+    const pass1 = req.body.password1;
+    const pass2 = req.body.password2;
+    if (pass1 === pass2) {
+      const plaintextPassword = pass1;
+      hashed.generatedHash(plaintextPassword).then((hash) =>{
+        const hashedPassword = hash;
+        const queryDate = {
+          id: id, 
+          name: name, 
+          password: hashedPassword,
+          si: si
+        }
+        connection.query('INSERT INTO account SET ?', [queryDate],
+          (error, results, fields) => {
+            if (error) {
+              console.log(error);
+              res.redirect('/account/signup');
+            } else {
+              res.redirect('/account/login');
+            }
+        });
+      });
+    } else {
+      res.redirect('/account/signup');
+    }
   }
 });
 
@@ -113,28 +122,35 @@ router.get('/:id/edit', function(req, res, next) {
   }
 });
 
-router.post('/:id/edit', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-      if (pass1 == pass2) {
-        return pass1;
-      } else {
-        res.redirect('/' + req.session.user_id + '/edit');
-      }
-  }
+router.post('/:id/edit', validationCheck, (req, res, next) => {
   const id = req.params.id;
-  const name = req.body.name;
-  const si = req.body.comment;//エスケープ処理大事。
-  const plaintextPassword = pass(); 
-  hashed.generatedHash(plaintextPassword).then((hash) => {
-    const hashedPassword = hash;
-    const queryDate = [id, name, hashedPassword, si, id];
-    connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
-      if (err) throw err;
-      res.redirect('/success/' + id);
+  const validationError = validationResult(req);
+  if(!validationError.isEmpty()) {
+    console.log(validationError.errors);
+    res.redirect('/account/' + id + '/edit');
+  } else {
+    function pass() {
+      const pass1 = req.body.password1;
+      const pass2 = req.body.password2;
+        if (pass1 == pass2) {
+          return pass1;
+        } else {
+          res.redirect('/' + req.session.user_id + '/edit');
+        }
+    }
+    const id = req.params.id;
+    const name = req.body.name;
+    const si = req.body.comment;//エスケープ処理大事。
+    const plaintextPassword = pass(); 
+    hashed.generatedHash(plaintextPassword).then((hash) => {
+      const hashedPassword = hash;
+      const queryDate = [id, name, hashedPassword, si, id];
+      connection.query('UPDATE account SET id = ?, name = ?, password = ?, si = ? WHERE id = ?', queryDate, (err, rows) => {
+        if (err) throw err;
+        res.redirect('/success/' + id);
+      });
     });
-  });
+  }
 });
 
 module.exports = router;

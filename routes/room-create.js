@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
+const { validationResult } = require('express-validator');
+const validationCheck = require('../public/javascripts/validation/account/validation');
 
 //ルーム作成ページ
 router.get('/create', function(req, res, next) { 
@@ -18,31 +20,37 @@ router.get('/create', function(req, res, next) {
 });
 
 //ルーム作成処理
-router.post('/create', (req, res, next) => {
-  const room_id = null;
-  const room_name = req.body.name;
-  const room_memo = req.body.comment;
-  const room_owner = req.session.user_id;
-  const pass1 = req.body.password1;
-  const pass2 = req.body.password2;
-  if (pass1 == pass2) {
-    const room_plaintextPassword = pass1; 
-    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
-      const room_hashedpassword = room_hash;
-      const date = {
-        room_id: room_id,
-        room_name: room_name,
-        room_pass: room_hashedpassword,
-        room_memo: room_memo,
-        room_owner: room_owner
-      };
-      connection.query('INSERT INTO room SET ?', [date],
-        (error, results, fields) => {
-          res.redirect('/room/index');
-        });
-    });
-  } else {
+router.post('/create', validationCheck, (req, res, next) => {
+  const validationError = validationResult(req);
+  if (!validationError.isEmpty()) {
+    console.info(validationError.errors);
     res.redirect('/room/create');
+  } else {
+    const room_id = null;
+    const room_name = req.body.name;
+    const room_memo = req.body.comment;
+    const room_owner = req.session.user_id;
+    const pass1 = req.body.password1;
+    const pass2 = req.body.password2;
+    if (pass1 == pass2) {
+      const room_plaintextPassword = pass1; 
+      hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+        const room_hashedpassword = room_hash;
+        const date = {
+          room_id: room_id,
+          room_name: room_name,
+          room_pass: room_hashedpassword,
+          room_memo: room_memo,
+          room_owner: room_owner
+        };
+        connection.query('INSERT INTO room SET ?', [date],
+          (error, results, fields) => {
+            res.redirect('/room/index');
+          });
+      });
+    } else {
+      res.redirect('/room/create');
+    }
   }
 });
 
