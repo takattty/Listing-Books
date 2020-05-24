@@ -3,7 +3,8 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
 const { validationResult } = require('express-validator');
-const validationCheck = require('../public/javascripts/validation/account/validation');
+const validationCheckCreate = require('../public/javascripts/validation/account/validation');
+const validationCheckRoom = require('../public/javascripts/validation/account/validation');
 
 //ルーム作成ページ
 router.get('/create', function(req, res, next) { 
@@ -20,7 +21,7 @@ router.get('/create', function(req, res, next) {
 });
 
 //ルーム作成処理
-router.post('/create', validationCheck, (req, res, next) => {
+router.post('/create', validationCheckCreate, (req, res, next) => {
   const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
     console.info(validationError.errors);
@@ -79,37 +80,43 @@ router.get('/:id/edit', function(req, res, next) {
 });
 
 //ルーム情報更新処理
-router.post('/:id/edit', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-    if (pass1 == pass2) {
-      return pass1;
-    } else {
-      res.redirect('/room/' + room_id);
+router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
+  const validationError = validationResult(req);
+  if (!validationError.isEmpty()) {
+    console.info(validationError.errors);
+    res.redirect('/room' + room_id + '/edit'); 
+  } else {
+    function pass() {
+      const pass1 = req.body.password1;
+      const pass2 = req.body.password2;
+      if (pass1 == pass2) {
+        return pass1;
+      } else {
+        res.redirect('/room/' + room_id);
+      }
     }
-  }
-  const room_id = req.params.id;
-  const room_name = req.body.name;
-  const room_memo = req.body.comment;
-  const num = req.body.kind;
-  const room_plaintextPassword = pass(); 
-  if (num == 1) {
-    const query = 'DELETE FROM room WHERE room_id = ?';
-    connection.query(query, [room_id], (err, rows) => {
-      if (err) throw err;
-      res.redirect('/room/index');
-    });
-  } 
-  if (num == 2) {
-    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
-      const room_hashedpassword = room_hash;
-      const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
-      connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', [queryDate], (err, rows) => {
+    const room_id = req.params.id;
+    const room_name = req.body.name;
+    const room_memo = req.body.comment;
+    const num = req.body.kind;
+    const room_plaintextPassword = pass(); 
+    if (num == 1) {
+      const query = 'DELETE FROM room WHERE room_id = ?';
+      connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
-        res.redirect('/chat/' + room_id);
+        res.redirect('/room/index');
       });
-    });
+    } 
+    if (num == 2) {
+      hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+        const room_hashedpassword = room_hash;
+        const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
+        connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', [queryDate], (err, rows) => {
+          if (err) throw err;
+          res.redirect('/chat/' + room_id);
+        });
+      });
+    }
   }
 });
 
