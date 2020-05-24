@@ -4,7 +4,8 @@ const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const validationCheck = require('../public/javascripts/validation/account/validation');
+const validationCheckAccount = require('../public/javascripts/validation/account/validation');
+const validationCheckLogin = require('../public/javascripts/validation/login/validation');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -19,7 +20,7 @@ router.get('/signup', function(req, res, next) {
   res.render('account', signup_text);
 });
 
-router.post('/signup', validationCheck, (req, res, next) => {
+router.post('/signup', validationCheckAccount, (req, res, next) => {
   const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
     console.info(validationError.errors);//ここからフロントに表示して上げないといけない。最初に教えてあげるのも良いかもね。
@@ -67,34 +68,40 @@ router.get('/login', function(req, res, next) {
   res.render('login', login_text);
 });
 
-router.post('/login', (req, res, next) => {
-  const name = req.body.name;
-  const pass1 = req.body.password1;
-  const pass2 = req.body.password2;
-  if (pass1 === pass2) {
-    const plaintextPassword = pass2;
-      const query1 = 'SELECT id, password FROM account WHERE name = ?';
-      connection.query(query1, [name], (error, rows) => {
-        if (error) {
-          console.error(error);
-          res.redirect('/account/login');
-        } else {
-          const userPass = rows.length ? rows[0].password : undefined;
-          const userId = rows.length ? rows[0].id : undefined;
-          if (userId) {
-            bcrypt.compare(plaintextPassword, userPass, (err, result) => {
-              if (result === true) {
-                req.session.user_id = userId;
-                res.redirect('/success/' + req.session.user_id );
-              }
-            });
-          } else {
-            res.redirect('/account/login');
-          }
-        }
-      });
-  } else {
+router.post('/login', validationCheckLogin, (req, res, next) => {
+  const validationError = validationResult(req);
+  if(!validationError.isEmpty()) {
+    console.info(validationError.errors);
     res.redirect('/account/login');
+  } else {
+    const name = req.body.name;
+    const pass1 = req.body.password1;
+    const pass2 = req.body.password2;
+    if (pass1 === pass2) {
+      const plaintextPassword = pass2;
+        const query1 = 'SELECT id, password FROM account WHERE name = ?';
+        connection.query(query1, [name], (error, rows) => {
+          if (error) {
+            console.error(error);
+            res.redirect('/account/login');
+          } else {
+            const userPass = rows.length ? rows[0].password : undefined;
+            const userId = rows.length ? rows[0].id : undefined;
+            if (userId) {
+              bcrypt.compare(plaintextPassword, userPass, (err, result) => {
+                if (result === true) {
+                  req.session.user_id = userId;
+                  res.redirect('/success/' + req.session.user_id );
+                }
+              });
+            } else {
+              res.redirect('/account/login');
+            }
+          }
+        });
+    } else {
+      res.redirect('/account/login');
+    }
   }
 });
 
@@ -122,7 +129,7 @@ router.get('/:id/edit', function(req, res, next) {
   }
 });
 
-router.post('/:id/edit', validationCheck, (req, res, next) => {
+router.post('/:id/edit', validationCheckAccount, (req, res, next) => {
   const id = req.params.id;
   const validationError = validationResult(req);
   if(!validationError.isEmpty()) {
