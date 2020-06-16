@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 const bcryot = require('bcrypt');
-const { validationResult } = require('express-validation');
+const { validationResult } = require('express-validator');
 const validationCheck = require('../public/javascripts/validation/room-login/validation');
 
 //ルームログインページの表示
@@ -33,6 +33,7 @@ router.post('/:id/login', validationCheck, (req, res, next) => {
           req.session.room_id = roomId;//ここでroom_idの保存
           res.redirect('/chat/' + req.params.id);
         } else {
+          console.log(err);
           res.redirect('/room/' + req.params.id + '/login');
         }
       });

@@ -8,12 +8,13 @@
     <title></title>
     <link rel='stylesheet' href='/stylesheets/chat-text.css' />
     <link rel='stylesheet' href='/stylesheets/responsive/chat-text-responsive.css'/>
-    <script src="../routes/chat.js" type="text/javascript"></script>
+    <!-- <script src="/routes/chat.js" type="text/javascript"></script> -->
     <script>
       function edit(num) {
-        document.form.edit.value = num;
-        document.form.action = "/chat/room/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
-        document.form.submit();//フォーム名＋submit()でフォームを送信。
+        document.text_form.kind.value = num;
+        document.text_form.action = "/chat/room/<%= text.room_id %>/text/<%= text.message_id %>/account/<%= text.user_id %>/edit"//フォームの送信先指定。
+        document.text_form.submit();//フォーム名＋submit()でフォームを送信。
+        console.log('succsess');
       }
     </script>
   </head>
@@ -38,7 +39,7 @@
             </div>
           </div>
           <div class="chat-content">
-            <form action="" method="POST" name="form">
+            <form action="" method="POST" name="text_form">
               <div class="chat-mess">
                 <p>
                   <input type="text" value='<%= text.text %>' name="text">

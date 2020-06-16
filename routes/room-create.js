@@ -111,9 +111,12 @@ router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
       hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
         const room_hashedpassword = room_hash;
         const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
-        connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', [queryDate], (err, rows) => {
-          if (err) throw err;
-          res.redirect('/chat/' + room_id);
+        connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', queryDate, (err, rows) => {
+          if (err) {
+            res.redirect('/chat/' + room_id);
+          } else {
+            res.redirect('/room/' + room_id + '/edit');
+          }
         });
       });
     }

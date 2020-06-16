@@ -74,12 +74,16 @@ main {
   border: 1px solid #ccc;
   font-size: 30px;
   align-items: center;
+  position: relative;
 }
 
 .text p {
   width: 100%;
   font-size: 18px;
   margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .time {
