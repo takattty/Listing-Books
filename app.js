@@ -11,6 +11,8 @@ const http = require('http');
 const router = express.Router();
 const connection = require('./mysqlConnection');
 const moment = require('moment');
+const escape = require('./public/javascripts/escape/escape');
+const unescape = require('./public/javascripts/escape/unescape');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -128,25 +130,6 @@ app.use('/chat', router.get('/:id', function(req, res) {
     });
   });
 }));
-
-function escape(input) {
-  return String(input)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#x27;');
-}
-
-function unescape(input) {
-  return String(input)
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#x27;/g, "'");//validator.jsリポジトリのマネ
-}
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../mysqlConnection');
 const hashed = require('../hash-password');
+const { validationResult } = require('express-validator');
+const validationCheckCreate = require('../public/javascripts/validation/account/validation');
+const validationCheckRoom = require('../public/javascripts/validation/account/validation');
+const unescape = require('../public/javascripts/escape/unescape');
 
 //ルーム作成ページ
 router.get('/create', function(req, res, next) { 
@@ -18,31 +22,37 @@ router.get('/create', function(req, res, next) {
 });
 
 //ルーム作成処理
-router.post('/create', (req, res, next) => {
-  const room_id = null;
-  const room_name = req.body.name;
-  const room_memo = req.body.comment;
-  const room_owner = req.session.user_id;
-  const pass1 = req.body.password1;
-  const pass2 = req.body.password2;
-  if (pass1 == pass2) {
-    const room_plaintextPassword = pass1; 
-    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
-      const room_hashedpassword = room_hash;
-      const date = {
-        room_id: room_id,
-        room_name: room_name,
-        room_pass: room_hashedpassword,
-        room_memo: room_memo,
-        room_owner: room_owner
-      };
-      connection.query('INSERT INTO room SET ?', [date],
-        (error, results, fields) => {
-          res.redirect('/room/index');
-        });
-    });
-  } else {
+router.post('/create', validationCheckCreate, (req, res, next) => {
+  const validationError = validationResult(req);
+  if (!validationError.isEmpty()) {
+    console.info(validationError.errors);
     res.redirect('/room/create');
+  } else {
+    const room_id = null;
+    const room_name = req.body.name;
+    const room_memo = req.body.comment;
+    const room_owner = req.session.user_id;
+    const pass1 = req.body.password1;
+    const pass2 = req.body.password2;
+    if (pass1 == pass2) {
+      const room_plaintextPassword = pass1; 
+      hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+        const room_hashedpassword = room_hash;
+        const date = {
+          room_id: room_id,
+          room_name: room_name,
+          room_pass: room_hashedpassword,
+          room_memo: room_memo,
+          room_owner: room_owner
+        };
+        connection.query('INSERT INTO room SET ?', [date],
+          (error, results, fields) => {
+            res.redirect('/room/index');
+          });
+      });
+    } else {
+      res.redirect('/room/create');
+    }
   }
 });
 
@@ -52,6 +62,10 @@ router.get('/:id/edit', function(req, res, next) {
   const userid = req.session.user_id;
   const query = 'SELECT room_id, room_name, room_memo, room_owner FROM room WHERE room_id = ?';
   connection.query(query, [room_id], (err, rows) => {
+    const unescape_room_name = unescape(rows[0].room_name);
+    const unescape_room_memo = unescape(rows[0].room_memo);
+    rows[0].room_name = unescape_room_name;
+    rows[0].room_memo = unescape_room_memo;
     const roomEdit = {
       title1: 'ここではRoomの更新が出来ます。',
       title2: 'Room名, パスワード, Roomの説明を編集しましょう！',
@@ -71,37 +85,48 @@ router.get('/:id/edit', function(req, res, next) {
 });
 
 //ルーム情報更新処理
-router.post('/:id/edit', (req, res, next) => {
-  function pass() {
-    const pass1 = req.body.password1;
-    const pass2 = req.body.password2;
-    if (pass1 == pass2) {
-      return pass1;
-    } else {
-      res.redirect('/room/' + room_id);
-    }
-  }
+router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
   const room_id = req.params.id;
-  const room_name = req.body.name;
-  const room_memo = req.body.comment;
-  const num = req.body.kind;
-  const room_plaintextPassword = pass(); 
-  if (num == 1) {
-    const query = 'DELETE FROM room WHERE room_id = ?';
-    connection.query(query, [room_id], (err, rows) => {
-      if (err) throw err;
-      res.redirect('/room/index');
-    });
-  } 
-  if (num == 2) {
-    hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
-      const room_hashedpassword = room_hash;
-      const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
-      connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', [queryDate], (err, rows) => {
+  const validationError = validationResult(req);
+  if (!validationError.isEmpty()) {
+    console.info(validationError.errors);
+    res.redirect('/room/' + room_id + '/edit'); 
+  } else {
+    function pass() {
+      const pass1 = req.body.password1;
+      const pass2 = req.body.password2;
+      if (pass1 == pass2) {
+        return pass1;
+      } else {
+        res.redirect('/room/' + room_id);
+      }
+    }
+    const room_id = req.params.id;
+    const room_name = req.body.name;
+    const room_memo = req.body.comment;
+    const num = req.body.kind;
+    const room_plaintextPassword = pass(); 
+    if (num == 1) {
+      const query = 'DELETE FROM room WHERE room_id = ?';
+      connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
-        res.redirect('/chat/' + room_id);
+        res.redirect('/room/index');
       });
-    });
+    } 
+    if (num == 2) {
+      hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
+        const room_hashedpassword = room_hash;
+        const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
+        connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', queryDate, (err, rows) => {
+          if (err) {
+            console.error(err);
+            res.redirect('/chat/' + room_id);
+          } else {
+            res.redirect('/room/' + room_id + '/show');
+          }
+        });
+      });
+    }
   }
 });
 
@@ -111,6 +136,10 @@ router.get('/:id/show', function(req, res, next) {
     const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
     connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
+        const unescape_room_name = unescape(rows[0].room_name);
+        const unescape_room_memo = unescape(rows[0].room_memo);
+        rows[0].room_name = unescape_room_name;
+        rows[0].room_memo = unescape_room_memo;
         const roomShow = {
             title1: 'ここではRoomの編集や削除の選択が出来ます。',
             title2: '編集か削除を選んでください',
