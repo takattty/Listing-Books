@@ -44,7 +44,6 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
       if (err) {
           console.log('最初でミスってる！');
       }
-      console.log(row1[0]);
       connection.query('SELECT name FROM account WHERE id = ?', [user_id], (err, row2) => {
         if (err) {
             console.log('2つ目のクエリでミスってる！');

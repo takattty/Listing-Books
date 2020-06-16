@@ -33,7 +33,6 @@ router.post('/:id/login', validationCheck, (req, res, next) => {
           req.session.room_id = roomId;//ここでroom_idの保存
           res.redirect('/chat/' + req.params.id);
         } else {
-          console.log(err);
           res.redirect('/room/' + req.params.id + '/login');
         }
       });

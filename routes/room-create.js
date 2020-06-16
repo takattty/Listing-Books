@@ -113,6 +113,7 @@ router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
         const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
         connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', queryDate, (err, rows) => {
           if (err) {
+            console.error(err);
             res.redirect('/chat/' + room_id);
           } else {
             res.redirect('/room/' + room_id + '/edit');
