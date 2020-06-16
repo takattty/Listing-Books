@@ -21,7 +21,7 @@ router.get('/:room_id/text/:text_id/account/:user_id/show', function(req, res, n
         if (err) {
           console.log('2つ目のクエリでミスってる！');
         }
-        const unescaped_name = row2[0].name;
+        const unescaped_name = unescape(row2[0].name);
         row2[0].name = unescaped_name;
         connection.commit((err) => {
           if (err) {

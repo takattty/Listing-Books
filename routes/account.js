@@ -131,7 +131,7 @@ router.get('/:id/edit', function(req, res, next) {
     res.render('account', edit_text);
     });
   } else {
-    alert('間違っています');
+    console.log('ログインして下さい');
     res.redirect('/profile/' + userid);
   }
 });
