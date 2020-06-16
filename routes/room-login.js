@@ -4,6 +4,7 @@ const connection = require('../mysqlConnection');
 const bcryot = require('bcrypt');
 const { validationResult } = require('express-validator');
 const validationCheck = require('../public/javascripts/validation/room-login/validation');
+const unescape = require('../public/javascripts/escape/unescape');
 
 //ルームログインページの表示
 router.get('/:id/login', function(req, res, next) { 
@@ -11,6 +12,10 @@ router.get('/:id/login', function(req, res, next) {
   const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
   connection.query(query, [roomId_url], (err, rows) => {
     if (err) throw err;
+    const unescaped_room_name = unescape(rows[0].room_name);
+    const unescaped_room_memo = unescape(rows[0].room_memo);
+    rows[0].room_name = unescaped_room_name;
+    rows[0].room_memo = unescaped_room_memo;
     res.render('room-login', { room_show: rows[0]});
   });
 });
