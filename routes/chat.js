@@ -3,6 +3,7 @@ const router = express.Router();
 const connection = require('../mysqlConnection');
 const { validationResult } = require('express-validator');
 const validationCheck = require('../public/javascripts/validation/chat-text-edit/validation');
+const unescape = require('../public/javascripts/escape/unescape');
 
 //各ルームのメッセージ詳細ページ
 router.get('/:room_id/text/:text_id/account/:user_id/show', function(req, res, next) {
@@ -14,10 +15,14 @@ router.get('/:room_id/text/:text_id/account/:user_id/show', function(req, res, n
       if (err) {
         console.log('最初でミスってる！');
       }
+      const unescaped_text = unescape(row1[0].text);
+      row1[0].text = unescaped_text;
       connection.query('SELECT name FROM account WHERE id = ?', [user_id], (err, row2) => {
         if (err) {
           console.log('2つ目のクエリでミスってる！');
         }
+        const unescaped_name = row2[0].name;
+        row2[0].name = unescaped_name;
         connection.commit((err) => {
           if (err) {
             console.log('最後のコミットでミスってる！');
@@ -44,10 +49,14 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
       if (err) {
           console.log('最初でミスってる！');
       }
+      const unescaped_text = unescape(row1[0].text);
+      row1[0].text = unescaped_text;
       connection.query('SELECT name FROM account WHERE id = ?', [user_id], (err, row2) => {
         if (err) {
             console.log('2つ目のクエリでミスってる！');
         }
+        const unescaped_name = row2[0].name;
+        row2[0].name = unescaped_name;
         connection.commit((err) => {
           if (err) {
             console.log('最後のコミットでミスってる！');
