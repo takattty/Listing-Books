@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const validationCheckAccount = require('../public/javascripts/validation/account/validation');
 const validationCheckLogin = require('../public/javascripts/validation/login/validation');
+const unescape = require('../public/javascripts/escape/unescape');
 
 router.get('/signup', function(req, res, next) {
   const signup_text = {
@@ -112,6 +113,12 @@ router.get('/:id/edit', function(req, res, next) {
     const query = 'SELECT id, name, password, si FROM account WHERE id = ?';
     connection.query(query, [id], (err, rows) => {
       if (err) throw err;
+      const user_name = rows[0].name;
+      const user_si = rows[0].si;
+      const unescaped_user_name = unescape(user_name);
+      const unescaped_user_si = unescape(user_si);
+      rows[0].name = unescaped_user_name;
+      rows[0].si = unescaped_user_si;
       const edit_text = {
         title1: 'ここではアカウントの編集が出来ます。',
         title2: '編集を終えたら、保存ボタンを押しましょう！',
