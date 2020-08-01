@@ -1,5 +1,5 @@
 #ignore file about Database
 mysqlConnection.js
 hash-password.js
-node_modules/
+*node_modules/
 .DS_Store
