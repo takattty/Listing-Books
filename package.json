@@ -10,6 +10,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "debug": "^2.6.9",
+    "dot-prop": "^5.2.0",
     "ejs": "^2.6.2",
     "express": "^4.16.4",
     "express-session": "^1.16.2",
@@ -23,6 +24,6 @@
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   }
 }
