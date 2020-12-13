@@ -39,11 +39,11 @@ router.post('/create', validationCheckCreate, (req, res, next) => {
       hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
         const room_hashedpassword = room_hash;
         const date = {
-          room_id: room_id,
-          room_name: room_name,
-          room_pass: room_hashedpassword,
-          room_memo: room_memo,
-          room_owner: room_owner
+          id: room_id,
+          name: room_name,
+          password: room_hashedpassword,
+          memo: room_memo,
+          owner: room_owner
         };
         connection.query('INSERT INTO room SET ?', [date],
           (error, results, fields) => {
@@ -60,7 +60,7 @@ router.post('/create', validationCheckCreate, (req, res, next) => {
 router.get('/:id/edit', function(req, res, next) { 
   const room_id = req.params.id;
   const userid = req.session.user_id;
-  const query = 'SELECT room_id, room_name, room_memo, room_owner FROM room WHERE room_id = ?';
+  const query = 'SELECT id, name, memo, owner FROM room WHERE id = ?';
   connection.query(query, [room_id], (err, rows) => {
     const unescape_room_name = unescape(rows[0].room_name);
     const unescape_room_memo = unescape(rows[0].room_memo);
@@ -107,7 +107,7 @@ router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
     const num = req.body.kind;
     const room_plaintextPassword = pass(); 
     if (num == 1) {
-      const query = 'DELETE FROM room WHERE room_id = ?';
+      const query = 'DELETE FROM room WHERE id = ?';
       connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
         res.redirect('/room/index');
@@ -117,7 +117,7 @@ router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
       hashed.generatedHash(room_plaintextPassword).then((room_hash) => {
         const room_hashedpassword = room_hash;
         const queryDate = [room_name, room_hashedpassword, room_memo, room_id];
-        connection.query('UPDATE room SET room_name = ?, room_pass = ?, room_memo = ? WHERE room_id = ?', queryDate, (err, rows) => {
+        connection.query('UPDATE room SET name = ?, pass = ?, memo = ? WHERE id = ?', queryDate, (err, rows) => {
           if (err) {
             console.error(err);
             res.redirect('/chat/' + room_id);
@@ -133,7 +133,7 @@ router.post('/:id/edit', validationCheckRoom, (req, res, next) => {
 //ルームの詳細ページ
 router.get('/:id/show', function(req, res, next) { 
     const room_id = req.params.id;
-    const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
+    const query = 'SELECT id, name, memo FROM room WHERE id = ?';
     connection.query(query, [room_id], (err, rows) => {
         if (err) throw err;
         const unescape_room_name = unescape(rows[0].room_name);

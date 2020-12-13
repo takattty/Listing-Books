@@ -108,7 +108,7 @@ io.on('connection', (socket) => {//ルーティングとは独立していない
 app.use('/chat', router.get('/:id', function(req, res) {
   const room_id = req.session.room_id;//これはsessionに入ってる
   const user_id = req.session.user_id;
-  const query1 = 'SELECT text, time, user_name FROM message WHERE room_id = ?';
+  const query1 = 'SELECT text, time, user_name FROM message WHERE id = ?';
   connection.query(query1, [room_id], (err, rows1) => {
     const unescapedDate = rows1.map(value => {
       const unescapedObject = {};
@@ -118,7 +118,7 @@ app.use('/chat', router.get('/:id', function(req, res) {
       unescapedObject.user_name = value.user_name;
       return unescapedObject;
     });
-    const query2 = 'SELECT room_name FROM room WHERE room_id = ?';
+    const query2 = 'SELECT name FROM room WHERE id = ?';
     connection.query(query2, [room_id], (err, rows2) => {
       const content = {
         roomid: room_id,

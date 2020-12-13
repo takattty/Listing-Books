@@ -11,7 +11,7 @@ router.get('/:room_id/text/:text_id/account/:user_id/show', function(req, res, n
   const user_id = req.params.user_id;
   connection.beginTransaction((err) => {
     if (err) { throw err };
-    connection.query('SELECT * FROM message WHERE message_id = ?', [text_id], (err, row1) => {
+    connection.query('SELECT * FROM message WHERE id = ?', [text_id], (err, row1) => {
       if (err) {
         console.log('最初でミスってる！');
       }
@@ -45,7 +45,7 @@ router.get('/:room_id/text/:text_id/account/:user_id/edit', function(req, res, n
   const user_id = req.session.user_id;
   connection.beginTransaction((err) => {
     if (err) { throw err };
-    connection.query('SELECT * FROM message WHERE message_id = ?', [text_id], (err, row1) => {
+    connection.query('SELECT * FROM message WHERE id = ?', [text_id], (err, row1) => {
       if (err) {
           console.log('最初でミスってる！');
       }
@@ -86,14 +86,14 @@ router.post('/:room_id/text/:text_id/account/:user_id/edit', validationCheck, (r
     res.redirect('/chat/room/' + room_id + '/text/' + text_id + '/account/' + user_id + '/edit');
   } else {
     if (num == 1) {
-      const query = 'DELETE FROM message WHERE message_id = ?';
+      const query = 'DELETE FROM message WHERE id = ?';
       connection.query(query, [text_id], (err, rows) => {
         if (err) throw err;
         res.redirect('/chat/' + room_id);
       });
     } 
     if (num == 2) {
-      connection.query('UPDATE message SET text = ? WHERE message_id = ?', [text, text_id], (err, rows) => {
+      connection.query('UPDATE message SET text = ? WHERE id = ?', [text, text_id], (err, rows) => {
         if (err) throw err;
         res.redirect('/chat/room/' + req.params.room_id + '/text/' + req.params.text_id + '/account/' + req.params.user_id + '/show');
       });

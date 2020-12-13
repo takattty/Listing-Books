@@ -9,7 +9,7 @@ const unescape = require('../public/javascripts/escape/unescape');
 //ルームログインページの表示
 router.get('/:id/login', function(req, res, next) { 
   const roomId_url = req.params.id;
-  const query = 'SELECT room_id, room_name, room_memo FROM room WHERE room_id = ?';
+  const query = 'SELECT id, name, memo FROM room WHERE id = ?';
   connection.query(query, [roomId_url], (err, rows) => {
     if (err) throw err;
     const unescaped_room_name = unescape(rows[0].room_name);
@@ -28,11 +28,11 @@ router.post('/:id/login', validationCheck, (req, res, next) => {
     console.info(validationError.errors);
     res.redirect('/room/' + roomId + '/login');
   } else {
-    const query = 'SELECT room_id, room_pass FROM room WHERE room_id = ?';
+    const query = 'SELECT id, password FROM room WHERE id = ?';
     connection.query(query, [roomId], (err, rows) => {
       if (err) throw err;
       const plaintextPassword = req.body.pass;
-      const room_pass = rows[0].room_pass;
+      const room_pass = rows[0].password;
       bcryot.compare(plaintextPassword, room_pass, (err, result) => {
         if(result === true) {
           req.session.room_id = roomId;//ここでroom_idの保存
